@@ -1,0 +1,147 @@
+@extends('admin.admin_master')
+@section('admin')
+
+
+<div class="content-wrapper">
+    <div class="container-full">
+        <!-- Content Header (Page header) -->
+
+
+        <section class="content">
+
+            <!-- Basic Forms -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Add Attendance </h4>
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col">
+
+
+                                <div class="row">
+                                    <div class="col-12">
+                                    <form method="post" action="{{ route('search.student.attendance') }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h5>Class Name <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <select name="class_id" required="" class="form-control">
+                                                            <option value="" selected="" disabled="">Select Class</option>
+                                                            @foreach($classes as $class)
+                                                            <option value="{{ $class->id }}" {{ @$students[0]->class_id == $class->id? 'selected': '' }}>{{ $class->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="submit" class="btn btn-rounded btn-info" style="margin-top: 25px;" value="Search">
+                                            </div>
+                                        </div> <!-- // end Row  -->
+                                    </form>
+
+                                    <form method="post" action="{{ route('store.student.attendance') }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <h5>Attendance Date <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="date" name="date" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12">
+
+                                                <table class="table table-bordered table-striped" style="width: 100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th rowspan="2" class="text-center"
+                                                                style="vertical-align: middle;">Sl</th>
+                                                            <th rowspan="2" class="text-center"
+                                                                style="vertical-align: middle;">Employee List</th>
+                                                            <th colspan="3" class="text-center"
+                                                                style="vertical-align: middle; width: 30%">Attendance
+                                                                Status
+                                                            </th>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th class="text-center btn present_all"
+                                                                style="display: table-cell; background-color: #000000">
+                                                                Present</th>
+                                                            <th class="text-center btn leave_all"
+                                                                style="display: table-cell; background-color: #000000">
+                                                                Leave</th>
+                                                            <th class="text-center btn absent_all"
+                                                                style="display: table-cell; background-color: #000000">
+                                                                Absent
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($students as $key => $value)
+
+                                                        <tr id="div{{$value['student']['id_no']}}" class="text-center">
+                                                            <input type="hidden" name="student_id[]" value="{{ $value['student_id'] }}">
+                                                            <input type="hidden" name="class_id" value="{{ $value['class_id'] }}">
+                                                            <td>{{ $key+1 }}</td>
+                                                            <td>{{ $value['student']['name'] }}</td>
+
+                                                            <td colspan="3">
+                                                                <div class="switch-toggle switch-3 switch-candy">
+
+                                                                    <input name="attend_status{{$key}}" type="radio"
+                                                                        value="Present" id="present{{$key}}"
+                                                                        checked="checked">
+                                                                    <label for="present{{$key}}">Present</label>
+
+                                                                    <input name="attend_status{{$key}}" value="Leave"
+                                                                        type="radio" id="leave{{$key}}">
+                                                                    <label for="leave{{$key}}">Leave</label>
+
+                                                                    <input name="attend_status{{$key}}" value="Absent"
+                                                                        type="radio" id="absent{{$key}}">
+                                                                    <label for="absent{{$key}}">Absent</label>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+
+                                            </div> <!-- // End Col md 12 -->
+                                        </div> <!-- // end Row  -->
+
+                                        <div class="text-xs-right">
+                                            <input type="submit" class="btn btn-rounded btn-info mb-5" value="Submit">
+                                        </div>
+                                    </form>
+
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+
+    </div>
+</div>
+
+
+@endsection
