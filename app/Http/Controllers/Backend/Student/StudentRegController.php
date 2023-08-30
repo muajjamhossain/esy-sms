@@ -216,9 +216,6 @@ class StudentRegController extends Controller
 
  public function StudentUpdatePromotion(Request $request,$student_id){
     	DB::transaction(function() use($request,$student_id){
-
-
-
     	$user = User::where('id',$student_id)->first();
     	$user->name = $request->name;
     	$user->fname = $request->fname;
@@ -253,9 +250,7 @@ class StudentRegController extends Controller
           $discount_student->fee_category_id = '1';
           $discount_student->discount = $request->discount;
           $discount_student->save();
-
     	});
-
 
     	$notification = array(
     		'message' => 'Student Promotion Updated Successfully',
@@ -269,12 +264,20 @@ class StudentRegController extends Controller
 
 
     public function StudentRegDetails($student_id){
-     $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
 
-    $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $data);
-	$pdf->SetProtection(['copy', 'print'], '', 'pass');
-	return $pdf->stream('document.pdf');
+        $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $data);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
+    }
 
+    public function StudentRegIdCard($student_id){
+        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+
+        return view('backend.student.student_reg.student_id_card', $data);
+        // $pdf = PDF::loadView('backend.student.student_reg.student_id_card', $data);
+        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        // return $pdf->stream('id-card.pdf');
     }
 
 

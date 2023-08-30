@@ -275,6 +275,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::post('/reg/update/promotion/{student_id}', [StudentRegController::class, 'StudentUpdatePromotion'])->name('promotion.student.registration');
 
             Route::get('/reg/details/{student_id}', [StudentRegController::class, 'StudentRegDetails'])->name('student.registration.details');
+            Route::get('/reg/id-card/{student_id}', [StudentRegController::class, 'StudentRegIdCard'])->name('student.registration.id-card');
 
             // Student Roll Generate Routes
             Route::get('/roll/generate/view', [StudentRollController::class, 'StudentRollView'])->name('roll.generate.view');
