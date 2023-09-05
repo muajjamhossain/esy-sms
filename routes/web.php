@@ -469,9 +469,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
 
             // Attendance Report Routes
-            Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
+            Route::get('employee/attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('employee.attendance.report.view');
 
-            Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
+            Route::get('employee/report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('employee.report.attendance.get');
+
+
+            Route::get('student/attendance/report/view', [AttenReportController::class, 'studentAttenReportView'])->name('student.attendance.report.view');
+
+            Route::get('student/report/attendance/get', [AttenReportController::class, 'studentAttenReportGet'])->name('student.report.attendance.get');
 
             // Student Result Report Routes
             Route::get('student/result/view', [ResultReportController::class, 'ResultView'])->name('student.result.view');
