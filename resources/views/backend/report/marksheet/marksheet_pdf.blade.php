@@ -33,7 +33,7 @@
 
   		<div class="col-md-4 text-center" style="float: left;">
   			<h4><strong>SMS Learning School</strong></h4>
-  			<h6><strong>Dhaka Bangladesh</strong></h6>
+  			<h6><strong>Uttora, Dhaka, Bangladesh</strong></h6>
   			<h5><strong><u><i>Academic Transcript</i></u></strong></h5>
   			<h6><strong>{{ $allMarks['0']['exam_type']['name'] }}</strong></h6>
 
@@ -106,7 +106,7 @@
 		<tbody>
 			@foreach($allGrades as $mark)
 			<tr>
-<td>{{ $mark->grade_name }}</td>
+<td>{{ $mark->grade_name ?? "" }}</td>
 <td>{{ $mark->start_marks }} - {{ $mark->end_marks }}</td>
 <td>{{ number_format((float)$mark->grade_point,2) }} - {{ ($mark->grade_point == 5)?(number_format((float)$mark->grade_point,2)):(number_format((float)$mark->grade_point+1,2) - (float)0.01) }}</td>
 </tr>
@@ -209,7 +209,7 @@ $grade_point_avg = (float)$total_point/(float)$total_subject;
     @if($count_fail > 0)
     F
     @else
-    {{ $total_grade->grade_name }}
+    {{ $total_grade->grade_name ?? "" }}
     @endif
   </td>
 </tr>
@@ -235,7 +235,7 @@ $grade_point_avg = (float)$total_point/(float)$total_subject;
         @if($count_fail > 0)
         Fail
         @else
-        {{ $total_grade->remarks }}
+        {{ $total_grade->remarks ?? ""}}
         @endif
       </td>
     </tr>

@@ -1,0 +1,5 @@
+Admin প্যানেল: Email: admin@school.com, Password: password123
+
+Teacher/Employee: Email: teacher1@school.com or teacher2@school.com, Password: password123
+
+Student: Email: student1@school.com or student2@school.com, Password: password123

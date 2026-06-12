@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'stack' => 'livewire',
+    'stack' => 'inertia',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ return [
     */
 
     'features' => [
-         Features::profilePhotos(),
+        // Features::profilePhotos(),
         // Features::api(),
-        // Features::teams(),
+        Features::teams(),
     ],
 
 ];
