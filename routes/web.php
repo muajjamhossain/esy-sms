@@ -35,8 +35,10 @@ use App\Http\Controllers\Backend\Student\StudentAttendanceController;
 use App\Http\Controllers\Backend\Student\StudentRegController;
 use App\Http\Controllers\Backend\Student\StudentRollController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\ClassRecordingController;
 use App\Http\Controllers\ClassRoutineController;
 use App\Http\Controllers\ExamRoutineController;
+use App\Http\Controllers\OnlineClassController;
 use App\Http\Controllers\SeatPlanController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +96,33 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/seat-plan/generate', [SeatPlanController::class, 'generate'])->name('seat.plan.generate');
         Route::get('/seat-plan/view/{exam_id}/{class_id}', [SeatPlanController::class, 'view'])->name('seat.plan.view');
         Route::delete('/seat-plan/{id}', [SeatPlanController::class, 'destroy'])->name('seat.plan.delete');
+
+
+        Route::resource('online-class', OnlineClassController::class);
+        Route::get('/online-class/start/{id}', [OnlineClassController::class, 'start'])->name('online-class.start');
+        Route::get('/online-class/join/{id}', [OnlineClassController::class, 'join'])->name('online-class.join');
+        Route::get('/online-class/end/{id}', [OnlineClassController::class, 'endMeeting'])->name('online-class.end');
+        Route::get('/get-upcoming-classes', [OnlineClassController::class, 'getUpcomingClasses'])->name('get.upcoming.classes');
+        Route::get('/get-subjects-by-class/{class_id}', [OnlineClassController::class, 'getSubjectsByClass'])->name('get.subjects.by.class');
+
+        // Route::get('/online-class/create', [OnlineClassController::class, 'create'])->name('online-class.create');
+        // Route::get('/online-class', [OnlineClassController::class, 'index'])->name('online-class.index');
+        // Route::post('/online-class', [OnlineClassController::class, 'store'])->name('online-class.store');
+        // Route::get('/online-class/{id}/edit', [OnlineClassController::class, 'edit'])->name('online-class.edit');
+        // Route::put('/online-class/{id}', [OnlineClassController::class, 'update'])->name('online-class.update');
+        // Route::delete('/online-class/{id}', [OnlineClassController::class, 'destroy'])->name('online-class.destroy');
+
+        Route::get('/recordings', [ClassRecordingController::class, 'index'])->name('recordings.index');
+        Route::get('/recordings/fetch/{online_class_id}', [ClassRecordingController::class, 'fetchRecordings'])->name('recordings.fetch');
+        Route::get('/recordings/fetch-all', [ClassRecordingController::class, 'fetchAllRecordings'])->name('recordings.fetch-all');
+        Route::get('/recordings/{id}', [ClassRecordingController::class, 'show'])->name('recordings.show');
+        Route::delete('/recordings/{id}', [ClassRecordingController::class, 'destroy'])->name('recordings.destroy');
+
+        // API Routes for students
+        Route::get('/api/class-recordings/{class_id?}', [ClassRecordingController::class, 'getClassRecordings']);
+
+
+
 
         // User Management All Routes
 

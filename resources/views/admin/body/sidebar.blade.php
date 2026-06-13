@@ -191,6 +191,21 @@ $route = Route::current()->getName();
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-video-camera"></i>
+                    <span>Online Class</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('online-class.index') }}"><i class="ti-calendar"></i> All Classes</a></li>
+                    <li><a href="{{ route('online-class.create') }}"><i class="ti-plus"></i> Create Class</a></li>
+                    <li><a href="{{ route('recordings.index') }}"><i class="ti-video-clapper"></i> Class Recordings</a></li>
+                </ul>
+            </li>
+
 
             <li class="header nav-small-cap">Report Interface</li>
 

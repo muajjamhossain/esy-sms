@@ -7,9 +7,9 @@ use App\Models\ExamAdmitCard;
 use App\Models\ExamType;
 use App\Models\StudentClass;
 use App\Models\StudentYear;
-use App\Models\User;
+// use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 
 class AdmitCardController extends Controller
 {
