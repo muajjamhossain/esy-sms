@@ -106,7 +106,7 @@
                                             <td>{{ $routine->teacher->name ?? '' }}</td>
                                             <td>{{ $routine->room_no }}</td>
                                             <td>
-                                                <button class="btn btn-info btn-sm" onclick="editRoutine({{ $routine->id }})">Edit</button>
+                                                <button type="button" class="btn btn-info btn-sm" onclick="editRoutine({{ $routine->id }})">Edit</button>
                                                 {{-- <button class="btn btn-danger btn-sm" id="delete_routine" data-url="{{ route('routine.destroy', $routine->id) }}">Delete</button> --}}
                                                 <a href="{{ route('routine.destroy', $routine->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
                                             </td>
@@ -238,7 +238,7 @@
                 <h4 class="modal-title">Edit Class Routine</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form method="POST" action="" id="editForm">
+            <form method="POST" action="{{ route('routine.update', ':id') }}" id="editForm">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

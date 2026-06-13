@@ -95,7 +95,7 @@
 
         function editRoutine(id) {
             $.ajax({
-                url: "/class-routine/" + id + "/edit",
+                url: "/routine/" + id + "/edit",
                 type: "GET",
                 success: function(data) {
                     $('#edit_class_id').val(data.class_id);
@@ -106,7 +106,7 @@
                     $('#edit_end_time_id').val(data.end_time_id);
                     $('#edit_room_no').val(data.room_no);
                     $('#edit_note').val(data.note);
-                    $('#editForm').attr('action', '/class-routine/' + id);
+                    $('#editForm').attr('action', '/routine/' + id);
                     $('#editRoutineModal').modal('show');
                 }
             });
