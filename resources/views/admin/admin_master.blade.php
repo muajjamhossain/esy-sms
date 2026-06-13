@@ -112,6 +112,24 @@
             });
         }
 
+
+        function generateSeatPlan() {
+            // alert('ok')
+            Swal.fire({
+                title: 'Generate Seat Plan?',
+                text: "This will create seat arrangement for all students",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, generate it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('generateForm').submit();
+                }
+            });
+        }
+
     </script>
 </body>
 </html>

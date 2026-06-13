@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdmitCardController;
 use App\Http\Controllers\Backend\Account\AccountSalaryController;
 use App\Http\Controllers\Backend\Account\OtherCostController;
 use App\Http\Controllers\Backend\Account\StudentFeeController;
@@ -35,6 +36,8 @@ use App\Http\Controllers\Backend\Student\StudentRegController;
 use App\Http\Controllers\Backend\Student\StudentRollController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ClassRoutineController;
+use App\Http\Controllers\ExamRoutineController;
+use App\Http\Controllers\SeatPlanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -70,6 +73,27 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::resource('routine', ClassRoutineController::class);
         // Route::resource('routine', ClassRoutineController::class)->except(['show']);
         Route::get('get-subjects/{class_id}', [ClassRoutineController::class, 'getSubjectsByClass']);
+
+
+        // Exam Routine
+        Route::get('/exam-routine', [ExamRoutineController::class, 'index'])->name('exam.routine');
+        Route::post('/exam-routine', [ExamRoutineController::class, 'store'])->name('exam.routine.store');
+        Route::get('/exam-routine/{id}/edit', [ExamRoutineController::class, 'edit'])->name('exam.routine.edit');
+        Route::put('/exam-routine/{id}', [ExamRoutineController::class, 'update'])->name('exam.routine.update');
+        Route::delete('/exam-routine/{id}', [ExamRoutineController::class, 'destroy'])->name('exam.routine.destroy');
+
+        // Admit Card Routes
+        Route::get('/admit-card', [AdmitCardController::class, 'index'])->name('admit.card');
+        Route::get('/admit-card/generate/{exam_id}/{class_id}', [AdmitCardController::class, 'generate'])->name('admit.card.generate');
+        Route::get('/admit-card/print/{id}', [AdmitCardController::class, 'print'])->name('admit.card.print');
+        Route::get('/admit-card/bulk-print', [AdmitCardController::class, 'bulkPrint'])->name('admit.card.bulk.print');
+        Route::delete('/admit-card/{id}', [AdmitCardController::class, 'destroy'])->name('admit.card.delete');
+
+        // Seat Plan Routes
+        Route::get('/seat-plan', [SeatPlanController::class, 'index'])->name('seat.plan');
+        Route::post('/seat-plan/generate', [SeatPlanController::class, 'generate'])->name('seat.plan.generate');
+        Route::get('/seat-plan/view/{exam_id}/{class_id}', [SeatPlanController::class, 'view'])->name('seat.plan.view');
+        Route::delete('/seat-plan/{id}', [SeatPlanController::class, 'destroy'])->name('seat.plan.delete');
 
         // User Management All Routes
 

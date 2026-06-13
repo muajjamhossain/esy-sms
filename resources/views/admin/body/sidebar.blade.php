@@ -156,6 +156,21 @@ $route = Route::current()->getName();
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-files"></i>
+                    <span>Exam Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('exam.routine') }}"><i class="ti-calendar"></i> Exam Routine</a></li>
+                    <li><a href="{{ route('admit.card') }}"><i class="ti-id-card"></i> Admit Card</a></li>
+                    <li><a href="{{ route('seat.plan') }}"><i class="ti-layout-grid"></i> Seat Plan</a></li>
+                </ul>
+            </li>
+
 
             <li class="treeview {{ ($prefix == '/accounts')?'active':'' }}">
                 <a href="#">
