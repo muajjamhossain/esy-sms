@@ -58,7 +58,6 @@
             $(document).on('click', '#delete', function(e){
                 e.preventDefault();
                 var link = $(this).attr("href");
-
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "Delete This Data?",
@@ -92,6 +91,27 @@
                     break;
             }
         @endif
+
+
+        function editRoutine(id) {
+            $.ajax({
+                url: "/class-routine/" + id + "/edit",
+                type: "GET",
+                success: function(data) {
+                    $('#edit_class_id').val(data.class_id);
+                    $('#edit_subject_id').val(data.subject_id);
+                    $('#edit_employee_id').val(data.employee_id);
+                    $('#edit_routine_day_id').val(data.routine_day_id);
+                    $('#edit_start_time_id').val(data.start_time_id);
+                    $('#edit_end_time_id').val(data.end_time_id);
+                    $('#edit_room_no').val(data.room_no);
+                    $('#edit_note').val(data.note);
+                    $('#editForm').attr('action', '/class-routine/' + id);
+                    $('#editRoutineModal').modal('show');
+                }
+            });
+        }
+
     </script>
 </body>
 </html>

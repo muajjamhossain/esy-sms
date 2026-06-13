@@ -1,46 +1,41 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\Account\AccountSalaryController;
+use App\Http\Controllers\Backend\Account\OtherCostController;
+use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\DefaultController;
-use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
+use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
+use App\Http\Controllers\Backend\Employee\EmployeeRegController;
+use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
+use App\Http\Controllers\Backend\Employee\MonthlySalaryController;
 use App\Http\Controllers\Backend\Marks\GradeController;
 use App\Http\Controllers\Backend\Marks\MarksController;
-use App\Http\Controllers\Backend\Report\ProfiteController;
-use App\Http\Controllers\Backend\Setup\ExamTypeController;
-use App\Http\Controllers\Backend\Student\ExamFeeController;
-use App\Http\Controllers\Backend\Report\MarkSheetController;
-use App\Http\Controllers\Backend\Setup\FeeAmountControllere;
-use App\Http\Controllers\Backend\Account\OtherCostController;
-use App\Http\Controllers\Backend\Setup\DesignationController;
-
-use App\Http\Controllers\Backend\Setup\FeeCategoryController;
-use App\Http\Controllers\Backend\Setup\StudentYearController;
-use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Report\AttenReportController;
+use App\Http\Controllers\Backend\Report\MarkSheetController;
+use App\Http\Controllers\Backend\Report\ProfiteController;
+use App\Http\Controllers\Backend\Report\ResultReportController;
+use App\Http\Controllers\Backend\Setup\AssignSubjectController;
+use App\Http\Controllers\Backend\Setup\DesignationController;
+use App\Http\Controllers\Backend\Setup\ExamTypeController;
+use App\Http\Controllers\Backend\Setup\FeeAmountControllere;
+use App\Http\Controllers\Backend\Setup\FeeCategoryController;
+use App\Http\Controllers\Backend\Setup\SchoolSubjectController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
-
 use App\Http\Controllers\Backend\Setup\StudentGroupController;
 use App\Http\Controllers\Backend\Setup\StudentShiftController;
+use App\Http\Controllers\Backend\Setup\StudentYearController;
+use App\Http\Controllers\Backend\Student\ExamFeeController;
 use App\Http\Controllers\Backend\Student\MonthlyFeeController;
-use App\Http\Controllers\Backend\Student\StudentRegController;
-use App\Http\Controllers\Backend\Report\ResultReportController;
-
-use App\Http\Controllers\Backend\Setup\AssignSubjectController;
-use App\Http\Controllers\Backend\Setup\SchoolSubjectController;
-
-use App\Http\Controllers\Backend\Student\StudentRollController;
-
-use App\Http\Controllers\Backend\Employee\EmployeeRegController;
-use App\Http\Controllers\Backend\Account\AccountSalaryController;
-use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
-
-use App\Http\Controllers\Backend\Employee\MonthlySalaryController;
-use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
 use App\Http\Controllers\Backend\Student\RegistrationFeeController;
 use App\Http\Controllers\Backend\Student\StudentAttendanceController;
-use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
+use App\Http\Controllers\Backend\Student\StudentRegController;
+use App\Http\Controllers\Backend\Student\StudentRollController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\ClassRoutineController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -72,6 +67,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
 
+        Route::resource('routine', ClassRoutineController::class);
+        // Route::resource('routine', ClassRoutineController::class)->except(['show']);
+        Route::get('get-subjects/{class_id}', [ClassRoutineController::class, 'getSubjectsByClass']);
 
         // User Management All Routes
 
