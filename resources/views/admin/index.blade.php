@@ -1,380 +1,128 @@
 @extends('admin.admin_master')
-@section('admin')
 
+@section('admin')
 <div class="content-wrapper">
     <div class="container-full">
-
-        <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-xl-3 col-6">
-                    <div class="box overflow-hidden pull-up">
-                        <div class="box-body">
-                            <div class="icon bg-primary-light rounded w-60 h-60">
-                                <i class="text-primary mr-0 font-size-24 mdi mdi-account-multiple"></i>
-                            </div>
-                            <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_student') }}</p>
-                                <h3 class="text-white mb-0 font-weight-500">490
-                                    <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-6">
-                    <div class="box overflow-hidden pull-up">
-                        <div class="box-body">
-                            <div class="icon bg-success-light rounded w-60 h-60">
-                                {{-- <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i> --}}
-                                <i class="text-success mr-0 font-size-24 mdi mdi-account-multiple"></i>
-                            </div>
-                            <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_present') }}</p>
-                                <h3 class="text-white mb-0 font-weight-500">420
-                                    <small class="text-danger"> <i class="fa fa-caret-up"></i> -1.5%</small>
-                                </h3>
+                @php
+                    $statCards = [
+                        ['label' => __('messages.total_student'), 'value' => number_format($totalStudents), 'icon' => 'mdi-account-multiple', 'class' => 'primary'],
+                        ['label' => __('messages.total_present'), 'value' => number_format($todayAttendance->present ?? 0), 'icon' => 'mdi-calendar-check', 'class' => 'success'],
+                        ['label' => __('messages.monthly_income'), 'value' => number_format($monthlyIncome, 2), 'icon' => 'mdi-cash-plus', 'class' => 'warning'],
+                        ['label' => __('messages.monthly_expense'), 'value' => number_format($monthlyExpense, 2), 'icon' => 'mdi-cash-minus', 'class' => 'info'],
+                    ];
+                @endphp
+                @foreach($statCards as $card)
+                    <div class="col-xl-3 col-6">
+                        <div class="box overflow-hidden pull-up">
+                            <div class="box-body">
+                                <div class="icon bg-{{ $card['class'] }}-light rounded w-60 h-60">
+                                    <i class="text-{{ $card['class'] }} mr-0 font-size-24 mdi {{ $card['icon'] }}"></i>
+                                </div>
+                                <p class="text-mute mt-20 mb-0 font-size-16">{{ $card['label'] }}</p>
+                                <h3 class="text-white mb-0 font-weight-500">{{ $card['value'] }}</h3>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-6">
-                    <div class="box overflow-hidden pull-up">
-                        <div class="box-body">
-                            <div class="icon bg-warning-light rounded w-60 h-60">
-                                <i class="text-warning mr-0 font-size-24 mdi mdi-car"></i>
-                            </div>
-                            <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_income') }}</p>
-                                <h3 class="text-white mb-0 font-weight-500">3400
-                                    <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-6">
-                    <div class="box overflow-hidden pull-up">
-                        <div class="box-body">
-                            <div class="icon bg-info-light rounded w-60 h-60">
-                                <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
-                            </div>
-                            <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_expense') }}</p>
-                                <h3 class="text-white mb-0 font-weight-500">1,250
-                                    <small class="text-danger"> <i class="fa fa-caret-down"></i> -0.5%</small>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+            </div>
 
-
-
-
-
-                {{-- <div class="col-12">
+            <div class="row">
+                <div class="col-xl-8 col-12">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title align-items-start flex-column">
-                                New Arrivals
-                                <small class="subtitle">More than 400+ new members</small>
-                            </h4>
+                            <h4 class="box-title">{{ __('messages.income_expense_overview') }}</h4>
                         </div>
                         <div class="box-body">
-                            <div class="table-responsive">
-                                <table class="table no-border">
-                                    <thead>
-                                        <tr class="text-uppercase bg-lightest">
-                                            <th style="min-width: 250px"><span class="text-white">products</span></th>
-                                            <th style="min-width: 100px"><span class="text-fade">pruce</span></th>
-                                            <th style="min-width: 100px"><span class="text-fade">deposit</span></th>
-                                            <th style="min-width: 150px"><span class="text-fade">agent</span></th>
-                                            <th style="min-width: 130px"><span class="text-fade">status</span></th>
-                                            <th style="min-width: 120px"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="pl-0 py-8">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 mr-20">
-                                                        <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-1.jpg)">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <a href="#"
-                                                            class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus
-                                                            consectetur</a>
-                                                        <span class="text-fade d-block">Pharetra, Nulla , Nec,
-                                                            Aliquet</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Sophia
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    Pharetra
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-primary-light badge-lg">Approved</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-bookmark-plus"></span></a>
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-arrow-right"></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0 py-8">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 mr-20">
-                                                        <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-2.jpg)">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <a href="#"
-                                                            class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus
-                                                            consectetur</a>
-                                                        <span class="text-fade d-block">Pharetra, Nulla , Nec,
-                                                            Aliquet</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Sophia
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    Pharetra
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-warning-light badge-lg">In Progress</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-bookmark-plus"></span></a>
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-arrow-right"></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0 py-8">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 mr-20">
-                                                        <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-3.jpg)">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <a href="#"
-                                                            class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus
-                                                            consectetur</a>
-                                                        <span class="text-fade d-block">Pharetra, Nulla , Nec,
-                                                            Aliquet</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Sophia
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    Pharetra
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success-light badge-lg">Success</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-bookmark-plus"></span></a>
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-arrow-right"></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0 py-8">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 mr-20">
-                                                        <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-4.jpg)">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <a href="#"
-                                                            class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus
-                                                            consectetur</a>
-                                                        <span class="text-fade d-block">Pharetra, Nulla , Nec,
-                                                            Aliquet</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Sophia
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    Pharetra
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger-light badge-lg">Rejected</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-bookmark-plus"></span></a>
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-arrow-right"></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0 py-8">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 mr-20">
-                                                        <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-5.jpg)">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <a href="#"
-                                                            class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus
-                                                            consectetur</a>
-                                                        <span class="text-fade d-block">Pharetra, Nulla , Nec,
-                                                            Aliquet</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Paid
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45k
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="text-fade font-weight-600 d-block font-size-16">
-                                                    Sophia
-                                                </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    Pharetra
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-warning-light badge-lg">In Progress</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-bookmark-plus"></span></a>
-                                                <a href="#"
-                                                    class="waves-effect waves-light btn btn-info btn-circle mx-5"><span
-                                                        class="mdi mdi-arrow-right"></span></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <div id="incomeExpenseChart" style="min-height: 330px;"></div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
+                <div class="col-xl-4 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title">{{ __('messages.students_by_class') }}</h4>
+                        </div>
+                        <div class="box-body">
+                            <div id="classDistributionChart" style="min-height: 330px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-8 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title">{{ __('messages.attendance_last_seven_days') }}</h4>
+                        </div>
+                        <div class="box-body">
+                            <div id="attendanceChart" style="min-height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title">{{ __('messages.today_attendance') }}</h4>
+                        </div>
+                        <div class="box-body text-center">
+                            <div id="todayAttendanceChart" style="min-height: 220px;"></div>
+                            <p class="text-fade mb-0">
+                                {{ number_format($todayAttendance->present ?? 0) }} /
+                                {{ number_format($todayAttendance->total ?? 0) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        <!-- /.content -->
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var chartOptions = {
+            chart: { type: 'area', height: 330, toolbar: { show: false } },
+            theme: { mode: 'dark' },
+            stroke: { curve: 'smooth', width: 3 },
+            dataLabels: { enabled: false },
+            xaxis: { categories: @json($months->pluck('label')->values()) },
+            series: [
+                { name: @json(__('messages.income')), data: @json($months->map(function ($month) use ($incomeByMonth) { return (float) ($incomeByMonth[$month['key']] ?? 0); })->values()) },
+                { name: @json(__('messages.expense')), data: @json($months->map(function ($month) use ($expenseByMonth) { return (float) ($expenseByMonth[$month['key']] ?? 0); })->values()) }
+            ]
+        };
+        new ApexCharts(document.querySelector('#incomeExpenseChart'), chartOptions).render();
+
+        new ApexCharts(document.querySelector('#classDistributionChart'), {
+            chart: { type: 'donut', height: 330 },
+            theme: { mode: 'dark' },
+            labels: @json($classDistribution->pluck('name')->values()),
+            series: @json($classDistribution->pluck('total')->map(function ($value) { return (int) $value; })->values()),
+            legend: { position: 'bottom' }
+        }).render();
+
+        new ApexCharts(document.querySelector('#attendanceChart'), {
+            chart: { type: 'bar', height: 300, toolbar: { show: false } },
+            theme: { mode: 'dark' },
+            plotOptions: { bar: { borderRadius: 4, columnWidth: '45%' } },
+            dataLabels: { enabled: false },
+            xaxis: { categories: @json($attendanceTrend->pluck('label')->values()) },
+            series: [
+                { name: @json(__('messages.present')), data: @json($attendanceTrend->pluck('present')->values()) },
+                { name: @json(__('messages.absent')), data: @json($attendanceTrend->pluck('absent')->values()) }
+            ]
+        }).render();
+
+        new ApexCharts(document.querySelector('#todayAttendanceChart'), {
+            chart: { type: 'radialBar', height: 220 },
+            theme: { mode: 'dark' },
+            series: [{{ ($todayAttendance->total ?? 0) > 0 ? round((($todayAttendance->present ?? 0) / $todayAttendance->total) * 100, 1) : 0 }}],
+            labels: [@json(__('messages.attendance_rate'))],
+            plotOptions: { radialBar: { dataLabels: { value: { formatter: function (value) { return value + '%'; } } } } }
+        }).render();
+    });
+</script>
 @endsection

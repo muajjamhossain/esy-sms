@@ -68,9 +68,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         return view('auth.login');
     });
 
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DefaultController::class, 'Dashboard'])->name('dashboard');
 
     Route::get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout');
 
