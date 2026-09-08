@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'language' => 'ভাষা', 'english' => 'English', 'bangla' => 'বাংলা', 'arabic' => 'العربية',
+    'dashboard' => 'ড্যাশবোর্ড', 'manage_user' => 'ব্যবহারকারী পরিচালনা', 'view_user' => 'ব্যবহারকারী দেখুন', 'add_user' => 'ব্যবহারকারী যোগ করুন',
+    'manage_profile' => 'প্রোফাইল পরিচালনা', 'your_profile' => 'আপনার প্রোফাইল', 'change_password' => 'পাসওয়ার্ড পরিবর্তন',
+    'academic_setup' => 'একাডেমিক সেটআপ', 'student_class' => 'শিক্ষার্থীর শ্রেণি', 'student_year' => 'শিক্ষাবর্ষ', 'student_group' => 'শিক্ষার্থী গ্রুপ', 'student_shift' => 'শিক্ষার্থী শিফট',
+    'fee_category' => 'ফি ক্যাটাগরি', 'fee_amount' => 'ফি ক্যাটাগরি অনুযায়ী পরিমাণ', 'exam_type' => 'পরীক্ষার ধরন', 'school_subject' => 'বিষয়', 'assign_subject' => 'বিষয় বরাদ্দ', 'class_routine' => 'ক্লাস রুটিন', 'designation' => 'পদবি',
+    'student_management' => 'শিক্ষার্থী ব্যবস্থাপনা', 'student_registration' => 'শিক্ষার্থী নিবন্ধন', 'roll_generate' => 'রোল তৈরি', 'student_attendance' => 'শিক্ষার্থীর উপস্থিতি', 'registration_fee' => 'নিবন্ধন ফি', 'monthly_fee' => 'মাসিক ফি', 'exam_fee' => 'পরীক্ষার ফি',
+    'employee_management' => 'কর্মচারী ব্যবস্থাপনা', 'employee_registration' => 'কর্মচারী নিবন্ধন', 'employee_salary' => 'কর্মচারীর বেতন', 'employee_leave' => 'কর্মচারীর ছুটি', 'employee_attendance' => 'কর্মচারীর উপস্থিতি', 'employee_monthly_salary' => 'কর্মচারীর মাসিক বেতন',
+    'marks_management' => 'নম্বর ব্যবস্থাপনা', 'marks_entry' => 'নম্বর প্রবেশ', 'marks_edit' => 'নম্বর সম্পাদনা', 'marks_grade' => 'নম্বরের গ্রেড',
+    'exam_management' => 'পরীক্ষা ব্যবস্থাপনা', 'exam_routine' => 'পরীক্ষার রুটিন', 'admit_card' => 'প্রবেশপত্র', 'seat_plan' => 'আসন পরিকল্পনা',
+    'accounts_management' => 'হিসাব ব্যবস্থাপনা', 'student_fee' => 'শিক্ষার্থীর ফি', 'other_cost' => 'অন্যান্য খরচ', 'online_class' => 'অনলাইন ক্লাস', 'all_classes' => 'সব ক্লাস', 'create_class' => 'ক্লাস তৈরি', 'class_recordings' => 'ক্লাস রেকর্ডিং',
+    'report_interface' => 'রিপোর্ট', 'reports_management' => 'রিপোর্ট ব্যবস্থাপনা', 'monthly_yearly_profit' => 'মাসিক-বাষিক লাভ', 'marksheet_generate' => 'মার্কশিট তৈরি', 'employee_attendance_report' => 'কর্মচারী উপস্থিতির রিপোর্ট', 'student_attendance_report' => 'শিক্ষার্থী উপস্থিতির রিপোর্ট', 'student_result' => 'শিক্ষার্থীর ফলাফল', 'student_id_card' => 'শিক্ষার্থীর আইডি কার্ড',
+    'notifications' => 'নোটিফিকেশন', 'clear_all' => 'সব মুছুন', 'view_all' => 'সব দেখুন', 'profile' => 'প্রোফাইল', 'my_wallet' => 'আমার ওয়ালেট', 'settings' => 'সেটিংস', 'logout' => 'লগআউট', 'fullscreen' => 'পূর্ণ পর্দা',
+    'delete_confirm_title' => 'আপনি কি নিশ্চিত?', 'delete_confirm_text' => 'এই তথ্য মুছে ফেলবেন?', 'delete_confirm_button' => 'হ্যাঁ, মুছে ফেলুন!',
+    'generate_seat_plan_title' => 'আসন পরিকল্পনা তৈরি করবেন?', 'generate_seat_plan_text' => 'এটি সব শিক্ষার্থীর আসন বিন্যাস তৈরি করবে', 'generate_seat_plan_button' => 'হ্যাঁ, তৈরি করুন!',
+    'total_student' => 'মোট শিক্ষার্থী', 'total_present' => 'মোট উপস্থিত', 'total_income' => 'মোট আয়', 'total_expense' => 'মোট খরচ', 'faq' => 'সাধারণ প্রশ্ন', 'all_rights_reserved' => 'সর্বস্বত্ব সংরক্ষিত।',
+    'login_title' => 'আমাদের সাথে শুরু করুন', 'login_subtitle' => 'সেশন শুরু করতে সাইন ইন করুন', 'email_address' => 'ইমেইল ঠিকানা', 'password' => 'পাসওয়ার্ড', 'remember_me' => 'মনে রাখুন', 'forgot_password' => 'পাসওয়ার্ড ভুলে গেছেন?', 'sign_in' => 'সাইন ইন', 'sign_with' => 'সাইন ইন করুন', 'no_account' => 'অ্যাকাউন্ট নেই?', 'sign_up' => 'সাইন আপ',
+];

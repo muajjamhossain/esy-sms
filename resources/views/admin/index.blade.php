@@ -14,7 +14,7 @@
                                 <i class="text-primary mr-0 font-size-24 mdi mdi-account-multiple"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Total Student</p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_student') }}</p>
                                 <h3 class="text-white mb-0 font-weight-500">490
                                     <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small>
                                 </h3>
@@ -30,7 +30,7 @@
                                 <i class="text-success mr-0 font-size-24 mdi mdi-account-multiple"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Total Present</p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_present') }}</p>
                                 <h3 class="text-white mb-0 font-weight-500">420
                                     <small class="text-danger"> <i class="fa fa-caret-up"></i> -1.5%</small>
                                 </h3>
@@ -45,7 +45,7 @@
                                 <i class="text-warning mr-0 font-size-24 mdi mdi-car"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Total Income</p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_income') }}</p>
                                 <h3 class="text-white mb-0 font-weight-500">3400
                                     <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small>
                                 </h3>
@@ -60,7 +60,7 @@
                                 <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Total Expense</p>
+                                <p class="text-mute mt-20 mb-0 font-size-16">{{ __('messages.total_expense') }}</p>
                                 <h3 class="text-white mb-0 font-weight-500">1,250
                                     <small class="text-danger"> <i class="fa fa-caret-down"></i> -0.5%</small>
                                 </h3>

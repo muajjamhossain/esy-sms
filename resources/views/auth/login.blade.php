@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="utf-8">
@@ -30,6 +30,9 @@
         .box-shadowed {
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
         }
+        [dir="rtl"] .text-right {
+            text-align: left !important;
+        }
     </style>
 </head>
 
@@ -43,8 +46,13 @@
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10 text-center">
                             <img height="100" width="150" src="{{ asset('upload/shikkha.png') }}" alt="Logo">
-                            <h2 class="text-white mt-3">Get started with Us</h2>
-                            <p class="text-white-50">Sign in to start your session</p>
+                            <h2 class="text-white mt-3">{{ __('messages.login_title') }}</h2>
+                            <p class="text-white-50">{{ __('messages.login_subtitle') }}</p>
+                        </div>
+                        <div class="text-center mb-15">
+                            <a class="btn btn-sm btn-light" href="{{ route('language.switch', 'en') }}">English</a>
+                            <a class="btn btn-sm btn-light" href="{{ route('language.switch', 'bn') }}">বাংলা</a>
+                            <a class="btn btn-sm btn-light" href="{{ route('language.switch', 'ar') }}">العربية</a>
                         </div>
 
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed" style="border-color: green;">
@@ -61,7 +69,7 @@
                                         </div>
                                         <input type="email" id="email" name="email" value="{{ old('email') }}"
                                             class="form-control pl-15 bg-transparent text-white plc-white"
-                                            placeholder="Email Address" required autofocus>
+                                            placeholder="{{ __('messages.email_address') }}" required autofocus>
                                     </div>
                                     @error('email')
                                         <span class="text-danger small">{{ $message }}</span>
@@ -78,7 +86,7 @@
                                         </div>
                                         <input type="password" id="password" name="password"
                                             class="form-control pl-15 bg-transparent text-white plc-white"
-                                            placeholder="Password" required>
+                                            placeholder="{{ __('messages.password') }}" required>
                                     </div>
                                     @error('password')
                                         <span class="text-danger small">{{ $message }}</span>
@@ -89,19 +97,19 @@
                                     <div class="col-6">
                                         <div class="checkbox text-white">
                                             <input type="checkbox" name="remember" id="remember">
-                                            <label for="remember">Remember Me</label>
+                                            <label for="remember">{{ __('messages.remember_me') }}</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="fog-pwd text-right">
                                             <a href="{{ route('password.request') }}" class="text-white hover-info">
-                                                <i class="ion ion-locked"></i> Forgot password?
+                                                <i class="ion ion-locked"></i> {{ __('messages.forgot_password') }}
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-info btn-rounded mt-10 px-4">
-                                            SIGN IN
+                                            {{ __('messages.sign_in') }}
                                         </button>
                                     </div>
                                 </div>
@@ -109,7 +117,7 @@
 
                             <!-- Social Login -->
                             <div class="text-center text-white">
-                                <p class="mt-20">- Sign With -</p>
+                                <p class="mt-20">- {{ __('messages.sign_with') }} -</p>
                                 <p class="gap-items-2 mb-20">
                                     <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#">
                                         <i class="fa fa-facebook"></i>
@@ -129,8 +137,8 @@
                             <!-- Register Link -->
                             <div class="text-center">
                                 <p class="mt-15 mb-0 text-white">
-                                    Don't have an account?
-                                    <a href="{{ route('register') }}" class="text-info ml-5">Sign Up</a>
+                                    {{ __('messages.no_account') }}
+                                    <a href="{{ route('register') }}" class="text-info ml-5">{{ __('messages.sign_up') }}</a>
                                 </p>
                             </div>
                         </div>
