@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
-    <title>{{ __('messages.dashboard') }} - SMS ERP</title>
+    <title>@yield('title', __('messages.dashboard')) - SMS ERP</title>
 
     <!-- Vite CSS -->
     @vite(['resources/css/app.css'])

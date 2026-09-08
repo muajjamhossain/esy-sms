@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('messages.assignments') }} - SMS ERP</title>
-    <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
-    <style>
-        body { background: #151a2c; color: #fff; }
-        .assignment-shell { max-width: 1100px; margin: 0 auto; padding: 30px 15px; }
-        .assignment-card { background: #20283d; border: 1px solid #303b58; border-radius: 8px; }
-    </style>
-</head>
-<body>
-<div class="assignment-shell">
-    <nav class="d-flex flex-wrap align-items-center justify-content-between mb-30">
-        <div>
-            <a href="{{ route('dashboard') }}" class="text-white font-size-20 mr-15"><i class="ti-home"></i></a>
-            <strong>{{ __('messages.assignments') }}</strong>
-        </div>
-        <div class="mt-10 mt-md-0">
-            <a href="{{ route('assignments.index') }}" class="btn btn-sm btn-outline-light mr-2">{{ __('messages.all_assignments') }}</a>
-            @if(! in_array(strtolower((string) (auth()->user()->usertype ?? '')), ['student']))
-                <a href="{{ route('assignments.create') }}" class="btn btn-sm btn-primary">{{ __('messages.create_assignment') }}</a>
-            @endif
-        </div>
-    </nav>
-    @if(session('message')) <div class="alert alert-success">{{ session('message') }}</div> @endif
-    @if($errors->any()) <div class="alert alert-danger">{{ $errors->first() }}</div> @endif
-    @yield('assignments')
+@extends('admin.admin_master')
+
+@section('title', __('messages.assignments'))
+
+@section('admin')
+<style>
+    .assignment-shell { padding: 30px 15px; }
+    .assignment-card { border: 1px solid rgba(255,255,255,.08); border-radius: 8px; }
+</style>
+<div class="content-wrapper">
+    <div class="container-full">
+        <section class="content assignment-shell">
+            <div class="d-flex flex-wrap align-items-center justify-content-between mb-20">
+                <h3 class="text-white">{{ __('messages.assignments') }}</h3>
+                <div>
+                    <a href="{{ route('assignments.index') }}" class="btn btn-sm btn-outline-primary mr-5">{{ __('messages.all_assignments') }}</a>
+                    @if(! in_array(strtolower((string) (auth()->user()->usertype ?? '')), ['student']))
+                        <a href="{{ route('assignments.create') }}" class="btn btn-sm btn-primary">{{ __('messages.create_assignment') }}</a>
+                    @endif
+                </div>
+            </div>
+            @if(session('message')) <div class="alert alert-success">{{ session('message') }}</div> @endif
+            @if($errors->any()) <div class="alert alert-danger">{{ $errors->first() }}</div> @endif
+            @yield('assignments')
+        </section>
+    </div>
 </div>
-</body>
-</html>
+@endsection
