@@ -44,6 +44,7 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\InstitutionEventController;
+use App\Http\Controllers\LibraryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -102,6 +103,13 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/create', [InstitutionEventController::class, 'create'])->name('events.create');
         Route::post('/', [InstitutionEventController::class, 'store'])->name('events.store');
         Route::get('/{event}', [InstitutionEventController::class, 'show'])->name('events.show');
+    });
+    Route::middleware('auth')->prefix('library')->group(function () {
+        Route::get('/', [LibraryController::class, 'index'])->name('library.index');
+        Route::get('/create', [LibraryController::class, 'create'])->name('library.create');
+        Route::post('/books', [LibraryController::class, 'store'])->name('library.books.store');
+        Route::post('/loans', [LibraryController::class, 'issue'])->name('library.loans.issue');
+        Route::post('/loans/{loan}/return', [LibraryController::class, 'return'])->name('library.loans.return');
     });
 
 
