@@ -56,6 +56,11 @@
               <i class="nav-link-icon ti-calendar"></i>
             </a>
           </li>
+          <li class="btn-group nav-item">
+            <a href="{{ route('library.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.library') }}">
+              <i class="nav-link-icon ti-book"></i>
+            </a>
+          </li>
 		  <!-- full Screen -->
 	      <li class="search-bar">		  
 			  <div class="lookup lookup-circle lookup-right">
