@@ -43,6 +43,7 @@ use App\Http\Controllers\SeatPlanController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\InstitutionEventController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -95,6 +96,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/create', [NoticeController::class, 'create'])->name('notices.create');
         Route::post('/', [NoticeController::class, 'store'])->name('notices.store');
         Route::get('/{notice}', [NoticeController::class, 'show'])->name('notices.show');
+    });
+    Route::middleware('auth')->prefix('events')->group(function () {
+        Route::get('/', [InstitutionEventController::class, 'index'])->name('events.index');
+        Route::get('/create', [InstitutionEventController::class, 'create'])->name('events.create');
+        Route::post('/', [InstitutionEventController::class, 'store'])->name('events.store');
+        Route::get('/{event}', [InstitutionEventController::class, 'show'])->name('events.show');
     });
 
 
