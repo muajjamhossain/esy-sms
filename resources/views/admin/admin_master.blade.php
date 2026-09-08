@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
-    <title>School Management System - Dashboard</title>
+    <title>{{ __('messages.dashboard') }} - SMS ERP</title>
 
     <!-- Vite CSS -->
     @vite(['resources/css/app.css'])
@@ -18,6 +18,18 @@
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
+    <style>
+        [dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+        [dir="rtl"] .pull-right {
+            float: left !important;
+        }
+        [dir="rtl"] .main-sidebar {
+            text-align: right;
+        }
+    </style>
 
     <!-- Toastr CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -59,13 +71,13 @@
                 e.preventDefault();
                 var link = $(this).attr("href");
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Delete This Data?",
+                    title: @json(__('messages.delete_confirm_title')),
+                    text: @json(__('messages.delete_confirm_text')),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: @json(__('messages.delete_confirm_button'))
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = link;
@@ -116,13 +128,13 @@
         function generateSeatPlan() {
             // alert('ok')
             Swal.fire({
-                title: 'Generate Seat Plan?',
-                text: "This will create seat arrangement for all students",
+                title: @json(__('messages.generate_seat_plan_title')),
+                text: @json(__('messages.generate_seat_plan_text')),
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, generate it!'
+                confirmButtonText: @json(__('messages.generate_seat_plan_button'))
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('generateForm').submit();

@@ -56,8 +56,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
 
+    Route::get('/language/{locale}', function ($locale) {
+        abort_unless(in_array($locale, ['en', 'bn', 'ar'], true), 404);
 
+        session(['locale' => $locale]);
 
+        return redirect()->back();
+    })->name('language.switch');
 
     Route::get('/', function () {
         return view('auth.login');
