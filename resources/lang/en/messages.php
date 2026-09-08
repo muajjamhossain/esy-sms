@@ -6,6 +6,7 @@ return [
     'bangla' => 'বাংলা',
     'arabic' => 'العربية',
     'dashboard' => 'Dashboard',
+    'institution_services' => 'Institution Services',
     'manage_user' => 'Manage User',
     'view_user' => 'View User',
     'add_user' => 'Add User',

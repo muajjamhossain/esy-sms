@@ -31,6 +31,22 @@ $route = Route::current()->getName();
                 </a>
             </li>
 
+            <li class="treeview {{ in_array($route, ['portal.index', 'assignments.index', 'assignments.create', 'assignments.show', 'notices.index', 'notices.create', 'notices.show', 'events.index', 'events.create', 'events.show', 'library.index', 'library.create'], true) ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="layers"></i> <span>{{ __('messages.institution_services') }}</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ in_array($route, ['portal.index'], true) ? 'active' : '' }}"><a href="{{ route('portal.index') }}"><i class="ti-more"></i>{{ __('messages.portal') }}</a></li>
+                    <li class="{{ in_array($route, ['assignments.index', 'assignments.create', 'assignments.show'], true) ? 'active' : '' }}"><a href="{{ route('assignments.index') }}"><i class="ti-more"></i>{{ __('messages.assignments') }}</a></li>
+                    <li class="{{ in_array($route, ['notices.index', 'notices.create', 'notices.show'], true) ? 'active' : '' }}"><a href="{{ route('notices.index') }}"><i class="ti-more"></i>{{ __('messages.notice_board') }}</a></li>
+                    <li class="{{ in_array($route, ['events.index', 'events.create', 'events.show'], true) ? 'active' : '' }}"><a href="{{ route('events.index') }}"><i class="ti-more"></i>{{ __('messages.academic_calendar') }}</a></li>
+                    <li class="{{ in_array($route, ['library.index', 'library.create'], true) ? 'active' : '' }}"><a href="{{ route('library.index') }}"><i class="ti-more"></i>{{ __('messages.library') }}</a></li>
+                </ul>
+            </li>
+
             @if(Auth::user()->role == 'Admin')
             <li class="treeview {{ ($prefix == '/users')?'active':'' }} ">
                 <a href="#">

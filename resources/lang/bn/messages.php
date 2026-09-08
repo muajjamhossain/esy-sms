@@ -2,7 +2,7 @@
 
 return [
     'language' => 'ভাষা', 'english' => 'English', 'bangla' => 'বাংলা', 'arabic' => 'العربية',
-    'dashboard' => 'ড্যাশবোর্ড', 'manage_user' => 'ব্যবহারকারী পরিচালনা', 'view_user' => 'ব্যবহারকারী দেখুন', 'add_user' => 'ব্যবহারকারী যোগ করুন',
+    'dashboard' => 'ড্যাশবোর্ড', 'institution_services' => 'প্রতিষ্ঠানের সেবা', 'manage_user' => 'ব্যবহারকারী পরিচালনা', 'view_user' => 'ব্যবহারকারী দেখুন', 'add_user' => 'ব্যবহারকারী যোগ করুন',
     'manage_profile' => 'প্রোফাইল পরিচালনা', 'your_profile' => 'আপনার প্রোফাইল', 'change_password' => 'পাসওয়ার্ড পরিবর্তন',
     'academic_setup' => 'একাডেমিক সেটআপ', 'student_class' => 'শিক্ষার্থীর শ্রেণি', 'student_year' => 'শিক্ষাবর্ষ', 'student_group' => 'শিক্ষার্থী গ্রুপ', 'student_shift' => 'শিক্ষার্থী শিফট',
     'fee_category' => 'ফি ক্যাটাগরি', 'fee_amount' => 'ফি ক্যাটাগরি অনুযায়ী পরিমাণ', 'exam_type' => 'পরীক্ষার ধরন', 'school_subject' => 'বিষয়', 'assign_subject' => 'বিষয় বরাদ্দ', 'class_routine' => 'ক্লাস রুটিন', 'designation' => 'পদবি',

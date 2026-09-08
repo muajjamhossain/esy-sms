@@ -2,7 +2,7 @@
 
 return [
     'language' => 'اللغة', 'english' => 'English', 'bangla' => 'বাংলা', 'arabic' => 'العربية',
-    'dashboard' => 'لوحة التحكم', 'manage_user' => 'إدارة المستخدمين', 'view_user' => 'عرض المستخدمين', 'add_user' => 'إضافة مستخدم',
+    'dashboard' => 'لوحة التحكم', 'institution_services' => 'خدمات المؤسسة', 'manage_user' => 'إدارة المستخدمين', 'view_user' => 'عرض المستخدمين', 'add_user' => 'إضافة مستخدم',
     'manage_profile' => 'إدارة الملف الشخصي', 'your_profile' => 'ملفك الشخصي', 'change_password' => 'تغيير كلمة المرور',
     'academic_setup' => 'الإعداد الأكاديمي', 'student_class' => 'صف الطالب', 'student_year' => 'العام الدراسي', 'student_group' => 'مجموعة الطلاب', 'student_shift' => 'وردية الطلاب',
     'fee_category' => 'فئة الرسوم', 'fee_amount' => 'مبلغ الرسوم حسب الفئة', 'exam_type' => 'نوع الاختبار', 'school_subject' => 'المادة الدراسية', 'assign_subject' => 'تعيين المادة', 'class_routine' => 'جدول الحصص', 'designation' => 'المسمى الوظيفي',
