@@ -84,7 +84,7 @@ class SchoolDemoDataSeeder extends Seeder
 
         // 10. Users (Admin, Employees, Students)
         // Admin
-        DB::table('users')->insert([
+        $adminId = DB::table('users')->insertGetId([
             'usertype' => 'Admin',
             'name' => 'School Admin',
             'email' => 'admin@school.com',
@@ -164,9 +164,10 @@ class SchoolDemoDataSeeder extends Seeder
         ]);
 
         // 11. Assign Students (Enrollment)
+        $studentIds = DB::table('users')->whereIn('email', ['student1@school.com', 'student2@school.com'])->orderBy('id')->pluck('id')->values();
         DB::table('assign_students')->insert([
-            ['student_id' => 5, 'roll' => 1, 'class_id' => 1, 'year_id' => 1, 'shift_id' => 1, 'created_at' => now()],
-            ['student_id' => 6, 'roll' => 2, 'class_id' => 1, 'year_id' => 1, 'shift_id' => 1, 'created_at' => now()],
+            ['student_id' => $studentIds[0], 'roll' => 1, 'class_id' => 1, 'year_id' => 1, 'shift_id' => 1, 'created_at' => now()],
+            ['student_id' => $studentIds[1], 'roll' => 2, 'class_id' => 1, 'year_id' => 1, 'shift_id' => 1, 'created_at' => now()],
         ]);
 
         // 12. Assign Subjects
@@ -178,9 +179,9 @@ class SchoolDemoDataSeeder extends Seeder
 
         // 13. Student Marks
         DB::table('student_marks')->insert([
-            ['student_id' => 5, 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 1, 'exam_type_id' => 1, 'marks' => 85, 'created_at' => now()],
-            ['student_id' => 5, 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 2, 'exam_type_id' => 1, 'marks' => 78, 'created_at' => now()],
-            ['student_id' => 5, 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 3, 'exam_type_id' => 1, 'marks' => 92, 'created_at' => now()],
+            ['student_id' => $studentIds[0], 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 1, 'exam_type_id' => 1, 'marks' => 85, 'created_at' => now()],
+            ['student_id' => $studentIds[0], 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 2, 'exam_type_id' => 1, 'marks' => 78, 'created_at' => now()],
+            ['student_id' => $studentIds[0], 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 3, 'exam_type_id' => 1, 'marks' => 92, 'created_at' => now()],
         ]);
 
         $this->command->info('Demo data seeded successfully!');
