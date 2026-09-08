@@ -36,6 +36,11 @@
             <a class="btn btn-xs btn-light mr-2" href="{{ route('language.switch', 'bn') }}">বাংলা</a>
             <a class="btn btn-xs btn-light" href="{{ route('language.switch', 'ar') }}">ع</a>
           </li>
+          <li class="btn-group nav-item">
+            <a href="{{ route('portal.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.portal') }}">
+              <i class="nav-link-icon ti-comments"></i>
+            </a>
+          </li>
 		  <!-- full Screen -->
 	      <li class="search-bar">		  
 			  <div class="lookup lookup-circle lookup-right">

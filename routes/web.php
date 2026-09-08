@@ -40,6 +40,7 @@ use App\Http\Controllers\ClassRoutineController;
 use App\Http\Controllers\ExamRoutineController;
 use App\Http\Controllers\OnlineClassController;
 use App\Http\Controllers\SeatPlanController;
+use App\Http\Controllers\PortalController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,6 +72,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DefaultController::class, 'Dashboard'])->name('dashboard');
 
     Route::get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout');
+    Route::middleware('auth')->prefix('portal')->group(function () {
+        Route::get('/', [PortalController::class, 'index'])->name('portal.index');
+        Route::get('/new', [PortalController::class, 'create'])->name('portal.conversations.create');
+        Route::post('/conversations', [PortalController::class, 'store'])->name('portal.conversations.store');
+        Route::get('/conversations/{conversation}', [PortalController::class, 'show'])->name('portal.conversations.show');
+        Route::post('/conversations/{conversation}/reply', [PortalController::class, 'reply'])->name('portal.conversations.reply');
+        Route::post('/conversations/{conversation}/close', [PortalController::class, 'close'])->name('portal.conversations.close');
+    });
 
 
     Route::group(['middleware' => 'auth'], function () {
