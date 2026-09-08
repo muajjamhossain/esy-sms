@@ -29,6 +29,79 @@
             </div>
 
             <div class="row">
+                <div class="col-xl-3 col-6">
+                    <div class="box bg-danger-light">
+                        <div class="box-body">
+                            <p class="text-mute mb-5">{{ __('messages.fee_due_students') }}</p>
+                            <h3 class="mb-0">{{ number_format($monthlyFeeStudents->count()) }}</h3>
+                            <small>{{ number_format($feeDueAmount, 2) }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-6">
+                    <div class="box bg-info-light">
+                        <div class="box-body">
+                            <p class="text-mute mb-5">{{ __('messages.exam_average') }}</p>
+                            <h3 class="mb-0">{{ number_format($marksSummary->average ?? 0, 1) }}</h3>
+                            <small>{{ __('messages.pass_rate') }}: {{ $passRate }}%</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-12">
+                    <div class="box">
+                        <div class="box-body d-flex flex-wrap align-items-center">
+                            <strong class="mr-15 mb-5">{{ __('messages.quick_actions') }}</strong>
+                            <a href="{{ route('student.registration.add') }}" class="btn btn-sm btn-primary mr-5 mb-5">{{ __('messages.add_student') }}</a>
+                            <a href="{{ route('student.attendance.add') }}" class="btn btn-sm btn-success mr-5 mb-5">{{ __('messages.take_attendance') }}</a>
+                            <a href="{{ route('student.fee.add') }}" class="btn btn-sm btn-warning mr-5 mb-5">{{ __('messages.collect_fee') }}</a>
+                            <a href="{{ route('marks.entry.add') }}" class="btn btn-sm btn-info mb-5">{{ __('messages.enter_marks') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-7 col-12">
+                    <div class="box">
+                        <div class="box-header d-flex justify-content-between">
+                            <h4 class="box-title">{{ __('messages.upcoming_exams') }}</h4>
+                            <a href="{{ route('exam.routine') }}" class="text-primary">{{ __('messages.view_all') }}</a>
+                        </div>
+                        <div class="box-body p-0">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead><tr><th>{{ __('messages.date') }}</th><th>{{ __('messages.exam') }}</th><th>{{ __('messages.class') }}</th><th>{{ __('messages.subject') }}</th></tr></thead>
+                                    <tbody>
+                                    @forelse($upcomingExams as $exam)
+                                        <tr>
+                                            <td>{{ \Carbon\Carbon::parse($exam->exam_date)->format('d M') }}</td>
+                                            <td>{{ $exam->examType->name ?? '-' }}</td>
+                                            <td>{{ $exam->class->name ?? '-' }}</td>
+                                            <td>{{ $exam->subject->name ?? '-' }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr><td colspan="4" class="text-center text-fade">{{ __('messages.no_upcoming_exams') }}</td></tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-12">
+                    <div class="box">
+                        <div class="box-header"><h4 class="box-title">{{ __('messages.fee_due_summary') }}</h4></div>
+                        <div class="box-body">
+                            <p class="text-fade">{{ __('messages.students_without_monthly_payment') }}</p>
+                            <h2 class="text-danger">{{ number_format($monthlyFeeStudents->count()) }}</h2>
+                            <p class="mb-0">{{ __('messages.estimated_due') }}: <strong>{{ number_format($feeDueAmount, 2) }}</strong></p>
+                            <a href="{{ route('monthly.fee.view') }}" class="btn btn-sm btn-outline-primary mt-15">{{ __('messages.open_fee_management') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-xl-8 col-12">
                     <div class="box">
                         <div class="box-header">

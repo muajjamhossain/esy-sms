@@ -21,6 +21,8 @@ use App\Models\ExamType;
 use App\Models\AccountStudentFee;
 use App\Models\AccountOtherCost;
 use App\Models\AccountEmployeeSalary;
+use App\Models\ExamRoutine;
+use App\Models\FeeCategoryAmount;
 use Carbon\Carbon;
 
 class DefaultController extends Controller
@@ -90,6 +92,35 @@ class DefaultController extends Controller
             ->limit(8)
             ->get();
 
+        $monthlyPaidStudents = AccountStudentFee::where('date', 'like', $today->format('Y-m') . '%')
+            ->whereNotNull('student_id')
+            ->pluck('student_id')
+            ->unique();
+        $monthlyFeeStudents = AssignStudent::whereNotIn('student_id', $monthlyPaidStudents)->get(['student_id', 'class_id']);
+        $monthlyFeeAmounts = FeeCategoryAmount::where('fee_category_id', 2)
+            ->whereIn('class_id', $monthlyFeeStudents->pluck('class_id')->unique())
+            ->pluck('amount', 'class_id');
+        $feeDueAmount = $monthlyFeeStudents->sum(function ($student) use ($monthlyFeeAmounts) {
+            return (float) ($monthlyFeeAmounts[$student->class_id] ?? 0);
+        });
+
+        $upcomingExams = ExamRoutine::with(['examType', 'class', 'subject'])
+            ->whereDate('exam_date', '>=', $today)
+            ->whereDate('exam_date', '<=', $today->copy()->addDays(7))
+            ->where('status', 1)
+            ->orderBy('exam_date')
+            ->orderBy('start_time')
+            ->limit(6)
+            ->get();
+
+        $marksSummary = StudentMarks::whereNotNull('marks')
+            ->selectRaw('COUNT(*) as total, AVG(marks) as average')
+            ->selectRaw('SUM(CASE WHEN marks >= 33 THEN 1 ELSE 0 END) as passed')
+            ->first();
+        $passRate = ($marksSummary->total ?? 0) > 0
+            ? round(($marksSummary->passed / $marksSummary->total) * 100, 1)
+            : 0;
+
         return view('admin.index', compact(
             'totalStudents',
             'todayAttendance',
@@ -99,7 +130,12 @@ class DefaultController extends Controller
             'incomeByMonth',
             'expenseByMonth',
             'attendanceTrend',
-            'classDistribution'
+            'classDistribution',
+            'monthlyFeeStudents',
+            'feeDueAmount',
+            'upcomingExams',
+            'marksSummary',
+            'passRate'
         ));
     }
 
