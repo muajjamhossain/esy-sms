@@ -1,6 +1,7 @@
 @php
 $prefix = Request::route()->getPrefix();
 $route = Route::current()->getName();
+$currentRole = strtolower((string) (Auth::user()->role ?: Auth::user()->usertype));
 
 @endphp
 
@@ -47,7 +48,7 @@ $route = Route::current()->getName();
                 </ul>
             </li>
 
-            @if(Auth::user()->role == 'Admin')
+            @if(in_array($currentRole, ['admin', 'administrator'], true))
             <li class="treeview {{ ($prefix == '/users')?'active':'' }} ">
                 <a href="#">
                     <i data-feather="message-circle"></i>

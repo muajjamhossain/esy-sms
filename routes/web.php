@@ -73,10 +73,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         return view('auth.login');
     });
 
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DefaultController::class, 'Dashboard'])->name('dashboard');
+    Route::middleware(['auth:sanctum', 'verified', 'role.access'])->get('/dashboard', [DefaultController::class, 'Dashboard'])->name('dashboard');
 
     Route::get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout');
-    Route::middleware('auth')->prefix('portal')->group(function () {
+    Route::middleware(['auth', 'role.access'])->prefix('portal')->group(function () {
         Route::get('/', [PortalController::class, 'index'])->name('portal.index');
         Route::get('/new', [PortalController::class, 'create'])->name('portal.conversations.create');
         Route::post('/conversations', [PortalController::class, 'store'])->name('portal.conversations.store');
@@ -84,7 +84,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/conversations/{conversation}/reply', [PortalController::class, 'reply'])->name('portal.conversations.reply');
         Route::post('/conversations/{conversation}/close', [PortalController::class, 'close'])->name('portal.conversations.close');
     });
-    Route::middleware('auth')->prefix('assignments')->group(function () {
+    Route::middleware(['auth', 'role.access'])->prefix('assignments')->group(function () {
         Route::get('/', [AssignmentController::class, 'index'])->name('assignments.index');
         Route::get('/create', [AssignmentController::class, 'create'])->name('assignments.create');
         Route::post('/', [AssignmentController::class, 'store'])->name('assignments.store');
@@ -92,19 +92,19 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
         Route::post('/{assignment}/submissions/{submission}/feedback', [AssignmentController::class, 'feedback'])->name('assignments.feedback');
     });
-    Route::middleware('auth')->prefix('notices')->group(function () {
+    Route::middleware(['auth', 'role.access'])->prefix('notices')->group(function () {
         Route::get('/', [NoticeController::class, 'index'])->name('notices.index');
         Route::get('/create', [NoticeController::class, 'create'])->name('notices.create');
         Route::post('/', [NoticeController::class, 'store'])->name('notices.store');
         Route::get('/{notice}', [NoticeController::class, 'show'])->name('notices.show');
     });
-    Route::middleware('auth')->prefix('events')->group(function () {
+    Route::middleware(['auth', 'role.access'])->prefix('events')->group(function () {
         Route::get('/', [InstitutionEventController::class, 'index'])->name('events.index');
         Route::get('/create', [InstitutionEventController::class, 'create'])->name('events.create');
         Route::post('/', [InstitutionEventController::class, 'store'])->name('events.store');
         Route::get('/{event}', [InstitutionEventController::class, 'show'])->name('events.show');
     });
-    Route::middleware('auth')->prefix('library')->group(function () {
+    Route::middleware(['auth', 'role.access'])->prefix('library')->group(function () {
         Route::get('/', [LibraryController::class, 'index'])->name('library.index');
         Route::get('/create', [LibraryController::class, 'create'])->name('library.create');
         Route::post('/books', [LibraryController::class, 'store'])->name('library.books.store');
@@ -113,7 +113,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
 
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'role.access']], function () {
 
         Route::resource('routine', ClassRoutineController::class);
         // Route::resource('routine', ClassRoutineController::class)->except(['show']);
