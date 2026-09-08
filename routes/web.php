@@ -42,6 +42,7 @@ use App\Http\Controllers\OnlineClassController;
 use App\Http\Controllers\SeatPlanController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\NoticeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -88,6 +89,12 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
         Route::post('/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
         Route::post('/{assignment}/submissions/{submission}/feedback', [AssignmentController::class, 'feedback'])->name('assignments.feedback');
+    });
+    Route::middleware('auth')->prefix('notices')->group(function () {
+        Route::get('/', [NoticeController::class, 'index'])->name('notices.index');
+        Route::get('/create', [NoticeController::class, 'create'])->name('notices.create');
+        Route::post('/', [NoticeController::class, 'store'])->name('notices.store');
+        Route::get('/{notice}', [NoticeController::class, 'show'])->name('notices.show');
     });
 
 
