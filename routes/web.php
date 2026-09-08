@@ -41,6 +41,7 @@ use App\Http\Controllers\ExamRoutineController;
 use App\Http\Controllers\OnlineClassController;
 use App\Http\Controllers\SeatPlanController;
 use App\Http\Controllers\PortalController;
+use App\Http\Controllers\AssignmentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -79,6 +80,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/conversations/{conversation}', [PortalController::class, 'show'])->name('portal.conversations.show');
         Route::post('/conversations/{conversation}/reply', [PortalController::class, 'reply'])->name('portal.conversations.reply');
         Route::post('/conversations/{conversation}/close', [PortalController::class, 'close'])->name('portal.conversations.close');
+    });
+    Route::middleware('auth')->prefix('assignments')->group(function () {
+        Route::get('/', [AssignmentController::class, 'index'])->name('assignments.index');
+        Route::get('/create', [AssignmentController::class, 'create'])->name('assignments.create');
+        Route::post('/', [AssignmentController::class, 'store'])->name('assignments.store');
+        Route::get('/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
+        Route::post('/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
+        Route::post('/{assignment}/submissions/{submission}/feedback', [AssignmentController::class, 'feedback'])->name('assignments.feedback');
     });
 
 
