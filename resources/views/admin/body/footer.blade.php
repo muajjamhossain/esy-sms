@@ -9,5 +9,5 @@
 		  </li>
 		</ul>
     </div>
-	  &copy; 2023 <a href="#">SMS ERP</a>. {{ __('messages.all_rights_reserved') }}
+	  &copy; 2026 <a href="#">Fateha School/Madrasa</a>. {{ __('messages.all_rights_reserved') }}
   </footer>

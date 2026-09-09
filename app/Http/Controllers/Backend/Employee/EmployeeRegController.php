@@ -163,7 +163,7 @@ class EmployeeRegController extends Controller
 
 
     public function EmployeeDetails($id){
-    	$data['details'] = User::find($id);
+        $data['details'] = User::with('designation')->findOrFail($id);
 
     $pdf = PDF::loadView('backend.employee.employee_reg.employee_details_pdf', $data);
 	$pdf->SetProtection(['copy', 'print'], '', 'pass');

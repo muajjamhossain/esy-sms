@@ -183,7 +183,7 @@
 
 <div class="row"> <!-- 4TH Row -->
 
-@if(!@editData)
+@if(!isset($editData))
 <div class="col-md-3">
 
  		 <div class="form-group">
@@ -197,7 +197,7 @@
 @endif
 
 
- @if(!@editData)
+ @if(!isset($editData))
  		<div class="col-md-3">
 
  		<div class="form-group">

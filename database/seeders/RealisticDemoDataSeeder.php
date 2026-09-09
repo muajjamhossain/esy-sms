@@ -192,7 +192,7 @@ class RealisticDemoDataSeeder extends Seeder
             ]);
         }
 
-        $this->command->info('Realistic demo data seeded successfully.');
+        $this->command->info('Fateha School/Madrasa demo data seeded successfully.');
         $this->command->info('Demo login password for all accounts: password123');
     }
 }

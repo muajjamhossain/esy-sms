@@ -86,7 +86,7 @@ class SchoolDemoDataSeeder extends Seeder
         // Admin
         $adminId = DB::table('users')->insertGetId([
             'usertype' => 'Admin',
-            'name' => 'School Admin',
+            'name' => 'Fateha School/Madrasa Admin',
             'email' => 'admin@school.com',
             'password' => Hash::make('password123'),
             'mobile' => '01711111111',
@@ -184,6 +184,6 @@ class SchoolDemoDataSeeder extends Seeder
             ['student_id' => $studentIds[0], 'id_no' => '2024001', 'year_id' => 1, 'class_id' => 1, 'assign_subject_id' => 3, 'exam_type_id' => 1, 'marks' => 92, 'created_at' => now()],
         ]);
 
-        $this->command->info('Demo data seeded successfully!');
+        $this->command->info('Fateha School/Madrasa data seeded successfully!');
     }
 }

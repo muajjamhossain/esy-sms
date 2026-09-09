@@ -5,21 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Register - SMS ERP</title>
+    <title>Register - Fateha School/Madrasa</title>
 
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
 </head>
 
-<body class="hold-transition theme-primary bg-gradient-primary">
+<body class="hold-transition theme-primary bg-gradient-primary" style="background: linear-gradient(135deg, #063f3b 0%, #0b5d57 58%, #d7ad54 160%);">
     <div class="container h-p100">
         <div class="row align-items-center justify-content-md-center h-p100">
             <div class="col-12">
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10 text-center">
-                            <img height="80" src="{{ asset('upload/shikkha.png') }}" alt="">
+                            <img class="fateha-auth-logo" src="{{ asset('backend/images/logo/fateha.jpeg') }}" alt="Fateha School/Madrasa">
                             <h2 class="text-white">Create Account</h2>
                             <p class="text-white-50">Register to get started</p>
                         </div>

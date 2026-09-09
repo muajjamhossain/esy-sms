@@ -32,11 +32,11 @@
 <table id="customers">
   <tr>
     <td><h2>
-  <?php $image_path = '/upload/easyschool.png'; ?>
-  <img src="{{ public_path() . $image_path }}" width="200" height="100">
+  <?php $image_path = '/backend/images/logo/fateha.jpeg'; ?>
+  <img src="{{ public_path() . $image_path }}" style="width: 150px; height: 90px; object-fit: contain;">
 
     </h2></td>
-    <td><h2>SMS School ERP</h2>
+    <td><h2>Fateha School/Madrasa</h2>
 <p>School Address</p>
 <p>Phone : 01911194724</p>
 <p>Email : support@muajjam.com</p>
@@ -103,17 +103,17 @@
     <tr>
     <td>10</td>
     <td><b>Date of Birth</b></td>
-    <td>{{ date('d-m-Y', strtotime($details->dob))  }}</td>
+    <td>{{ $details->dob ? date('d-m-Y', strtotime($details->dob)) : '—' }}</td>
   </tr>
     <tr>
     <td>11</td>
     <td><b> Employee Designaton  </b></td>
-    <td>{{ $details['designation']['name'] }}  </td>
+    <td>{{ optional($details->designation)->name ?: '—' }}  </td>
   </tr>
     <tr>
     <td>12</td>
     <td><b>Join Date </b></td>
-    <td>{{ date('d-m-Y', strtotime($details->join_date))  }}</td>
+    <td>{{ $details->join_date ? date('d-m-Y', strtotime($details->join_date)) : '—' }}</td>
   </tr>
     <tr>
     <td>13</td>

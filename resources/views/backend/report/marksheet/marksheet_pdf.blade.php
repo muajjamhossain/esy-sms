@@ -24,7 +24,7 @@
 
   <div class="row">  <!-- start 1st row -->
   		<div style="float: right" class="col-md-2 text-center">
-   <img src="{{ url('upload/easyschool.png') }}" style="width: 120px; height: 100px;">
+   <img src="{{ public_path('backend/images/logo/fateha.jpeg') }}" style="width: 120px; height: 100px;" alt="Fateha School/Madrasa">
   		</div>
 
         <div class="col-md-2 text-center">

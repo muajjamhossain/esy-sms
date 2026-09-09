@@ -32,11 +32,11 @@
 <table id="customers">
   <tr>
     <td><h2>
-  <?php $image_path = '/upload/easyschool.png'; ?>
-  <img src="{{ public_path() . $image_path }}" width="200" height="100">
+  <?php $image_path = '/backend/images/logo/fateha.jpeg'; ?>
+  <img src="{{ public_path() . $image_path }}" style="width: 150px; height: 90px; object-fit: contain;">
 
     </h2></td>
-    <td><h2>SMS School ERP</h2>
+    <td><h2>Fateha School/Madrasa</h2>
 <p>School Address</p>
 <p>Phone : 01911194724</p>
 <p>Email : support@muajjam.com</p>
@@ -49,8 +49,8 @@
 
 @php
 $registrationfee = App\Models\FeeCategoryAmount::where('fee_category_id','2')->where('class_id',$details->class_id)->first();
-$originalfee = $registrationfee->amount;
-        $discount = $details['discount']['discount'];
+$originalfee = (float) optional($registrationfee)->amount;
+        $discount = (float) optional($details->discount)->discount;
         $discounttablefee = $discount/100*$originalfee;
         $finalfee = (float)$originalfee-(float)$discounttablefee;
 

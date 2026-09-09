@@ -83,8 +83,8 @@
             }
             .barcode img
             {
-            height: 65px;
-            width: 65px;
+            height: 80px;
+            width: 80px;
             text-align: center;
             margin: 5px;
             }
@@ -136,6 +136,7 @@
             .logo img{
             height: 100%;
             width: 100%;
+            object-fit: contain;
             color: white ;
 
             }
@@ -165,23 +166,38 @@
     </style>
 </head>
 <body>
+        @php
+            $student = $details->student;
+            $studentPayload = json_encode([
+                'institution' => 'Fateha School/Madrasa',
+                'student_id' => $student->id_no,
+                'name' => $student->name,
+                'roll' => $details->roll,
+                'session' => optional($details->student_year)->name,
+                'class' => optional($details->student_class)->name,
+                'mobile' => $student->mobile,
+            ], JSON_UNESCAPED_SLASHES);
+            $institutionPayload = 'Fateha School/Madrasa | Uttora, Dhaka, Bangladesh | 01911194724 | support@muajjam.com';
+            $qrUrl = 'https://quickchart.io/qr?size=180&margin=1&text=' . rawurlencode($studentPayload);
+            $barcodeUrl = 'https://bwipjs-api.metafloor.com/?bcid=code128&scale=2&height=12&includetext&text=' . rawurlencode($institutionPayload);
+        @endphp
         <div class="container">
             <div class="padding">
                 <div class="font">
                     <div class="top">
-                        <img src="{{ (!empty($details['student']['image']))? url('upload/student_images/'.$details['student']['image']):url('upload/no_image.jpg') }}">
+                        <img src="{{ !empty($student->image) ? url('upload/student_images/'.$student->image) : url('upload/no_image.jpg') }}" alt="{{ $student->name }}">
                     </div>
                     <div class="bottom">
-                        <p>{{ $details['student']['name'] }}</p>
-                        <p class="desi">ID No. {{ $details['student']['id_no'] }}</p>
+                        <p>{{ $student->name }}</p>
+                        <p class="desi">ID No. {{ $student->id_no }}</p>
                         <p class="desi">Roll No. {{ $details->roll }}</p>
-                        <p class="desi">Session {{ $details['student_year']['name'] }} = Class {{ $details['student_class']['name'] }}</p>
+                        <p class="desi">Session {{ optional($details->student_year)->name ?: '—' }} = Class {{ optional($details->student_class)->name ?: '—' }}</p>
                         <div class="barcode">
-                            <img src="{{ asset('upload/qr sample.png') }}">
+                            <img src="{{ $qrUrl }}" alt="Student information QR code">
                         </div>
                         <br>
-                        <p class="no">{{ $details['student']['mobile'] }}</p>
-                        <p class="no">{{ $details['student']['address'] }}</p>
+                        <p class="no">{{ $student->mobile }}</p>
+                        <p class="no">{{ $student->address }}</p>
                     </div>
                 </div>
             </div>
@@ -197,7 +213,7 @@
                     <p>Uttora, Dhaka, Bangladesh</p>
                     </div>
                     <div class="logo">
-                        <img src=" {{ asset('upload/barcode.PNG') }}">
+                        <img src="{{ $barcodeUrl }}" alt="Fateha School/Madrasa institution barcode">
                     </div>
 
 

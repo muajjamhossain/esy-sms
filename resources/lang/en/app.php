@@ -15,7 +15,7 @@ return [
     */
 
     // ---- App general ----
-    'app_name' => 'SMS ERP',
+    'app_name' => 'Fateha School/Madrasa',
     'dashboard' => 'Dashboard',
     'home' => 'Home',
     'welcome' => 'Welcome',
@@ -149,7 +149,7 @@ return [
     'clear_all' => 'Clear All',
     'view_all' => 'View all',
     'full_screen' => 'Full Screen',
-    'sms_erp' => 'SMS ERP',
+    'sms_erp' => 'Fateha School/Madrasa',
     'all_rights_reserved' => 'All Rights Reserved.',
     'admin_panel' => 'Admin',
 

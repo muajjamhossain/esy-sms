@@ -9,8 +9,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
-    <title>SMS ERP - Log in</title>
+    <link rel="icon" href="{{ asset('backend/images/logo/fateha.jpeg') }}">
+    <title>Fateha School/Madrasa - Log in</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
@@ -19,7 +19,7 @@
 
     <style>
         .bg-gradient-primary {
-            background: linear-gradient(87deg, #fb6340 0, #f5365c 100%);
+            background: linear-gradient(135deg, #063f3b 0%, #0b5d57 58%, #d7ad54 160%);
         }
         .plc-white::placeholder {
             color: rgba(255, 255, 255, 0.7);
@@ -45,8 +45,8 @@
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10 text-center">
-                            <img height="100" width="150" src="{{ asset('upload/shikkha.png') }}" alt="Logo">
-                            <h2 class="text-white mt-3">{{ __('messages.login_title') }}</h2>
+                            <img class="fateha-auth-logo" src="{{ asset('backend/images/logo/fateha.jpeg') }}" alt="Fateha School/Madrasa">
+                            <h2 class="text-white mt-3">Fateha School/Madrasa</h2>
                             <p class="text-white-50">{{ __('messages.login_subtitle') }}</p>
                         </div>
                         <div class="text-center mb-15">

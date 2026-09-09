@@ -15,8 +15,8 @@ $currentRole = strtolower((string) (Auth::user()->role ?: Auth::user()->usertype
                 <a href="{{ url('/dashboard') }}">
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
-                        <h3><b>SMS</b> Admin</h3>
+                        <img src="{{ asset('backend/images/logo/fateha.jpeg') }}" alt="Fateha School/Madrasa">
+                        <h3><b>Fateha</b> School/Madrasa</h3>
                     </div>
                 </a>
             </div>

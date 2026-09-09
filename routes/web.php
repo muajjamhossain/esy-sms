@@ -45,6 +45,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\InstitutionEventController;
 use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\GlobalSearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,6 +75,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
 
     Route::middleware(['auth:sanctum', 'verified', 'role.access'])->get('/dashboard', [DefaultController::class, 'Dashboard'])->name('dashboard');
+    Route::middleware(['auth', 'role.access'])->get('/global-search', GlobalSearchController::class)->name('global.search');
 
     Route::get('/admin/logout', [AdminController::class, 'Logout'])->name('admin.logout');
     Route::middleware(['auth', 'role.access'])->prefix('portal')->group(function () {

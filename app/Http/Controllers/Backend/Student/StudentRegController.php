@@ -23,8 +23,10 @@ class StudentRegController extends Controller
     	$data['years'] = StudentYear::all();
     	$data['classes'] = StudentClass::all();
 
-    	$data['year_id'] = StudentYear::orderBy('id','desc')->first()->id;
-    	$data['class_id'] = StudentClass::orderBy('id','asc')->first()->id;
+        $data['year_id'] = StudentYear::orderBy('id', 'desc')->first()->id;
+        $data['class_id'] = AssignStudent::where('year_id', $data['year_id'])
+            ->orderBy('class_id')
+            ->value('class_id') ?: StudentClass::orderBy('id', 'asc')->first()->id;
     	// dd($data['class_id']);
     	$data['allData'] = AssignStudent::where('year_id',$data['year_id'])->where('class_id',$data['class_id'])->get();
     	return view('backend.student.student_reg.student_view',$data);
@@ -86,6 +88,13 @@ class StudentRegController extends Controller
     	$user = new User();
     	$code = rand(0000,9999);
     	$user->id_no = $final_id_no;
+        $email = 'student.' . $final_id_no . '@fateha.school';
+        $emailSuffix = 1;
+        while (User::where('email', $email)->exists()) {
+            $email = 'student.' . $final_id_no . '.' . $emailSuffix . '@fateha.school';
+            $emailSuffix++;
+        }
+        $user->email = $email;
     	$user->password = bcrypt($code);
     	$user->usertype = 'Student';
     	$user->code = $code;
@@ -141,7 +150,8 @@ class StudentRegController extends Controller
     	$data['shifts'] = StudentShift::all();
 
     	$data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
-    	// dd($data['editData']->toArray());
+        abort_unless($data['editData'], 404, 'Student registration not found.');
+
     	return view('backend.student.student_reg.student_edit',$data);
 
     }
@@ -181,8 +191,10 @@ class StudentRegController extends Controller
           $assign_student->shift_id = $request->shift_id;
           $assign_student->save();
 
-          $discount_student = DiscountStudent::where('assign_student_id',$request->id)->first();
-
+          $discount_student = DiscountStudent::firstOrNew([
+              'assign_student_id' => $assign_student->id,
+          ]);
+          $discount_student->fee_category_id = $discount_student->fee_category_id ?: '1';
           $discount_student->discount = $request->discount;
           $discount_student->save();
 
@@ -206,6 +218,7 @@ class StudentRegController extends Controller
     	$data['shifts'] = StudentShift::all();
 
     	$data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        abort_unless($data['editData'], 404, 'Student registration not found.');
 
     	return view('backend.student.student_reg.student_promotion',$data);
 
@@ -264,7 +277,14 @@ class StudentRegController extends Controller
 
 
     public function StudentRegDetails($student_id){
-        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['details'] = AssignStudent::with([
+            'student',
+            'discount',
+            'student_year',
+            'student_class',
+            'group',
+            'shift',
+        ])->where('student_id', $student_id)->firstOrFail();
 
         $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
@@ -272,7 +292,14 @@ class StudentRegController extends Controller
     }
 
     public function StudentRegIdCard($student_id){
-        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['details'] = AssignStudent::with([
+            'student',
+            'discount',
+            'student_year',
+            'student_class',
+            'group',
+            'shift',
+        ])->where('student_id', $student_id)->firstOrFail();
 
         return view('backend.student.student_reg.student_id_card', $data);
         // $pdf = PDF::loadView('backend.student.student_reg.student_id_card', $data);

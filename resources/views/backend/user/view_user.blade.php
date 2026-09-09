@@ -28,6 +28,7 @@
 						<thead>
 			<tr>
 				<th width="5%">SL</th>
+				<th>Access Type</th>
 				<th>Role</th>
 				<th>Name</th>
 				<th>Email</th>
@@ -40,6 +41,7 @@
 			@foreach($allData as $key => $user )
 			<tr>
 				<td>{{ $key+1 }}</td>
+				<td>{{ $user->usertype ?: '—' }}</td>
 				<td> {{ $user->role }}</td>
 				<td>{{ $user->name }}</td>
 				<td>{{ $user->email }}</td>

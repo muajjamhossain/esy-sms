@@ -9,8 +9,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function UserView(){
-    	// $allData = User::all();
-    	$data['allData'] = User::where('usertype','Admin')->get();
+        $data['allData'] = User::orderBy('name')->get();
     	return view('backend.user.view_user',$data);
 
     }

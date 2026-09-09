@@ -2,6 +2,11 @@
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+@php
+    $student = optional($editData)->student;
+    $discount = optional($editData)->discount;
+@endphp
+
 
 
  <div class="content-wrapper">
@@ -37,7 +42,7 @@
  		 <div class="form-group">
 		<h5>Student Name <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="name" class="form-control" required="" value="{{ $editData['student']['name'] }}"> 
+	 <input type="text" name="name" class="form-control" required="" value="{{ optional($student)->name }}">
 	  </div>		 
 	  </div>
 
@@ -49,7 +54,7 @@
  		 <div class="form-group">
 		<h5>Father's Name <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="fname" class="form-control" required=""  value="{{ $editData['student']['fname'] }}" > 
+	 <input type="text" name="fname" class="form-control" required=""  value="{{ optional($student)->fname }}" >
 	  </div>		 
 	  </div>
 	  
@@ -62,7 +67,7 @@
  		 <div class="form-group">
 		<h5>Mother's Name <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="mname" class="form-control" required=""  value="{{ $editData['student']['mname'] }}"> 
+	 <input type="text" name="mname" class="form-control" required=""  value="{{ optional($student)->mname }}">
 	  </div>		 
 	  </div>
 	  
@@ -83,7 +88,7 @@
  		 <div class="form-group">
 		<h5>Mobile Number <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="mobile" class="form-control" required="" value="{{ $editData['student']['mobile'] }}" > 
+	 <input type="text" name="mobile" class="form-control" required="" value="{{ optional($student)->mobile }}" >
 	  </div>		 
 	  </div>
 
@@ -95,7 +100,7 @@
  		 <div class="form-group">
 		<h5>Address <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="address" class="form-control" required="" value="{{ $editData['student']['address'] }}" > 
+	 <input type="text" name="address" class="form-control" required="" value="{{ optional($student)->address }}" >
 	  </div>		 
 	  </div>
 	  
@@ -110,8 +115,8 @@
 		<div class="controls">
 	 <select name="gender" id="gender" required="" class="form-control">
 			<option value="" selected="" disabled="">Select Gender</option>
- <option value="Male" {{ ($editData['student']['gender'] == 'Male')? 'selected':'' }}>Male</option>
- <option value="Female" {{ ($editData['student']['gender'] == 'Female')? 'selected':'' }}>Female</option>
+ <option value="Male" {{ (optional($student)->gender == 'Male')? 'selected':'' }}>Male</option>
+ <option value="Female" {{ (optional($student)->gender == 'Female')? 'selected':'' }}>Female</option>
 			 
 		</select>
 	  </div>		 
@@ -134,9 +139,9 @@
 		<div class="controls">
 	 <select name="religion" id="religion" required="" class="form-control">
 			<option value="" selected="" disabled="">Select Religion</option>
- <option value="Islam"{{ ($editData['student']['religion'] == 'Islam')? 'selected':'' }}>Islam</option>
- <option value="Hindu"{{ ($editData['student']['religion'] == 'Hindu')? 'selected':'' }}>Hindu</option>
- <option value="Christan"{{ ($editData['student']['religion'] == 'Christan')? 'selected':'' }}>Christan</option>
+ <option value="Islam"{{ (optional($student)->religion == 'Islam')? 'selected':'' }}>Islam</option>
+ <option value="Hindu"{{ (optional($student)->religion == 'Hindu')? 'selected':'' }}>Hindu</option>
+ <option value="Christan"{{ (optional($student)->religion == 'Christan')? 'selected':'' }}>Christan</option>
 			 
 		</select>
 	  </div>		 
@@ -152,7 +157,7 @@
  		 <div class="form-group">
 		<h5>Date of Birth <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="date" name="dob" class="form-control" required="" value="{{ $editData['student']['dob'] }}" > 
+	 <input type="date" name="dob" class="form-control" required="" value="{{ optional($student)->dob }}" >
 	  </div>		 
 	  </div>
 
@@ -164,7 +169,7 @@
  		 <div class="form-group">
 		<h5>Discount <span class="text-danger">*</span></h5>
 		<div class="controls">
-	 <input type="text" name="discount" class="form-control" required="" value="{{ $editData['discount']['discount'] }}" > 
+	 <input type="text" name="discount" class="form-control" required="" value="{{ optional($discount)->discount }}" >
 	  </div>		 
 	  </div>
 	  
@@ -278,7 +283,7 @@
 
  		<div class="form-group">
 		<div class="controls">
-	<img id="showImage" src="{{ (!empty($editData['student']['image']))? url('upload/student_images/'.$editData['student']['image']):url('upload/no_image.jpg') }}" style="width: 100px; width: 100px; border: 1px solid #000000;"> 
+	<img id="showImage" src="{{ (!empty(optional($student)->image))? url('upload/student_images/'.optional($student)->image):url('upload/no_image.jpg') }}" style="width: 100px; width: 100px; border: 1px solid #000000;">
 
 	 </div>
 	 </div>
