@@ -97,6 +97,29 @@
                         </div>
                     </div>
 
+                    @if($class_id && $students->isNotEmpty())
+                    <div class="box">
+                        <div class="box-header">
+                            <h3>Students in Selected Class</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>SL</th><th>Student Name</th><th>ID No</th><th>Roll No</th></tr></thead>
+                                <tbody>
+                                @foreach($students as $key => $student)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ optional($student->student)->name }}</td>
+                                        <td>{{ optional($student->student)->id_no }}</td>
+                                        <td>{{ $student->roll }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
             </div>
         </section>

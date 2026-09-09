@@ -78,8 +78,40 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if($class_id && $seatPlans->isEmpty() && $students->isNotEmpty())
+                                <div class="alert alert-info mb-0">
+                                    {{ $students->count() }} student(s) found. Click <strong>Generate Seat Plan</strong> to create room and seat assignments.
+                                </div>
+                            @elseif($class_id && $seatPlans->isNotEmpty())
+                                <div class="alert alert-success mb-0">
+                                    Seat plan generated for {{ $seatPlans->count() }} student(s). Click <strong>View Seat Plan</strong> to see the room layout.
+                                </div>
+                            @endif
                         </div>
                     </div>
+
+                    @if($class_id && $students->isNotEmpty())
+                    <div class="box">
+                        <div class="box-header">
+                            <h3>Students in Selected Class</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>SL</th><th>Student Name</th><th>ID No</th><th>Roll No</th></tr></thead>
+                                <tbody>
+                                @foreach($students as $key => $student)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ optional($student->student)->name }}</td>
+                                        <td>{{ optional($student->student)->id_no }}</td>
+                                        <td>{{ $student->roll }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -93,6 +125,10 @@
     <input type="hidden" name="class_id" value="{{ $class_id }}">
 </form>
 
-
+<script>
+function generateSeatPlan() {
+    document.getElementById('generateForm').submit();
+}
+</script>
 
 @endsection

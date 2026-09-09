@@ -47,7 +47,7 @@
                                             <tr>
                                                 @for($col = 1; $col <= 5; $col++)
                                                     @php
-                                                        $student = $groupedByRow[$row]->firstWhere('column_no', $col);
+                                                        $student = optional($groupedByRow->get($row))->firstWhere('column_no', $col);
                                                     @endphp
                                                     <td style="padding: 15px; border: 1px solid #000;">
                                                         @if($student)

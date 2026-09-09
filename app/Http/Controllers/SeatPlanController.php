@@ -27,10 +27,25 @@ class SeatPlanController extends Controller
             ->orderBy('seat_no')
             ->get();
 
+        $students = collect();
+        if ($class_id) {
+            $yearId = \App\Models\AssignStudent::where('class_id', $class_id)
+                ->orderByDesc('year_id')
+                ->value('year_id');
+
+            if ($yearId) {
+                $students = \App\Models\AssignStudent::with('student')
+                    ->where('class_id', $class_id)
+                    ->where('year_id', $yearId)
+                    ->orderBy('roll')
+                    ->get();
+            }
+        }
+
         $examTypes = ExamType::all();
         $classes = StudentClass::all();
 
-        return view('admin.exam.seat-plan.index', compact('seatPlans', 'examTypes', 'classes', 'exam_type_id', 'class_id'));
+        return view('admin.exam.seat-plan.index', compact('seatPlans', 'students', 'examTypes', 'classes', 'exam_type_id', 'class_id'));
     }
 
     public function generate(Request $request)
@@ -43,13 +58,18 @@ class SeatPlanController extends Controller
         $exam_type_id = $request->exam_type_id;
         $class_id = $request->class_id;
 
-        // Get students with admit cards
-        $students = ExamAdmitCard::where('exam_type_id', $exam_type_id)
-            ->where('class_id', $class_id)
+        // Build the plan from the selected class; admit cards are optional.
+        $yearId = \App\Models\AssignStudent::where('class_id', $class_id)
+            ->orderByDesc('year_id')
+            ->value('year_id');
+
+        $students = \App\Models\AssignStudent::where('class_id', $class_id)
+            ->where('year_id', $yearId)
+            ->orderBy('roll')
             ->get();
 
         if ($students->isEmpty()) {
-            return redirect()->back()->with('error', 'No students found! Please generate admit cards first.');
+            return redirect()->back()->with('error', 'No students found for the selected class.');
         }
 
         // Clear existing seat plan

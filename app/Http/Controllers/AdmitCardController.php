@@ -28,20 +28,40 @@ class AdmitCardController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        $students = collect();
+        if ($class_id) {
+            $yearId = AssignStudent::where('class_id', $class_id)
+                ->orderByDesc('year_id')
+                ->value('year_id');
+
+            if ($yearId) {
+                $students = AssignStudent::with('student')
+                    ->where('class_id', $class_id)
+                    ->where('year_id', $yearId)
+                    ->orderBy('roll')
+                    ->get();
+            }
+        }
+
         $examTypes = ExamType::all();
         $classes = StudentClass::all();
 
-        return view('admin.exam.admit-card.index', compact('admitCards', 'examTypes', 'classes', 'exam_type_id', 'class_id'));
+        return view('admin.exam.admit-card.index', compact('admitCards', 'students', 'examTypes', 'classes', 'exam_type_id', 'class_id'));
     }
 
     public function generate($exam_id, $class_id)
     {
-        // $year = StudentYear::where('name', date('Y'))->get();
-        $year = StudentYear::where('name', 2025)->firstOrFail();
+        $yearId = AssignStudent::where('class_id', $class_id)
+            ->orderByDesc('year_id')
+            ->value('year_id');
+
+        if (!$yearId) {
+            return redirect()->back()->with('error', 'No students found for the selected class.');
+        }
 
         $students = AssignStudent::with(['student'])
             ->where('class_id', $class_id)
-            ->where('year_id', $year->id)
+            ->where('year_id', $yearId)
             ->get();
 
         $examType = ExamType::find($exam_id);
