@@ -16,12 +16,12 @@
 			    </a>
 			</li>			
 			<li class="btn-group nav-item d-none d-xl-inline-block">
-				<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
+				<a href="{{ route('assignments.index') }}" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="{{ __('messages.assignments') }}">
 					<i class="ti-check-box"></i>
 			    </a>
 			</li>
 			<li class="btn-group nav-item d-none d-xl-inline-block">
-				<a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
+				<a href="{{ route('events.index') }}" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="{{ __('messages.academic_calendar') }}">
 					<i class="ti-calendar"></i>
 			    </a>
 			</li>
@@ -81,7 +81,7 @@
 							<h4 class="mb-0 mt-0">{{ __('messages.notifications') }}</h4>
 						</div>
 						<div>
-							<a href="#" class="text-danger">{{ __('messages.clear_all') }}</a>
+							<a href="{{ route('notices.index') }}" class="text-danger">{{ __('messages.view_all') }}</a>
 						</div>
 					</div>
 				</div>
@@ -91,44 +91,44 @@
 				<!-- inner menu: contains the actual data -->
 				<ul class="menu sm-scrol">
 				  <li>
-					<a href="#">
+					<a href="{{ route('notices.index') }}">
 					  <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('events.index') }}">
 					  <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('portal.index') }}">
 					  <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('library.index') }}">
 					  <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('portal.index') }}">
 					  <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('assignments.index') }}">
 					  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem 
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="{{ route('events.index') }}">
 					  <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
 					</a>
 				  </li>
 				</ul>
 			  </li>
 			  <li class="footer">
-				  <a href="#">{{ __('messages.view_all') }}</a>
+				  <a href="{{ route('notices.index') }}">{{ __('messages.view_all') }}</a>
 			  </li>
 			</ul>
 		  </li>	
@@ -144,15 +144,15 @@
 			<ul class="dropdown-menu animated flipInX">
 			  <li class="user-body">
 	 <a class="dropdown-item" href="{{ route('profile.view') }}"><i class="ti-user text-muted mr-2"></i> {{ __('messages.profile') }}</a>
-				 <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> {{ __('messages.my_wallet') }}</a>
-				 <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> {{ __('messages.settings') }}</a>
+				 <a class="dropdown-item" href="{{ route('monthly.fee.view') }}"><i class="ti-wallet text-muted mr-2"></i> {{ __('messages.my_wallet') }}</a>
+				 <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="ti-settings text-muted mr-2"></i> {{ __('messages.settings') }}</a>
 				 <div class="dropdown-divider"></div>
 				 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="ti-lock text-muted mr-2"></i> {{ __('messages.logout') }}</a>
 			  </li>
 			</ul>
           </li>	
 		  <li>
-              <a href="#" data-toggle="control-sidebar" title="{{ __('messages.settings') }}" class="waves-effect waves-light">
+              <a href="{{ route('profile.edit') }}" title="{{ __('messages.settings') }}" class="waves-effect waves-light">
 			  	<i class="ti-settings"></i>
 			  </a>
           </li>

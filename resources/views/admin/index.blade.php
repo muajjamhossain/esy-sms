@@ -1,6 +1,12 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<style>
+    .dashboard-stat-card .box-body { padding: 16px; }
+    .dashboard-stat-card .stat-icon { width: 42px; height: 42px; }
+    .dashboard-stat-card .stat-label { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dashboard-stat-card h3 { font-size: 22px; }
+</style>
 <div class="content-wrapper">
     <div class="container-full">
         <section class="content">
@@ -14,39 +20,23 @@
                     ];
                 @endphp
                 @foreach($statCards as $card)
-                    <div class="col-xl-3 col-6">
-                        <div class="box overflow-hidden pull-up">
+                    <div class="col-xl-2 col-lg-4 col-6">
+                        <div class="box dashboard-stat-card overflow-hidden pull-up">
                             <div class="box-body">
-                                <div class="icon bg-{{ $card['class'] }}-light rounded w-60 h-60">
-                                    <i class="text-{{ $card['class'] }} mr-0 font-size-24 mdi {{ $card['icon'] }}"></i>
+                                <div class="icon stat-icon bg-{{ $card['class'] }}-light rounded">
+                                    <i class="text-{{ $card['class'] }} mr-0 font-size-20 mdi {{ $card['icon'] }}"></i>
                                 </div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">{{ $card['label'] }}</p>
+                                <p class="text-mute stat-label mt-15 mb-0">{{ $card['label'] }}</p>
                                 <h3 class="text-white mb-0 font-weight-500">{{ $card['value'] }}</h3>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                <div class="col-xl-2 col-lg-4 col-6"><div class="box bg-danger-light"><div class="box-body"><p class="text-mute mb-5">{{ __('messages.fee_due_students') }}</p><h3 class="mb-0">{{ number_format($monthlyFeeStudents->count()) }}</h3><small>{{ number_format($feeDueAmount, 2) }}</small></div></div></div>
+                <div class="col-xl-2 col-lg-4 col-6"><div class="box bg-info-light"><div class="box-body"><p class="text-mute mb-5">{{ __('messages.exam_average') }}</p><h3 class="mb-0">{{ number_format($marksSummary->average ?? 0, 1) }}</h3><small>{{ __('messages.pass_rate') }}: {{ $passRate }}%</small></div></div></div>
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-6">
-                    <div class="box bg-danger-light">
-                        <div class="box-body">
-                            <p class="text-mute mb-5">{{ __('messages.fee_due_students') }}</p>
-                            <h3 class="mb-0">{{ number_format($monthlyFeeStudents->count()) }}</h3>
-                            <small>{{ number_format($feeDueAmount, 2) }}</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-6">
-                    <div class="box bg-info-light">
-                        <div class="box-body">
-                            <p class="text-mute mb-5">{{ __('messages.exam_average') }}</p>
-                            <h3 class="mb-0">{{ number_format($marksSummary->average ?? 0, 1) }}</h3>
-                            <small>{{ __('messages.pass_rate') }}: {{ $passRate }}%</small>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-xl-6 col-12">
                     <div class="box">
                         <div class="box-body d-flex flex-wrap align-items-center">
@@ -154,8 +144,12 @@
     </div>
 </div>
 
+@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    $(function () {
+        if (typeof ApexCharts === 'undefined') {
+            return;
+        }
         var chartOptions = {
             chart: { type: 'area', height: 330, toolbar: { show: false } },
             theme: { mode: 'dark' },
@@ -198,4 +192,5 @@
         }).render();
     });
 </script>
+@endpush
 @endsection
