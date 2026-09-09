@@ -7,22 +7,22 @@
 		  <ul class="nav">
 			<li class="btn-group nav-item">
 				<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" data-toggle="push-menu" role="button">
-					<i class="nav-link-icon mdi mdi-menu"></i>
+					<i data-feather="menu"></i>
 			    </a>
 			</li>
 			<li class="btn-group nav-item">
 				<a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="{{ __('messages.fullscreen') }}">
-					<i class="nav-link-icon mdi mdi-crop-free"></i>
+					<i data-feather="maximize"></i>
 			    </a>
 			</li>			
 			<li class="btn-group nav-item d-none d-xl-inline-block">
 				<a href="{{ route('assignments.index') }}" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="{{ __('messages.assignments') }}">
-					<i class="ti-check-box"></i>
+					<i data-feather="check-square"></i>
 			    </a>
 			</li>
 			<li class="btn-group nav-item d-none d-xl-inline-block">
 				<a href="{{ route('events.index') }}" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="{{ __('messages.academic_calendar') }}">
-					<i class="ti-calendar"></i>
+					<i data-feather="calendar"></i>
 			    </a>
 			</li>
 		  </ul>
@@ -30,35 +30,40 @@
 		
       <div class="navbar-custom-menu r-side">
         <ul class="nav navbar-nav">
-          <li class="language-switcher d-flex align-items-center mr-10">
-            <span class="text-white mr-5"><i class="ti-world"></i></span>
-            <a class="btn btn-xs btn-light mr-2" href="{{ route('language.switch', 'en') }}">EN</a>
-            <a class="btn btn-xs btn-light mr-2" href="{{ route('language.switch', 'bn') }}">বাংলা</a>
-            <a class="btn btn-xs btn-light" href="{{ route('language.switch', 'ar') }}">ع</a>
+          <li class="dropdown language-switcher mr-10">
+            <a href="#" class="waves-effect waves-light rounded dropdown-toggle language-switcher-toggle" data-toggle="dropdown" title="{{ __('messages.language') }}">
+              <i data-feather="globe"></i>
+              <span class="language-current">{{ app()->getLocale() === 'bn' ? __('messages.bangla') : (app()->getLocale() === 'ar' ? __('messages.arabic') : __('messages.english')) }}</span>
+            </a>
+            <ul class="dropdown-menu animated flipInX language-menu">
+              <li><a href="{{ route('language.switch', 'en') }}"><i data-feather="check" class="{{ app()->getLocale() === 'en' ? '' : 'invisible' }}"></i>{{ __('messages.english') }}</a></li>
+              <li><a href="{{ route('language.switch', 'bn') }}"><i data-feather="check" class="{{ app()->getLocale() === 'bn' ? '' : 'invisible' }}"></i>{{ __('messages.bangla') }}</a></li>
+              <li><a href="{{ route('language.switch', 'ar') }}"><i data-feather="check" class="{{ app()->getLocale() === 'ar' ? '' : 'invisible' }}"></i>{{ __('messages.arabic') }}</a></li>
+            </ul>
           </li>
           <li class="btn-group nav-item">
             <a href="{{ route('portal.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.portal') }}">
-              <i class="nav-link-icon ti-comments"></i>
+              <i data-feather="message-circle"></i>
             </a>
           </li>
           <li class="btn-group nav-item">
             <a href="{{ route('assignments.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.assignments') }}">
-              <i class="nav-link-icon ti-book"></i>
+              <i data-feather="book-open"></i>
             </a>
           </li>
           <li class="btn-group nav-item">
             <a href="{{ route('notices.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.notices') }}">
-              <i class="nav-link-icon ti-announcement"></i>
+              <i data-feather="volume-2"></i>
             </a>
           </li>
           <li class="btn-group nav-item">
             <a href="{{ route('events.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.events') }}">
-              <i class="nav-link-icon ti-calendar"></i>
+              <i data-feather="calendar"></i>
             </a>
           </li>
           <li class="btn-group nav-item">
             <a href="{{ route('library.index') }}" class="waves-effect waves-light nav-link rounded" title="{{ __('messages.library') }}">
-              <i class="nav-link-icon ti-book"></i>
+              <i data-feather="book"></i>
             </a>
           </li>
 		  <!-- full Screen -->
@@ -70,7 +75,7 @@
 		  <!-- Notifications -->
 		  <li class="dropdown notifications-menu">
 			<a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown" title="{{ __('messages.notifications') }}">
-			  <i class="ti-bell"></i>
+			  <i data-feather="bell"></i>
 			</a>
 			<ul class="dropdown-menu animated bounceIn">
 
@@ -87,44 +92,30 @@
 				</div>
 			  </li>
 
+			  @php
+				$headerNotices = \App\Models\Notice::visible()->latest('published_at')->limit(2)->get(['id', 'title']);
+				$headerEvents = \App\Models\InstitutionEvent::upcoming()->orderBy('starts_at')->limit(2)->get(['id', 'title']);
+				$headerUnreadMessages = \App\Models\PortalMessage::whereNull('read_at')
+					->where('user_id', '!=', Auth::id())
+					->whereHas('conversation', function ($query) {
+						$query->where('created_by', Auth::id())->orWhere('participant_id', Auth::id());
+					})
+					->count();
+			  @endphp
 			  <li>
-				<!-- inner menu: contains the actual data -->
 				<ul class="menu sm-scrol">
-				  <li>
-					<a href="{{ route('notices.index') }}">
-					  <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('events.index') }}">
-					  <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('portal.index') }}">
-					  <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('library.index') }}">
-					  <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('portal.index') }}">
-					  <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('assignments.index') }}">
-					  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem 
-					</a>
-				  </li>
-				  <li>
-					<a href="{{ route('events.index') }}">
-					  <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
-					</a>
-				  </li>
+				  @foreach($headerNotices as $headerNotice)
+					<li><a href="{{ route('notices.index') }}"><i data-feather="volume-2" class="text-info"></i>{{ $headerNotice->title }}</a></li>
+				  @endforeach
+				  @foreach($headerEvents as $headerEvent)
+					<li><a href="{{ route('events.index') }}"><i data-feather="calendar" class="text-warning"></i>{{ $headerEvent->title }}</a></li>
+				  @endforeach
+				  @if($headerUnreadMessages > 0)
+					<li><a href="{{ route('portal.index') }}"><i data-feather="message-circle" class="text-danger"></i>{{ $headerUnreadMessages }} {{ __('messages.unread_messages') }}</a></li>
+				  @endif
+				  @if($headerNotices->isEmpty() && $headerEvents->isEmpty() && $headerUnreadMessages === 0)
+					<li><span class="text-muted px-20">{{ __('messages.no_notifications') }}</span></li>
+				  @endif
 				</ul>
 			  </li>
 			  <li class="footer">
@@ -143,17 +134,17 @@
 			</a>
 			<ul class="dropdown-menu animated flipInX">
 			  <li class="user-body">
-	 <a class="dropdown-item" href="{{ route('profile.view') }}"><i class="ti-user text-muted mr-2"></i> {{ __('messages.profile') }}</a>
-				 <a class="dropdown-item" href="{{ route('monthly.fee.view') }}"><i class="ti-wallet text-muted mr-2"></i> {{ __('messages.my_wallet') }}</a>
-				 <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="ti-settings text-muted mr-2"></i> {{ __('messages.settings') }}</a>
+	 <a class="dropdown-item" href="{{ route('profile.view') }}"><i data-feather="user" class="text-muted mr-2"></i> {{ __('messages.profile') }}</a>
+	  <a class="dropdown-item" href="{{ route('monthly.fee.view') }}"><i data-feather="credit-card" class="text-muted mr-2"></i> {{ __('messages.my_wallet') }}</a>
+	  <a class="dropdown-item" href="{{ route('profile.edit') }}"><i data-feather="settings" class="text-muted mr-2"></i> {{ __('messages.settings') }}</a>
 				 <div class="dropdown-divider"></div>
-				 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="ti-lock text-muted mr-2"></i> {{ __('messages.logout') }}</a>
+	  <a class="dropdown-item" href="{{ route('admin.logout') }}"><i data-feather="lock" class="text-muted mr-2"></i> {{ __('messages.logout') }}</a>
 			  </li>
 			</ul>
           </li>	
 		  <li>
               <a href="{{ route('profile.edit') }}" title="{{ __('messages.settings') }}" class="waves-effect waves-light">
-			  	<i class="ti-settings"></i>
+				<i data-feather="settings"></i>
 			  </a>
           </li>
 			

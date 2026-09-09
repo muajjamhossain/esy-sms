@@ -173,8 +173,22 @@ class RealisticDemoDataSeeder extends Seeder
                 'updated_at' => $now,
             ]);
             DB::table('portal_messages')->insert([
-                ['conversation_id' => $conversationId, 'user_id' => $studentId, 'body' => 'Could you recommend a few story books for our reading practice?', 'created_at' => now()->subHours(4), 'updated_at' => now()->subHours(4)],
-                ['conversation_id' => $conversationId, 'user_id' => $secondTeacherId, 'body' => 'Please start with the three books listed in the library. I will share more titles tomorrow.', 'read_at' => now()->subHours(2), 'created_at' => now()->subHours(2), 'updated_at' => now()->subHours(2)],
+                [
+                    'conversation_id' => $conversationId,
+                    'user_id'         => $studentId,
+                    'body'            => 'Could you recommend a few story books for our reading practice?',
+                    'read_at'         => null,
+                    'created_at'      => now()->subHours(4),
+                    'updated_at'      => now()->subHours(4),
+                ],
+                [
+                    'conversation_id' => $conversationId,
+                    'user_id'         => $secondTeacherId,
+                    'body'            => 'Please start with the three books listed in the library. I will share more titles tomorrow.',
+                    'read_at'         => now()->subHours(2),
+                    'created_at'      => now()->subHours(2),
+                    'updated_at'      => now()->subHours(2),
+                ],
             ]);
         }
 

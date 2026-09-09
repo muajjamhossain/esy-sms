@@ -62,6 +62,8 @@ return [
     'student_result' => 'Student Result',
     'student_id_card' => 'Student ID Card',
     'notifications' => 'Notifications',
+    'unread_messages' => 'unread messages',
+    'no_notifications' => 'No new notifications',
     'clear_all' => 'Clear All',
     'view_all' => 'View all',
     'profile' => 'Profile',
