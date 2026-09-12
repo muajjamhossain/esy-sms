@@ -1,15 +1,23 @@
 # Exam OCR and grading service
 
-This service extracts text from uploaded PDFs/images/DOCX files and optionally asks Gemini to grade the extracted answer.
+This service extracts text from uploaded PDFs/images/DOCX files and asks a local Ollama model to grade the extracted answer.
 
 ```powershell
 cd ai_grading
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-$env:GEMINI_API_KEY="replace-with-a-new-key"
-$env:GEMINI_MODEL="gemini-flash-latest"
+$env:AI_ENGINE="ollama"
+$env:OLLAMA_HOST="http://127.0.0.1:11434"
+$env:OLLAMA_MODEL="llama3.2:latest"
 uvicorn app:app --host 127.0.0.1 --port 8090
+```
+
+Make sure Ollama is running and the model is installed:
+
+```powershell
+ollama pull llama3.2:latest
+ollama serve
 ```
 
 Set the Laravel `.env` values:

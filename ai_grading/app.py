@@ -27,6 +27,7 @@ TESSDATA_DIR = os.getenv(
     os.path.expandvars(r"%LOCALAPPDATA%\Tesseract-OCR\tessdata"),
 )
 pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+os.environ["TESSDATA_PREFIX"] = TESSDATA_DIR
 
 
 @app.get("/")
@@ -41,7 +42,12 @@ def health():
     except (pytesseract.TesseractNotFoundError, OSError) as error:
         raise HTTPException(status_code=503, detail=f"Tesseract is unavailable: {error}")
 
-    return {"status": "ok", "tesseract": str(version).splitlines()[0]}
+    return {
+        "status": "ok",
+        "tesseract": str(version).splitlines()[0],
+        "ocr_lang": os.getenv("OCR_LANG", "ben+eng"),
+        "ai_engine": os.getenv("AI_ENGINE", "ollama"),
+    }
 
 
 def extract_text(filename: str, content: bytes) -> str:
@@ -55,7 +61,6 @@ def extract_text(filename: str, content: bytes) -> str:
         return pytesseract.image_to_string(
             Image.open(io.BytesIO(content)),
             lang=os.getenv("OCR_LANG", "ben+eng"),
-            config=f'--tessdata-dir "{TESSDATA_DIR}"',
         )
     if suffix == ".docx":
         from docx import Document
@@ -64,30 +69,44 @@ def extract_text(filename: str, content: bytes) -> str:
     raise HTTPException(status_code=422, detail="Use PDF, DOCX, JPG, JPEG, PNG, or WEBP files.")
 
 
-async def grade_with_gemini(question: str, answer: str, key: Optional[str], max_marks: float, answer_key: str) -> dict:
-    if not key:
-        raise RuntimeError("GEMINI_API_KEY is not configured.")
-    model = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
+async def call_ollama_chat(model: str, messages: list, max_marks: float) -> dict:
+    host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
+    async with httpx.AsyncClient(timeout=180) as client:
+        response = await client.post(
+            f"{host}/api/chat",
+            json={
+                "model": model,
+                "messages": messages,
+                "format": "json",
+                "stream": False,
+                "options": {"temperature": float(os.getenv("OLLAMA_TEMPERATURE", "0"))},
+            },
+        )
+        response.raise_for_status()
+
+    content = response.json().get("message", {}).get("content")
+    if not content:
+        raise ValueError("Ollama response did not contain message content.")
+    result = json.loads(content)
+    if not isinstance(result.get("marks"), (int, float)):
+        raise ValueError("Ollama response did not contain numeric marks.")
+    return {
+        "marks": min(max(float(result["marks"]), 0), max_marks),
+        "feedback": str(result.get("feedback", "")),
+    }
+
+
+async def grade_with_ollama(question: str, answer: str, max_marks: float, answer_key: str) -> dict:
     prompt = (
         "Grade the student's answer against the question and answer key. Give partial credit. "
         'Return only JSON: {"marks": number, "feedback": "short explanation"}.\n'
         f"Maximum marks: {max_marks}\nQUESTION:\n{question}\nANSWER KEY:\n{answer_key}\nSTUDENT ANSWER:\n{answer}"
     )
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    async with httpx.AsyncClient(timeout=120) as client:
-        response = await client.post(
-            url,
-            headers={"X-goog-api-key": key},
-            json={
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {"responseMimeType": "application/json"},
-            },
-        )
-        response.raise_for_status()
-    text = response.json()["candidates"][0]["content"]["parts"][0]["text"]
-    result = json.loads(text)
-    result["marks"] = min(max(float(result["marks"]), 0), max_marks)
-    return result
+    return await call_ollama_chat(
+        os.getenv("OLLAMA_MODEL", "llama3.2:latest"),
+        [{"role": "user", "content": prompt}],
+        max_marks,
+    )
 
 
 @app.post("/grade")
@@ -97,20 +116,20 @@ async def grade(
     answer_key_file: Optional[UploadFile] = File(None),
     max_marks: float = Form(...),
 ):
-    question = extract_text(question_file.filename or "question.pdf", await question_file.read())
-    answer = extract_text(answer_file.filename or "answer.pdf", await answer_file.read())
+    try:
+        question = extract_text(question_file.filename or "question.pdf", await question_file.read())
+        answer = extract_text(answer_file.filename or "answer.pdf", await answer_file.read())
+    except (pytesseract.TesseractError, OSError) as error:
+        return {"marks": None, "feedback": f"OCR failed; teacher review required: {error}"}
     answer_key = ""
     if answer_key_file:
-        answer_key = extract_text(answer_key_file.filename or "key.pdf", await answer_key_file.read())
+        try:
+            answer_key = extract_text(answer_key_file.filename or "key.pdf", await answer_key_file.read())
+        except (pytesseract.TesseractError, OSError) as error:
+            return {"marks": None, "feedback": f"OCR failed; teacher review required: {error}"}
 
     try:
-        result = await grade_with_gemini(
-            question,
-            answer,
-            os.getenv("GEMINI_API_KEY"),
-            max_marks,
-            answer_key,
-        )
+        result = await grade_with_ollama(question, answer, max_marks, answer_key)
     except (httpx.HTTPError, KeyError, ValueError, json.JSONDecodeError, RuntimeError) as error:
         return {"marks": None, "feedback": f"OCR completed; teacher review required: {error}"}
 
