@@ -10,7 +10,7 @@ use App\Models\ExamType;
 use App\Models\SchoolSubject;
 use App\Models\StudentClass;
 use App\Models\StudentYear;
-use App\Services\ExamGradingService;
+use App\Jobs\GradeExamSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,7 +88,7 @@ class ExamPaperController extends Controller
         return view('exam-papers.show', compact('examPaper', 'submission', 'students'));
     }
 
-    public function submit(Request $request, ExamPaper $examPaper, ExamGradingService $grader)
+    public function submit(Request $request, ExamPaper $examPaper)
     {
         abort_unless($this->isStudent(Auth::user()), 403);
         $this->authorizePaper($examPaper);
@@ -100,12 +100,10 @@ class ExamPaperController extends Controller
             ['exam_paper_id' => $examPaper->id, 'student_id' => Auth::id()],
             ['answer_file' => $data['answer_file']->store('exam-papers/answers', 'public'), 'final_marks' => null, 'reviewed_by' => null, 'reviewed_at' => null]
         );
-        $result = $grader->grade($examPaper, $submission);
-        if ($result) {
-            $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
-        }
+        $submission->update(['ai_marks' => null, 'ai_feedback' => 'Queued for automatic grading.']);
+        GradeExamSubmission::dispatch($submission->id);
 
-        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_submission_saved'));
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_grading_queued'));
     }
 
     public function review(Request $request, ExamPaper $examPaper, ExamSubmission $submission)
@@ -135,24 +133,19 @@ class ExamPaperController extends Controller
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
     }
 
-    public function regrade(ExamPaper $examPaper, ExamSubmission $submission, ExamGradingService $grader)
+    public function regrade(ExamPaper $examPaper, ExamSubmission $submission)
     {
         abort_unless(! $this->isStudent(Auth::user()), 403);
         abort_unless($submission->exam_paper_id === $examPaper->id, 404);
 
-        $result = $grader->grade($examPaper, $submission);
-        if (! $result) {
-            return redirect()->route('exam-papers.show', $examPaper)
-                ->with('message', __('messages.exam_grading_unavailable'));
-        }
-
-        $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
+        $submission->update(['ai_marks' => null, 'ai_feedback' => 'Queued for automatic grading.']);
+        GradeExamSubmission::dispatch($submission->id);
 
         return redirect()->route('exam-papers.show', $examPaper)
-            ->with('message', __('messages.exam_regraded'));
+            ->with('message', __('messages.exam_grading_queued'));
     }
 
-    public function uploadForStudent(Request $request, ExamPaper $examPaper, ExamGradingService $grader)
+    public function uploadForStudent(Request $request, ExamPaper $examPaper)
     {
         abort_unless(! $this->isStudent(Auth::user()), 403);
         $data = $request->validate([
@@ -167,12 +160,10 @@ class ExamPaperController extends Controller
             ['exam_paper_id' => $examPaper->id, 'student_id' => $data['student_id']],
             ['answer_file' => $data['answer_file']->store('exam-papers/answers', 'public'), 'final_marks' => null, 'reviewed_by' => null, 'reviewed_at' => null]
         );
-        $result = $grader->grade($examPaper, $submission);
-        if ($result) {
-            $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
-        }
+        $submission->update(['ai_marks' => null, 'ai_feedback' => 'Queued for automatic grading.']);
+        GradeExamSubmission::dispatch($submission->id);
 
-        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_submission_saved'));
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_grading_queued'));
     }
 
     private function authorizePaper(ExamPaper $paper)

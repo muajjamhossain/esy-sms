@@ -13,6 +13,12 @@ $env:OLLAMA_MODEL="llama3.2:latest"
 uvicorn app:app --host 127.0.0.1 --port 8090
 ```
 
+Run Laravel's grading worker in a second terminal:
+
+```powershell
+php artisan queue:work database --queue=exam-grading --tries=2 --timeout=240
+```
+
 Make sure Ollama is running and the model is installed:
 
 ```powershell

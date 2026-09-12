@@ -182,6 +182,7 @@ return [
     'regrade' => 'Re-grade',
     'exam_regraded' => 'AI grading completed.',
     'exam_grading_unavailable' => 'AI grading is unavailable. Check the Python and Ollama services, then try again.',
+    'exam_grading_queued' => 'Answer sheet uploaded and queued for automatic grading.',
     'faq' => 'FAQ',
     'notices' => 'Notices',
     'notice_board' => 'Notice Board',
