@@ -19,7 +19,7 @@ class ExamGradingService
 
         $endpoint = config('ai.exam_grading.endpoint');
         $token = config('ai.exam_grading.token');
-        if (! $endpoint || ! $token) {
+        if (! $endpoint) {
             return null;
         }
 

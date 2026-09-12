@@ -24,7 +24,7 @@
         <div class="box"><div class="box-header"><h4>{{ __('messages.review_exam') }}</h4></div><div class="box-body table-responsive">
             <table class="table table-bordered"><thead><tr><th>{{ __('messages.student') }}</th><th>{{ __('messages.ai_marks') }}</th><th>{{ __('messages.final_marks') }}</th><th>{{ __('messages.feedback') }}</th><th></th></tr></thead><tbody>
             @forelse($examPaper->submissions as $item)<tr>
-                <td>{{ $item->student->name }}<br><small>ID: {{ $item->student->id }}</small></td><td>{{ $item->ai_marks ?? '—' }}</td>
+                <td>{{ $item->student->name }}<br><small>ID: {{ $item->student->id }}</small></td><td>{{ $item->ai_marks ?? '—' }}<br><form method="POST" action="{{ route('exam-papers.regrade', [$examPaper, $item]) }}" class="mt-5">@csrf<button class="btn btn-xs btn-info">{{ __('messages.regrade') }}</button></form></td>
                 <td><form method="POST" action="{{ route('exam-papers.review', [$examPaper, $item]) }}" class="form-inline">@csrf<input name="final_marks" type="number" min="0" max="{{ $examPaper->max_marks }}" step="0.01" class="form-control mr-5" value="{{ $item->final_marks ?? $item->ai_marks }}" required><input name="ai_feedback" class="form-control mr-5" value="{{ $item->ai_feedback }}"><button class="btn btn-success">{{ __('messages.save_feedback') }}</button></form></td>
                 <td><a href="{{ Storage::disk('public')->url($item->answer_file) }}" target="_blank">{{ __('messages.answer_file') }}</a></td>
                 <td>{{ $item->reviewed_at ? $item->reviewed_at->format('d M Y H:i') : '—' }}</td>

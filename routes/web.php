@@ -103,6 +103,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/{examPaper}/submit', [ExamPaperController::class, 'submit'])->name('exam-papers.submit');
         Route::post('/{examPaper}/upload-for-student', [ExamPaperController::class, 'uploadForStudent'])->name('exam-papers.upload-for-student');
         Route::post('/{examPaper}/submissions/{submission}/review', [ExamPaperController::class, 'review'])->name('exam-papers.review');
+        Route::post('/{examPaper}/submissions/{submission}/regrade', [ExamPaperController::class, 'regrade'])->name('exam-papers.regrade');
     });
     Route::middleware(['auth', 'role.access'])->prefix('notices')->group(function () {
         Route::get('/', [NoticeController::class, 'index'])->name('notices.index');

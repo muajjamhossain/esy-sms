@@ -132,6 +132,23 @@ class ExamPaperController extends Controller
             );
         }
 
+        public function regrade(ExamPaper $examPaper, ExamSubmission $submission, ExamGradingService $grader)
+        {
+            abort_unless(! $this->isStudent(Auth::user()), 403);
+            abort_unless($submission->exam_paper_id === $examPaper->id, 404);
+
+            $result = $grader->grade($examPaper, $submission);
+            if (! $result) {
+                return redirect()->route('exam-papers.show', $examPaper)
+                    ->with('message', __('messages.exam_grading_unavailable'));
+            }
+
+            $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
+
+            return redirect()->route('exam-papers.show', $examPaper)
+                ->with('message', __('messages.exam_regraded'));
+        }
+
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
     }
 
