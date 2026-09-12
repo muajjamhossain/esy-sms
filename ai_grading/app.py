@@ -29,6 +29,11 @@ TESSDATA_DIR = os.getenv(
 pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
 
 
+@app.get("/")
+def index():
+    return {"service": "exam-ocr-grading", "status": "ok", "health": "/health", "grading": "/grade"}
+
+
 @app.get("/health")
 def health():
     try:

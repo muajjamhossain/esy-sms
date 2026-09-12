@@ -19,13 +19,13 @@ AI_EXAM_GRADING_PROVIDER=python
 AI_EXAM_GRADING_ENDPOINT=http://127.0.0.1:8090/grade
 ```
 
-Install Tesseract OCR separately and ensure `tesseract.exe` is on PATH. For Bangla handwriting, OCR quality depends on the installed `ben` language data; teacher review remains mandatory.
+Open `http://127.0.0.1:8090/health` to verify the service. For Bangla handwriting, OCR quality depends on the installed `ben` language data; teacher review remains mandatory.
 
 On Windows, PATH is not required when using:
 
 ```env
-TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
-TESSDATA_DIR=C:\Users\YOUR_USER\AppData\Local\Tesseract-OCR\tessdata
+TESSERACT_CMD='C:\Program Files\Tesseract-OCR\tesseract.exe'
+TESSDATA_DIR='C:\Users\YOUR_USER\AppData\Local\Tesseract-OCR\tessdata'
 OCR_LANG=ben+eng
 ```
 
