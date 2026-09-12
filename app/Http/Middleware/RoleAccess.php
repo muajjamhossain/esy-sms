@@ -61,6 +61,7 @@ class RoleAccess
     {
         return in_array($route, [
             'assignments.create', 'assignments.store', 'assignments.feedback',
+            'exam-papers.create', 'exam-papers.store', 'exam-papers.review',
             'notices.create', 'notices.store',
             'events.create', 'events.store',
             'library.create', 'library.books.store', 'library.loans.issue', 'library.loans.return',

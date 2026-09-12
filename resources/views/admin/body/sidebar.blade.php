@@ -170,7 +170,7 @@ $currentRole = strtolower((string) (Auth::user()->role ?: Auth::user()->usertype
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{ in_array($route, ['exam.routine', 'admit.card', 'seat.plan', 'exam-papers.index', 'exam-papers.create', 'exam-papers.show'], true) ? 'active' : '' }}">
                 <a href="#">
                     <i class="ti-files"></i>
                     <span>{{ __('messages.exam_management') }}</span>
@@ -182,6 +182,7 @@ $currentRole = strtolower((string) (Auth::user()->role ?: Auth::user()->usertype
                     <li><a href="{{ route('exam.routine') }}"><i class="ti-calendar"></i> {{ __('messages.exam_routine') }}</a></li>
                     <li><a href="{{ route('admit.card') }}"><i class="ti-id-card"></i> {{ __('messages.admit_card') }}</a></li>
                     <li><a href="{{ route('seat.plan') }}"><i class="ti-layout-grid"></i> {{ __('messages.seat_plan') }}</a></li>
+                    <li class="{{ in_array($route, ['exam-papers.index', 'exam-papers.create', 'exam-papers.show'], true) ? 'active' : '' }}"><a href="{{ route('exam-papers.index') }}"><i class="ti-more"></i>{{ __('messages.exam_paper_upload') }}</a></li>
                 </ul>
             </li>
 

@@ -46,6 +46,7 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\InstitutionEventController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\GlobalSearchController;
+use App\Http\Controllers\ExamPaperController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -93,6 +94,14 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
         Route::post('/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
         Route::post('/{assignment}/submissions/{submission}/feedback', [AssignmentController::class, 'feedback'])->name('assignments.feedback');
+    });
+    Route::middleware(['auth', 'role.access'])->prefix('exam-papers')->group(function () {
+        Route::get('/', [ExamPaperController::class, 'index'])->name('exam-papers.index');
+        Route::get('/create', [ExamPaperController::class, 'create'])->name('exam-papers.create');
+        Route::post('/', [ExamPaperController::class, 'store'])->name('exam-papers.store');
+        Route::get('/{examPaper}', [ExamPaperController::class, 'show'])->name('exam-papers.show');
+        Route::post('/{examPaper}/submit', [ExamPaperController::class, 'submit'])->name('exam-papers.submit');
+        Route::post('/{examPaper}/submissions/{submission}/review', [ExamPaperController::class, 'review'])->name('exam-papers.review');
     });
     Route::middleware(['auth', 'role.access'])->prefix('notices')->group(function () {
         Route::get('/', [NoticeController::class, 'index'])->name('notices.index');
