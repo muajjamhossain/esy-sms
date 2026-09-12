@@ -132,24 +132,24 @@ class ExamPaperController extends Controller
             );
         }
 
-        public function regrade(ExamPaper $examPaper, ExamSubmission $submission, ExamGradingService $grader)
-        {
-            abort_unless(! $this->isStudent(Auth::user()), 403);
-            abort_unless($submission->exam_paper_id === $examPaper->id, 404);
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
+    }
 
-            $result = $grader->grade($examPaper, $submission);
-            if (! $result) {
-                return redirect()->route('exam-papers.show', $examPaper)
-                    ->with('message', __('messages.exam_grading_unavailable'));
-            }
+    public function regrade(ExamPaper $examPaper, ExamSubmission $submission, ExamGradingService $grader)
+    {
+        abort_unless(! $this->isStudent(Auth::user()), 403);
+        abort_unless($submission->exam_paper_id === $examPaper->id, 404);
 
-            $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
-
+        $result = $grader->grade($examPaper, $submission);
+        if (! $result) {
             return redirect()->route('exam-papers.show', $examPaper)
-                ->with('message', __('messages.exam_regraded'));
+                ->with('message', __('messages.exam_grading_unavailable'));
         }
 
-        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
+        $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
+
+        return redirect()->route('exam-papers.show', $examPaper)
+            ->with('message', __('messages.exam_regraded'));
     }
 
     public function uploadForStudent(Request $request, ExamPaper $examPaper, ExamGradingService $grader)
