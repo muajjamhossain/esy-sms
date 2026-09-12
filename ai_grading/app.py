@@ -14,8 +14,25 @@ from typing import Optional
 import httpx
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from PIL import Image
+import pytesseract
 
 app = FastAPI(title="Exam OCR and Grading Service")
+
+TESSERACT_CMD = os.getenv(
+    "TESSERACT_CMD",
+    r"C:\Program Files\Tesseract-OCR\tesseract.exe",
+)
+pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
+
+
+@app.get("/health")
+def health():
+    try:
+        version = pytesseract.get_tesseract_version()
+    except (pytesseract.TesseractNotFoundError, OSError) as error:
+        raise HTTPException(status_code=503, detail=f"Tesseract is unavailable: {error}")
+
+    return {"status": "ok", "tesseract": str(version).splitlines()[0]}
 
 
 def extract_text(filename: str, content: bytes) -> str:
@@ -26,8 +43,6 @@ def extract_text(filename: str, content: bytes) -> str:
         reader = PdfReader(io.BytesIO(content))
         return "\n".join(page.extract_text() or "" for page in reader.pages)
     if suffix in {".jpg", ".jpeg", ".png", ".webp"}:
-        import pytesseract
-
         return pytesseract.image_to_string(Image.open(io.BytesIO(content)), lang=os.getenv("OCR_LANG", "eng"))
     if suffix == ".docx":
         from docx import Document

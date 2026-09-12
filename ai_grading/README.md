@@ -20,3 +20,16 @@ AI_EXAM_GRADING_ENDPOINT=http://127.0.0.1:8090/grade
 ```
 
 Install Tesseract OCR separately and ensure `tesseract.exe` is on PATH. For Bangla handwriting, OCR quality depends on the installed `ben` language data; teacher review remains mandatory.
+
+On Windows, PATH is not required when using:
+
+```env
+TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+OCR_LANG=eng
+```
+
+Install the Python dependencies with the same Python executable used to run Uvicorn:
+
+```powershell
+D:\laragon\bin\python\python-3.10\python.exe -m pip install -r requirements.txt
+```
