@@ -7,6 +7,7 @@ use App\Models\ExamSubmission;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Client\RequestException;
 
 class ExamGradingService
 {
@@ -22,17 +23,27 @@ class ExamGradingService
             return null;
         }
 
-        $response = Http::timeout(90)->withToken($token)->post($endpoint, [
-            'max_marks' => $paper->max_marks,
-            'question_file' => $this->fileAsDataUrl($paper->question_file),
-            'answer_file' => $this->fileAsDataUrl($submission->answer_file),
-            'answer_key_file' => $paper->answer_key_file
-                ? $this->fileAsDataUrl($paper->answer_key_file)
-                : null,
-            'instruction' => 'Grade the answer against the question and answer key. Return JSON with marks and feedback.',
-        ])->throw();
+        try {
+            $request = Http::timeout(120);
+            if ($token) {
+                $request = $request->withToken($token);
+            }
+            $response = $request
+                ->attach('question_file', $this->fileContents($paper->question_file), basename($paper->question_file))
+                ->attach('answer_file', $this->fileContents($submission->answer_file), basename($submission->answer_file))
+                ->when($paper->answer_key_file, function ($request) use ($paper) {
+                    return $request->attach('answer_key_file', $this->fileContents($paper->answer_key_file), basename($paper->answer_key_file));
+                })
+                ->post($endpoint, ['max_marks' => $paper->max_marks]);
 
-        return $this->normaliseResult($response->json(), $paper, $submission);
+            return $this->normaliseResult($response->throw()->json(), $paper, $submission);
+        } catch (RequestException $exception) {
+            Log::warning('Exam grading service was unavailable.', [
+                'submission_id' => $submission->id,
+                'status' => optional($exception->response)->status(),
+            ]);
+            return null;
+        }
     }
 
     private function gradeWithGemini(ExamPaper $paper, ExamSubmission $submission): ?array
@@ -64,12 +75,20 @@ class ExamGradingService
 
         $url = 'https://generativelanguage.googleapis.com/v1beta/models/'
             .rawurlencode($model).':generateContent';
-        $response = Http::timeout(120)->withHeaders([
-            'X-goog-api-key' => $key,
-        ])->post($url, [
-            'contents' => [['role' => 'user', 'parts' => $parts]],
-            'generationConfig' => ['responseMimeType' => 'application/json'],
-        ])->throw();
+        try {
+            $response = Http::timeout(120)->withHeaders([
+                'X-goog-api-key' => $key,
+            ])->post($url, [
+                'contents' => [['role' => 'user', 'parts' => $parts]],
+                'generationConfig' => ['responseMimeType' => 'application/json'],
+            ])->throw();
+        } catch (RequestException $exception) {
+            Log::warning('Gemini grading request failed; teacher review is required.', [
+                'submission_id' => $submission->id,
+                'status' => optional($exception->response)->status(),
+            ]);
+            return null;
+        }
 
         $text = (string) data_get($response->json(), 'candidates.0.content.parts.0.text');
         return $this->normaliseResult(json_decode($text, true), $paper, $submission);
@@ -112,5 +131,10 @@ class ExamGradingService
         $disk = Storage::disk('public');
 
         return 'data:'.$disk->mimeType($path).';base64,'.base64_encode($disk->get($path));
+    }
+
+    private function fileContents($path)
+    {
+        return Storage::disk('public')->get($path);
     }
 }
