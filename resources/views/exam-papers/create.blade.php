@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-md-6 form-group"><label>{{ __('messages.title') }}</label><input name="title" class="form-control" required></div>
             <div class="col-md-3 form-group"><label>{{ __('messages.max_marks') }}</label><input name="max_marks" type="number" min="0.01" step="0.01" class="form-control" required></div>
+            <div class="col-md-3 form-group"><label>{{ __('messages.student_year') }}</label><select name="year_id" class="form-control" required><option value="">—</option>@foreach($years as $year)<option value="{{ $year->id }}">{{ $year->name }}</option>@endforeach</select></div>
             <div class="col-md-3 form-group"><label>{{ __('messages.class') }}</label><select name="class_id" class="form-control"><option value="">—</option>@foreach($classes as $class)<option value="{{ $class->id }}">{{ $class->name }}</option>@endforeach</select></div>
             <div class="col-md-4 form-group"><label>{{ __('messages.subject') }}</label><select name="subject_id" class="form-control"><option value="">—</option>@foreach($subjects as $subject)<option value="{{ $subject->id }}">{{ $subject->name }}</option>@endforeach</select></div>
             <div class="col-md-4 form-group"><label>{{ __('messages.exam_type') }}</label><select name="exam_type_id" class="form-control"><option value="">—</option>@foreach($examTypes as $type)<option value="{{ $type->id }}">{{ $type->name }}</option>@endforeach</select></div>

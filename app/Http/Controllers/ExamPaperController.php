@@ -9,6 +9,7 @@ use App\Models\ExamSubmission;
 use App\Models\ExamType;
 use App\Models\SchoolSubject;
 use App\Models\StudentClass;
+use App\Models\StudentYear;
 use App\Services\ExamGradingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,13 @@ class ExamPaperController extends Controller
         $query = ExamPaper::with(['studentClass', 'subject', 'examType', 'submissions']);
 
         if ($this->isStudent($user)) {
-            $classIds = AssignStudent::where('student_id', $user->id)->pluck('class_id');
-            $query->where(function ($paperQuery) use ($classIds) {
-                $paperQuery->whereNull('class_id')->orWhereIn('class_id', $classIds);
+            $enrolments = AssignStudent::where('student_id', $user->id)->get(['year_id', 'class_id']);
+            $query->where(function ($paperQuery) use ($enrolments) {
+                foreach ($enrolments as $enrolment) {
+                    $paperQuery->orWhere(function ($pairQuery) use ($enrolment) {
+                        $pairQuery->where('year_id', $enrolment->year_id)->where('class_id', $enrolment->class_id);
+                    });
+                }
             });
         } elseif (! $this->isAdministrator($user)) {
             $query->where('created_by', $user->id);
@@ -38,6 +43,7 @@ class ExamPaperController extends Controller
 
         return view('exam-papers.create', [
             'classes' => StudentClass::orderBy('name')->get(),
+            'years' => StudentYear::orderByDesc('id')->get(),
             'subjects' => SchoolSubject::orderBy('name')->get(),
             'examTypes' => ExamType::orderBy('name')->get(),
         ]);
@@ -48,6 +54,7 @@ class ExamPaperController extends Controller
         abort_unless(! $this->isStudent(Auth::user()), 403);
 
         $data = $request->validate([
+            'year_id' => ['required', 'exists:student_years,id'],
             'class_id' => ['required', 'exists:student_classes,id'],
             'subject_id' => ['required', 'exists:school_subjects,id'],
             'exam_type_id' => ['required', 'exists:exam_types,id'],
@@ -56,6 +63,7 @@ class ExamPaperController extends Controller
             'question_file' => ['required', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
             'answer_key_file' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
         ]);
+        abort_unless(AssignStudent::where('year_id', $data['year_id'])->where('class_id', $data['class_id'])->exists(), 422, 'No students are assigned to this year and class.');
         $data['created_by'] = Auth::id();
         $data['question_file'] = $request->file('question_file')->store('exam-papers/questions', 'public');
         if ($request->hasFile('answer_key_file')) {
@@ -70,10 +78,14 @@ class ExamPaperController extends Controller
     public function show(ExamPaper $examPaper)
     {
         $this->authorizePaper($examPaper);
-        $examPaper->load(['studentClass', 'subject', 'examType', 'submissions.student']);
+        $examPaper->load(['studentClass', 'year', 'subject', 'examType', 'submissions.student']);
+        $students = AssignStudent::with('student')
+            ->where('year_id', $examPaper->year_id)
+            ->where('class_id', $examPaper->class_id)
+            ->orderBy('id')->get();
         $submission = $examPaper->submissions->firstWhere('student_id', Auth::id());
 
-        return view('exam-papers.show', compact('examPaper', 'submission'));
+        return view('exam-papers.show', compact('examPaper', 'submission', 'students'));
     }
 
     public function submit(Request $request, ExamPaper $examPaper, ExamGradingService $grader)
@@ -114,12 +126,36 @@ class ExamPaperController extends Controller
                     'class_id' => $examPaper->class_id,
                     'assign_subject_id' => $assignedSubject->id,
                     'exam_type_id' => $examPaper->exam_type_id,
+                    'year_id' => $examPaper->year_id,
                 ],
                 ['marks' => $data['final_marks']]
             );
         }
 
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
+    }
+
+    public function uploadForStudent(Request $request, ExamPaper $examPaper, ExamGradingService $grader)
+    {
+        abort_unless(! $this->isStudent(Auth::user()), 403);
+        $data = $request->validate([
+            'student_id' => ['required', 'exists:users,id'],
+            'answer_file' => ['required', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
+        ]);
+        abort_unless(AssignStudent::where('student_id', $data['student_id'])
+            ->where('year_id', $examPaper->year_id)
+            ->where('class_id', $examPaper->class_id)->exists(), 422, 'Student is not assigned to this exam class and year.');
+
+        $submission = ExamSubmission::updateOrCreate(
+            ['exam_paper_id' => $examPaper->id, 'student_id' => $data['student_id']],
+            ['answer_file' => $data['answer_file']->store('exam-papers/answers', 'public'), 'final_marks' => null, 'reviewed_by' => null, 'reviewed_at' => null]
+        );
+        $result = $grader->grade($examPaper, $submission);
+        if ($result) {
+            $submission->update(['ai_marks' => $result['marks'], 'ai_feedback' => $result['feedback']]);
+        }
+
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_submission_saved'));
     }
 
     private function authorizePaper(ExamPaper $paper)
@@ -131,7 +167,7 @@ class ExamPaperController extends Controller
 
         abort_unless(
             $this->isStudent($user)
-            && AssignStudent::where('student_id', $user->id)->where('class_id', $paper->class_id)->exists(),
+            && AssignStudent::where('student_id', $user->id)->where('class_id', $paper->class_id)->where('year_id', $paper->year_id)->exists(),
             403
         );
     }

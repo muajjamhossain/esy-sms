@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentMarks extends Model
 {
+    protected $fillable = [
+        'student_id', 'id_no', 'year_id', 'class_id',
+        'assign_subject_id', 'exam_type_id', 'marks',
+    ];
+
     public function student(){
     	return $this->belongsTo(User::class, 'student_id','id');
     }

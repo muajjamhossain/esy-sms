@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExamPaper extends Model
 {
     protected $fillable = [
-        'created_by', 'class_id', 'subject_id', 'exam_type_id',
+        'created_by', 'year_id', 'class_id', 'subject_id', 'exam_type_id',
         'title', 'max_marks', 'question_file', 'answer_key_file',
     ];
 
@@ -19,6 +19,11 @@ class ExamPaper extends Model
     public function studentClass()
     {
         return $this->belongsTo(StudentClass::class, 'class_id');
+    }
+
+    public function year()
+    {
+        return $this->belongsTo(StudentYear::class, 'year_id');
     }
 
     public function subject()
