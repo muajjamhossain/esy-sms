@@ -22,6 +22,10 @@ TESSERACT_CMD = os.getenv(
     "TESSERACT_CMD",
     r"C:\Program Files\Tesseract-OCR\tesseract.exe",
 )
+TESSDATA_DIR = os.getenv(
+    "TESSDATA_DIR",
+    os.path.expandvars(r"%LOCALAPPDATA%\Tesseract-OCR\tessdata"),
+)
 pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
 
 
@@ -43,7 +47,11 @@ def extract_text(filename: str, content: bytes) -> str:
         reader = PdfReader(io.BytesIO(content))
         return "\n".join(page.extract_text() or "" for page in reader.pages)
     if suffix in {".jpg", ".jpeg", ".png", ".webp"}:
-        return pytesseract.image_to_string(Image.open(io.BytesIO(content)), lang=os.getenv("OCR_LANG", "eng"))
+        return pytesseract.image_to_string(
+            Image.open(io.BytesIO(content)),
+            lang=os.getenv("OCR_LANG", "ben+eng"),
+            config=f'--tessdata-dir "{TESSDATA_DIR}"',
+        )
     if suffix == ".docx":
         from docx import Document
 

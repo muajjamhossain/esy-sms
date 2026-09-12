@@ -25,7 +25,8 @@ On Windows, PATH is not required when using:
 
 ```env
 TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
-OCR_LANG=eng
+TESSDATA_DIR=C:\Users\YOUR_USER\AppData\Local\Tesseract-OCR\tessdata
+OCR_LANG=ben+eng
 ```
 
 Install the Python dependencies with the same Python executable used to run Uvicorn:
@@ -33,3 +34,5 @@ Install the Python dependencies with the same Python executable used to run Uvic
 ```powershell
 D:\laragon\bin\python\python-3.10\python.exe -m pip install -r requirements.txt
 ```
+
+The Bengali and English `traineddata` files are stored in the user-local tessdata directory so administrator permission is not required.
