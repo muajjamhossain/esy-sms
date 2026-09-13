@@ -20,8 +20,9 @@
 
 				  <div class="box-body">
 				
-		<form method="post" action="{{ route('marks.entry.store') }}">
+		<form method="post" action="{{ route('marks.entry.store') }}" id="marks-entry-form">
 			@csrf
+            <input type="hidden" name="confirm_update" id="confirm_update" value="0">
 			<div class="row">
 
 
@@ -159,13 +160,18 @@
      $.ajax({
       url: "{{ route('student.marks.getstudents')}}",
       type: "GET",
-      data: {'year_id':year_id,'class_id':class_id},
+      data: {
+        'year_id': year_id,
+        'class_id': class_id,
+        'assign_subject_id': assign_subject_id,
+        'exam_type_id': exam_type_id
+      },
       success: function (data) {
         $('#marks-entry').removeClass('d-none');
         var html = '';
         $.each( data, function(key, v){
           html +=
-          '<tr>'+
+          '<tr data-existing="'+(v.has_existing_mark ? '1' : '')+'">'+
           '<td>'+v.student.id_no+'<input type="hidden" name="student_id[]" value="'+v.student_id+'"> <input type="hidden" name="id_no[]" value="'+v.student.id_no+'"> </td>'+
           '<td>'+v.student.name+'</td>'+
           '<td>'+v.student.fname+'</td>'+
@@ -179,7 +185,6 @@
   });
 
 </script>
-
 
 <!--   // for get Student Subject  -->
 
@@ -200,6 +205,22 @@
         }
       });
     });
+  });
+
+  $('#marks-entry-form').on('submit', function (event) {
+    var existing = [];
+    $('#marks-entry-tr tr').each(function () {
+      if ($(this).data('existing')) {
+        existing.push($(this).find('td:first').text().trim());
+      }
+    });
+    if (existing.length && $('#confirm_update').val() !== '1') {
+      if (!window.confirm('Marks already exist for student(s): ' + existing.join(', ') + '. Update them with the submitted values?')) {
+        event.preventDefault();
+        return false;
+      }
+      $('#confirm_update').val('1');
+    }
   });
 </script>
 

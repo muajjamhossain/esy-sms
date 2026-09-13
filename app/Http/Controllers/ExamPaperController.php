@@ -126,7 +126,10 @@ class ExamPaperController extends Controller
                     'exam_type_id' => $examPaper->exam_type_id,
                     'year_id' => $examPaper->year_id,
                 ],
-                ['marks' => $data['final_marks']]
+                [
+                    'id_no' => $submission->student->id_no,
+                    'marks' => $data['final_marks'],
+                ]
             );
         }
 

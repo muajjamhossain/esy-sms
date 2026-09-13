@@ -7,6 +7,7 @@ use App\Models\ExamSubmission;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\RequestException;
 
 class ExamGradingService
@@ -24,7 +25,7 @@ class ExamGradingService
         }
 
         try {
-            $request = Http::timeout(120);
+            $request = Http::timeout(105);
             if ($token) {
                 $request = $request->withToken($token);
             }
@@ -37,7 +38,7 @@ class ExamGradingService
                 ->post($endpoint, ['max_marks' => $paper->max_marks]);
 
             return $this->normaliseResult($response->throw()->json(), $paper, $submission);
-        } catch (RequestException $exception) {
+        } catch (RequestException | ConnectionException $exception) {
             Log::warning('Exam grading service was unavailable.', [
                 'submission_id' => $submission->id,
                 'status' => optional($exception->response)->status(),

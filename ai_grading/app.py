@@ -17,6 +17,7 @@ from PIL import Image
 import pytesseract
 
 app = FastAPI(title="Exam OCR and Grading Service")
+MAX_EXTRACTED_CHARS = int(os.getenv("MAX_EXTRACTED_CHARS", "12000"))
 
 TESSERACT_CMD = os.getenv(
     "TESSERACT_CMD",
@@ -56,22 +57,24 @@ def extract_text(filename: str, content: bytes) -> str:
         from pypdf import PdfReader
 
         reader = PdfReader(io.BytesIO(content))
-        return "\n".join(page.extract_text() or "" for page in reader.pages)
+        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        return text[:MAX_EXTRACTED_CHARS]
     if suffix in {".jpg", ".jpeg", ".png", ".webp"}:
         return pytesseract.image_to_string(
             Image.open(io.BytesIO(content)),
             lang=os.getenv("OCR_LANG", "ben+eng"),
-        )
+        )[:MAX_EXTRACTED_CHARS]
     if suffix == ".docx":
         from docx import Document
 
-        return "\n".join(paragraph.text for paragraph in Document(io.BytesIO(content)).paragraphs)
+        text = "\n".join(paragraph.text for paragraph in Document(io.BytesIO(content)).paragraphs)
+        return text[:MAX_EXTRACTED_CHARS]
     raise HTTPException(status_code=422, detail="Use PDF, DOCX, JPG, JPEG, PNG, or WEBP files.")
 
 
 async def call_ollama_chat(model: str, messages: list, max_marks: float) -> dict:
     host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
-    async with httpx.AsyncClient(timeout=180) as client:
+    async with httpx.AsyncClient(timeout=90) as client:
         response = await client.post(
             f"{host}/api/chat",
             json={
@@ -79,7 +82,10 @@ async def call_ollama_chat(model: str, messages: list, max_marks: float) -> dict
                 "messages": messages,
                 "format": "json",
                 "stream": False,
-                "options": {"temperature": float(os.getenv("OLLAMA_TEMPERATURE", "0"))},
+                "options": {
+                    "temperature": float(os.getenv("OLLAMA_TEMPERATURE", "0")),
+                    "num_predict": int(os.getenv("OLLAMA_NUM_PREDICT", "256")),
+                },
             },
         )
         response.raise_for_status()

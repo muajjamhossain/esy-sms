@@ -2,8 +2,8 @@
 @section('admin')
 <div class="content-wrapper"><div class="container-full"><section class="content">
     <div class="box"><div class="box-header"><h3>{{ $examPaper->title }}</h3><p>{{ $examPaper->year->name ?? '' }} · {{ $examPaper->studentClass->name ?? __('messages.all_classes') }} · {{ $examPaper->subject->name ?? __('messages.general') }} · {{ __('messages.max_marks') }}: {{ $examPaper->max_marks }}</p></div><div class="box-body">
-        <p><a href="{{ Storage::disk('public')->url($examPaper->question_file) }}" target="_blank">{{ __('messages.question_file') }}</a></p>
-        @if($examPaper->answer_key_file)<p><a href="{{ Storage::disk('public')->url($examPaper->answer_key_file) }}" target="_blank">{{ __('messages.answer_key_file') }}</a></p>@endif
+        <p><a href="{{ asset('storage/' . ltrim($examPaper->question_file, '/')) }}" target="_blank">{{ __('messages.question_file') }}</a></p>
+        @if($examPaper->answer_key_file)<p><a href="{{ asset('storage/' . ltrim($examPaper->answer_key_file, '/')) }}" target="_blank">{{ __('messages.answer_key_file') }}</a></p>@endif
     </div></div>
     @if(strtolower((string) (auth()->user()->role ?: auth()->user()->usertype)) === 'student')
         <div class="box"><div class="box-header"><h4>{{ __('messages.submit_answer_sheet') }}</h4></div><div class="box-body">
@@ -26,7 +26,7 @@
             @forelse($examPaper->submissions as $item)<tr>
                 <td>{{ $item->student->name }}<br><small>ID: {{ $item->student->id }}</small></td><td>{{ $item->ai_marks ?? '—' }}<br><form method="POST" action="{{ route('exam-papers.regrade', [$examPaper, $item]) }}" class="mt-5">@csrf<button class="btn btn-xs btn-info">{{ __('messages.regrade') }}</button></form></td>
                 <td><form method="POST" action="{{ route('exam-papers.review', [$examPaper, $item]) }}" class="form-inline">@csrf<input name="final_marks" type="number" min="0" max="{{ $examPaper->max_marks }}" step="0.01" class="form-control mr-5" value="{{ $item->final_marks ?? $item->ai_marks }}" required><input name="ai_feedback" class="form-control mr-5" value="{{ $item->ai_feedback }}"><button class="btn btn-success">{{ __('messages.save_feedback') }}</button></form></td>
-                <td><a href="{{ Storage::disk('public')->url($item->answer_file) }}" target="_blank">{{ __('messages.answer_file') }}</a></td>
+                <td><a href="{{ asset('storage/' . ltrim($item->answer_file, '/')) }}" target="_blank">{{ __('messages.answer_file') }}</a></td>
                 <td>{{ $item->reviewed_at ? $item->reviewed_at->format('d M Y H:i') : '—' }}</td>
             </tr>@empty<tr><td colspan="5">{{ __('messages.no_submissions') }}</td></tr>@endforelse
             </tbody></table>

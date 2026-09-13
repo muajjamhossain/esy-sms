@@ -150,7 +150,21 @@ class DefaultController extends Controller
     public function GetStudents(Request $request){
     	$year_id = $request->year_id;
     	$class_id = $request->class_id;
-    	$allData = AssignStudent::with(['student'])->where('year_id',$year_id)->where('class_id',$class_id)->get();
+        $assignSubjectId = $request->assign_subject_id;
+        $examTypeId = $request->exam_type_id;
+        $allData = AssignStudent::with(['student'])->where('year_id',$year_id)->where('class_id',$class_id)->get()
+            ->map(function ($assignment) use ($year_id, $class_id, $assignSubjectId, $examTypeId) {
+                $assignment->has_existing_mark = $assignSubjectId && $examTypeId
+                    ? StudentMarks::where('student_id', $assignment->student_id)
+                        ->where('year_id', $year_id)
+                        ->where('class_id', $class_id)
+                        ->where('assign_subject_id', $assignSubjectId)
+                        ->where('exam_type_id', $examTypeId)
+                        ->exists()
+                    : false;
+
+                return $assignment;
+            });
     	return response()->json($allData);
 
     }
