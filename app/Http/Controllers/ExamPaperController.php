@@ -53,19 +53,33 @@ class ExamPaperController extends Controller
     {
         abort_unless(! $this->isStudent(Auth::user()), 403);
 
-        $data = $request->validate([
+        $mcqQuestions = $request->input('mcq_questions');
+        $rules = [
             'year_id' => ['required', 'exists:student_years,id'],
             'class_id' => ['required', 'exists:student_classes,id'],
             'subject_id' => ['required', 'exists:school_subjects,id'],
             'exam_type_id' => ['required', 'exists:exam_types,id'],
             'title' => ['required', 'string', 'max:180'],
             'max_marks' => ['required', 'numeric', 'min:0.01', 'max:9999.99'],
-            'question_file' => ['required', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
             'answer_key_file' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
-        ]);
+        ];
+
+        if (empty($mcqQuestions)) {
+            $rules['question_file'] = ['required', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'];
+        }
+
+        $data = $request->validate($rules);
         abort_unless(AssignStudent::where('year_id', $data['year_id'])->where('class_id', $data['class_id'])->exists(), 422, 'No students are assigned to this year and class.');
         $data['created_by'] = Auth::id();
-        $data['question_file'] = $request->file('question_file')->store('exam-papers/questions', 'public');
+
+        if (! empty($mcqQuestions)) {
+            $questions = $this->parseMcqQuestions($mcqQuestions);
+            $data['questions'] = $questions;
+            $data['question_file'] = null;
+        } else {
+            $data['question_file'] = $request->file('question_file')->store('exam-papers/questions', 'public');
+        }
+
         if ($request->hasFile('answer_key_file')) {
             $data['answer_key_file'] = $request->file('answer_key_file')->store('exam-papers/keys', 'public');
         }
@@ -92,6 +106,24 @@ class ExamPaperController extends Controller
     {
         abort_unless($this->isStudent(Auth::user()), 403);
         $this->authorizePaper($examPaper);
+
+        if ($examPaper->isMcq()) {
+            $answers = $request->validate([
+                'answers' => ['required', 'array'],
+                'answers.*' => ['required', 'integer', 'between:0,3'],
+            ]);
+
+            $submission = ExamSubmission::updateOrCreate(
+                ['exam_paper_id' => $examPaper->id, 'student_id' => Auth::id()],
+                ['answers' => $answers['answers'], 'answer_file' => $request->input('answer_file', ''), 'final_marks' => null, 'reviewed_by' => null, 'reviewed_at' => null]
+            );
+
+            $finalMarks = $this->calculateMcqMarks($examPaper, $answers['answers']);
+            $submission->update(['final_marks' => $finalMarks]);
+
+            return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_submission_saved'));
+        }
+
         $data = $request->validate([
             'answer_file' => ['required', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
         ]);
@@ -110,8 +142,16 @@ class ExamPaperController extends Controller
     {
         abort_unless(! $this->isStudent(Auth::user()), 403);
         abort_unless($submission->exam_paper_id === $examPaper->id, 404);
+
+        if ($examPaper->isMcq()) {
+            $examPaper->update(['is_published' => true, 'published_at' => now()]);
+            $submission->update(['reviewed_by' => Auth::id(), 'reviewed_at' => now()]);
+
+            return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.results_published'));
+        }
+
         $data = $request->validate([
-            'final_marks' => ['required', 'numeric', 'min:0', 'max:'.$examPaper->max_marks],
+            'final_marks' => ['required', 'numeric', 'min:0', 'max:' . $examPaper->max_marks],
             'ai_feedback' => ['nullable', 'string', 'max:5000'],
         ]);
         $submission->update(array_merge($data, ['reviewed_by' => Auth::id(), 'reviewed_at' => now()]));
@@ -135,6 +175,7 @@ class ExamPaperController extends Controller
 
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
     }
+
 
     public function regrade(ExamPaper $examPaper, ExamSubmission $submission)
     {
@@ -169,6 +210,78 @@ class ExamPaperController extends Controller
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_grading_queued'));
     }
 
+    public function publishResults(ExamPaper $examPaper)
+    {
+        abort_unless(! $this->isStudent(Auth::user()), 403);
+        $this->authorizePaper($examPaper);
+
+        $examPaper->update(['is_published' => true, 'published_at' => now()]);
+
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.results_published'));
+    }
+
+    private function parseMcqQuestions($mcqQuestions)
+    {
+        $decoded = json_decode($mcqQuestions, true);
+        if (! is_array($decoded)) {
+            abort(422, 'Invalid MCQ data.');
+        }
+
+        $questions = [];
+        foreach ($decoded as $question) {
+            $questionText = trim((string) ($question['question'] ?? $question['question_text'] ?? ''));
+            $language = in_array(($question['language'] ?? 'en'), ['bn', 'en'], true) ? ($question['language'] ?? 'en') : 'en';
+            $options = [];
+            foreach (range(0, 3) as $index) {
+                $option = trim((string) ($question['options'][$index] ?? ''));
+                if ($option === '') {
+                    abort(422, 'Each MCQ question must include four options.');
+                }
+                $options[] = $option;
+            }
+
+            $correctOption = (int) ($question['correct_option'] ?? 0);
+            if ($correctOption < 0 || $correctOption > 3) {
+                abort(422, 'Correct option must be between A and D.');
+            }
+
+            if ($questionText === '') {
+                abort(422, 'Each question requires text.');
+            }
+
+            $questions[] = [
+                'question' => $questionText,
+                'language' => $language,
+                'options' => $options,
+                'correct_option' => $correctOption,
+            ];
+        }
+
+        if (empty($questions)) {
+            abort(422, 'At least one MCQ question is required.');
+        }
+
+        return $questions;
+    }
+
+    private function calculateMcqMarks(ExamPaper $examPaper, array $answers): float
+    {
+        $totalQuestions = count($examPaper->questions ?? []);
+        if ($totalQuestions === 0) {
+            return 0.0;
+        }
+
+        $correctAnswers = 0;
+        foreach ($examPaper->questions as $index => $question) {
+            $selected = (int) ($answers[$index] ?? -1);
+            if ($selected === (int) ($question['correct_option'] ?? -1)) {
+                $correctAnswers++;
+            }
+        }
+
+        return round(($correctAnswers / $totalQuestions) * (float) $examPaper->max_marks, 2);
+    }
+
     private function authorizePaper(ExamPaper $paper)
     {
         $user = Auth::user();
@@ -178,7 +291,7 @@ class ExamPaperController extends Controller
 
         abort_unless(
             $this->isStudent($user)
-            && AssignStudent::where('student_id', $user->id)->where('class_id', $paper->class_id)->where('year_id', $paper->year_id)->exists(),
+                && AssignStudent::where('student_id', $user->id)->where('class_id', $paper->class_id)->where('year_id', $paper->year_id)->exists(),
             403
         );
     }

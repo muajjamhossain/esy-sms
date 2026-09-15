@@ -9,6 +9,13 @@ class ExamPaper extends Model
     protected $fillable = [
         'created_by', 'year_id', 'class_id', 'subject_id', 'exam_type_id',
         'title', 'max_marks', 'question_file', 'answer_key_file',
+        'questions', 'is_published', 'published_at',
+    ];
+
+    protected $casts = [
+        'questions' => 'array',
+        'is_published' => 'boolean',
+        'published_at' => 'datetime',
     ];
 
     public function creator()
@@ -39,5 +46,10 @@ class ExamPaper extends Model
     public function submissions()
     {
         return $this->hasMany(ExamSubmission::class);
+    }
+
+    public function isMcq(): bool
+    {
+        return ! empty($this->questions) && is_array($this->questions);
     }
 }

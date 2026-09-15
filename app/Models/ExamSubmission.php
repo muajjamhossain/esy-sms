@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ExamSubmission extends Model
 {
     protected $fillable = [
-        'exam_paper_id', 'student_id', 'answer_file', 'ai_marks',
+        'exam_paper_id', 'student_id', 'answer_file', 'answers', 'ai_marks',
         'final_marks', 'ai_feedback', 'reviewed_by', 'reviewed_at',
     ];
 
-    protected $casts = ['reviewed_at' => 'datetime'];
+    protected $casts = [
+        'answers' => 'array',
+        'reviewed_at' => 'datetime',
+    ];
 
     public function examPaper()
     {
