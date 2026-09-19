@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountStudentFee extends Model
 {
+    protected $fillable = [
+        'year_id',
+        'class_id',
+        'student_id',
+        'fee_category_id',
+        'date',
+        'amount',
+    ];
+
    public function student(){
     	return $this->belongsTo(User::class,'student_id','id');
     }

@@ -73,12 +73,13 @@ if($accountstudentfees !=null) {
 
  	$html[$key]['tdsource']  .= '<td>'.$std['student']['fname']. '<input type="hidden" name="class_id" value= " '.$std->class_id.' " >'.'</td>';
 
- 	$html[$key]['tdsource']  .= '<td>'.$registrationfee->amount.'$'.'<input type="hidden" name="date" value= " '.$date.' " >'.'</td>';
+ 	$feeAmount = $registrationfee ? $registrationfee->amount : 0;
+ 	$html[$key]['tdsource']  .= '<td>'.$feeAmount.'$'.'<input type="hidden" name="date" value= " '.$date.' " >'.'</td>';
 
- 	$html[$key]['tdsource'] .= '<td>'.$std['discount']['discount'].'%'.'</td>';
+ 	$html[$key]['tdsource'] .= '<td>'.optional($std->discount)->discount.'%'.'</td>';
   
- 	 $orginalfee = $registrationfee->amount;
- 	 $discount = $std['discount']['discount'];
+ 	 $orginalfee = (float) $feeAmount;
+ 	 $discount = (float) optional($std->discount)->discount;
  	 $discountablefee = $discount/100*$orginalfee;
  	 $finalfee = (int)$orginalfee-(int)$discountablefee;    	 	 
 

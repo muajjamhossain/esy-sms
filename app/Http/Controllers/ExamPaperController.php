@@ -185,6 +185,7 @@ class ExamPaperController extends Controller
                 'wrong_count' => $stats['wrong'],
                 'unanswered_count' => $stats['unanswered'],
                 'total_questions' => $stats['total'],
+                'ai_marks' => $stats['marks'],
                 'final_marks' => $stats['marks'],
                 'reviewed_by' => null,
                 'reviewed_at' => null,
@@ -224,8 +225,10 @@ class ExamPaperController extends Controller
             'ai_feedback' => ['nullable', 'string', 'max:5000'],
         ]);
         $submission->update(array_merge($data, ['reviewed_by' => Auth::id(), 'reviewed_at' => now()]));
-        $assignedSubject = AssignSubject::where('class_id', $examPaper->class_id)
-            ->where('subject_id', $examPaper->subject_id)->first();
+        $assignedSubject = AssignSubject::firstOrCreate(
+            ['class_id' => $examPaper->class_id, 'subject_id' => $examPaper->subject_id],
+            ['full_mark' => 100, 'pass_mark' => 40, 'subjective_mark' => 30]
+        );
         if ($assignedSubject) {
             \App\Models\StudentMarks::updateOrCreate(
                 [
@@ -286,8 +289,10 @@ class ExamPaperController extends Controller
         $examPaper->update(['is_published' => true, 'published_at' => now()]);
 
         // Sync with student marks table for reports and marksheets
-        $assignedSubject = AssignSubject::where('class_id', $examPaper->class_id)
-            ->where('subject_id', $examPaper->subject_id)->first();
+        $assignedSubject = AssignSubject::firstOrCreate(
+            ['class_id' => $examPaper->class_id, 'subject_id' => $examPaper->subject_id],
+            ['full_mark' => 100, 'pass_mark' => 40, 'subjective_mark' => 30]
+        );
         if ($assignedSubject) {
             foreach ($examPaper->submissions()->with('student')->get() as $sub) {
                 if ($sub->final_marks !== null && $sub->student) {
