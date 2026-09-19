@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESY-SMS | স্মার্ট স্কুল ও মাদ্রাসা অটোমেশন সিস্টেম প্রেজেন্টেশন</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --dark-surface: #1e293b;
+            --dark-card: rgba(30, 41, 59, 0.7);
+            --light: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Ambient Glow Background */
+        .ambient-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.25) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand i {
+            -webkit-text-fill-color: var(--secondary);
+            font-size: 24px;
+        }
+
+        .slide-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-header {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-header:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .btn-live-demo {
+            background: var(--gradient-1);
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-live-demo:hover {
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+        }
+
+        /* Slides Container */
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: calc(100vh - 140px);
+            margin-top: 70px;
+            z-index: 10;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(40px) scale(0.98);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 30px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Slide Typography */
+        .slide-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            background: rgba(79, 70, 229, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            width: fit-content;
+        }
+
+        .slide-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .slide-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-subtitle {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* Grid Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(79, 70, 229, 0.4);
+            background: rgba(30, 41, 59, 0.85);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            background: rgba(79, 70, 229, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .card-icon.gold {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .card-icon.cyan {
+            background: rgba(6, 182, 212, 0.15);
+            color: #22d3ee;
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .card-icon.green {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Hero Highlights */
+        .hero-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .hero-left {
+            flex: 1.2;
+        }
+
+        .hero-right {
+            flex: 1;
+            position: relative;
+        }
+
+        .demo-preview-box {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .stat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .stat-pill strong {
+            font-size: 22px;
+            color: #38bdf8;
+        }
+
+        /* Pulse Micro-Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .pulse-mic {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+
+        /* Bottom Controls Bar */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-nav {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.08);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .key-hints {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .key-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #cbd5e1;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.06);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .badge-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Top Navigation Header -->
+    <header>
+        <div class="brand">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>ESY-SMS</span>
+        </div>
+
+        <div class="slide-indicator">
+            <span>স্লাইড</span>
+            <strong id="current-slide-num">১</strong>
+            <span>/</span>
+            <span id="total-slides-num">৮</span>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn-header" id="btn-fullscreen" onclick="toggleFullscreen()">
+                <i class="fa-solid fa-expand"></i> ফুলস্ক্রিন
+            </button>
+            <a href="http://esy-sms.test/login" target="_blank" class="btn-header btn-live-demo">
+                <i class="fa-solid fa-play"></i> লাইভ ডেমো খুলুন
+            </a>
+        </div>
+    </header>
+
+    <!-- Slide Deck Container -->
+    <div class="presentation-container">
+
+        <!-- SLIDE 1: Title & Hook -->
+        <div class="slide active" data-slide="1">
+            <div class="hero-banner">
+                <div class="hero-left">
+                    <span class="slide-badge"><i class="fa-solid fa-bolt"></i> আগামী প্রজন্মের প্রাতিষ্ঠানিক সমাধান</span>
+                    <h1 class="slide-title">
+                        কাগজের ঝামেলামুক্ত <br>
+                        <span>স্মার্ট স্কুল ও মাদ্রাসা</span><br>
+                        অটোমেশন সিস্টেম
+                    </h1>
+                    <p class="slide-subtitle">
+                        শিক্ষক, শিক্ষার্থী ও অভিভাবকদের একই প্ল্যাটফর্মে এনে প্রতিষ্ঠানের পরিচালন ব্যয় ও সময় ৮০% সাশ্রয় করুন। কণ্ঠস্বর দিয়ে পরীক্ষা তৈরি থেকে শুরু করে ১ ক্লিকে মেধা তালিকা ও মার্কশীট প্রস্তুত।
+                    </p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button class="btn-header btn-live-demo" style="padding: 12px 28px; font-size: 16px;" onclick="nextSlide()">
+                            প্রেজেন্টেশন শুরু করুন <i class="fa-solid fa-arrow-right ml-5"></i>
+                        </button>
+                        <a href="http://esy-sms.test/login" target="_blank" class="btn-header" style="padding: 12px 24px; font-size: 16px;">
+                            <i class="fa-solid fa-globe"></i> সরাসরি সফটওয়্যার ডেমো
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="demo-preview-box">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+                            <div style="font-weight: 700; color: #38bdf8;"><i class="fa-solid fa-school mr-8"></i> প্রতিষ্ঠানের সক্ষমতা একনজরে</div>
+                            <span class="badge-tag badge-green">১০০% ক্লাউড রেডি</span>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-microphone text-warning" style="font-size: 24px;"></i>
+                            <div>
+                                <div>গুগল ভয়েস টাইপিং পরীক্ষা</div>
+                                <small class="text-muted">কীবোর্ড ছাড়া বাংলা ও ইংরেজিতে প্রশ্ন তৈরি</small>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-stopwatch text-info" style="font-size: 24px;"></i>
+                            <div>
+                                <div>লাইভ কাউন্টডাউন টাইমার ও অটো-সাবমিট</div>
+                                <small class="text-muted">সময় শেষ হলে স্বয়ংক্রিয়ভাবে উত্তরপত্র জমা</small>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-medal text-warning" style="font-size: 24px;"></i>
+                            <div>
+                                <div>১ ক্লিকে মেধা তালিকা ও মার্কশীট</div>
+                                <small class="text-muted">১ম, ২য়, ৩য় স্থান সহ স্বয়ংক্রিয় গ্রেডিং</small>
+                            </div>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fa-solid fa-wallet text-success" style="font-size: 24px;"></i>
+                            <div>
+                                <div>বেতন ও ফি আদায় অটোমেশন</div>
+                                <small class="text-muted">জিরো গরমিল, স্বয়ংক্রিয় ডিজিটাল মানি রিসিট</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Current Problems vs ESY-SMS Solution -->
+        <div class="slide" data-slide="2">
+            <span class="slide-badge"><i class="fa-solid fa-triangle-exclamation"></i> বর্তমান বাস্তব বনাম স্মার্ট সমাধান</span>
+            <h2 class="slide-title">প্রতিষ্ঠানের <span>দৈনন্দিন ৫টি বড় মাথাব্যথা</span> ও মুক্তি</h2>
+            <p class="slide-subtitle">
+                প্রতিটি স্কুল ও মাদ্রাসার প্রধান শিক্ষক ও শিক্ষকদের মাসের পর মাস যেসব ক্লান্তিকর কাজে সময় অপচয় হয়:
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%; color: #f87171;"><i class="fa-solid fa-xmark mr-8"></i> প্রচলিত সনাতন পদ্ধতি (ম্যানুয়াল)</th>
+                        <th style="width: 45%; color: #34d399;"><i class="fa-solid fa-check mr-8"></i> ESY-SMS এর স্মার্ট সমাধান</th>
+                        <th style="width: 20%; color: #38bdf8;">ফলাফল</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>১. শত শত খাতা কাটা ও গ্রেডিং:</strong> পরীক্ষার পর শিক্ষকদের দিন-রাত খাতা কেটে রেজাল্ট তৈরি করতে হয়।</td>
+                        <td><strong>ইনস্ট্যান্ট অটো-গ্রেডিং:</strong> স্টুডেন্ট অনলাইনে পরীক্ষা সাবমিট করার ১ সেকেন্ডেই খাতা মূল্যায়ন ও মেধা তালিকা প্রস্তুত।</td>
+                        <td><span class="badge-tag badge-green">৯৫% সময় সাশ্রয়</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>২. প্রশ্ন টাইপ করার বিড়ম্বনা:</strong> কম্পিউটার কম্পোজের দোকানে দৌড়াদৌড়ি বা দীর্ঘ সময় বসে টাইপ করা।</td>
+                        <td><strong>গুগল ভয়েস টাইপিং:</strong> শিক্ষক মুখে বাংলায় বা ইংরেজিতে বলবেন, প্রশ্ন ও অপশন স্বয়ংক্রিয়ভাবে টাইপ হয়ে যাবে।</td>
+                        <td><span class="badge-tag badge-green">১০০% ঝামেলামুক্ত</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>৩. ফি আদায়ের গরমিল ও রেজিস্টার খাতা:</strong> কোন ছাত্র বেতন দিল, কার বকেয়া আছে—খাতা ঘেঁটে বের করা কঠিন।</td>
+                        <td><strong>ডিজিটাল ফি ট্র্যাকিং:</strong> ১ ক্লিকে শিক্ষার্থী বা ক্লাসের মাসিক বেতন, পরীক্ষার ফি ও ছাড় সহ রিসিট জেনারেট।</td>
+                        <td><span class="badge-tag badge-green">১০০% স্বচ্ছতা</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>৪. রোল নম্বর ও ক্লাস রেজিস্ট্রেশন জটিলতা:</strong> নতুন বছর আসলেই রোল নম্বর দিতে গিয়ে হিমশিম খাওয়া।</td>
+                        <td><strong>স্মার্ট রোল জেনারেটর:</strong> বছর ও ক্লাস নির্বাচন করে ১ ক্লিকেই স্বয়ংক্রিয় ক্রমিক রোল নম্বর তৈরি।</td>
+                        <td><span class="badge-tag badge-green">১০ মিনিটে সম্পূর্ণ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>৫. অভিভাবকদের কাছে জবাবদিহিতা:</strong> রেজাল্ট বা উপস্থিতির তথ্য জানাতে লম্বা সময় লাগা।</td>
+                        <td><strong>প্রিন্টেবল রেজাল্ট ও মার্কশীট:</strong> প্রতিষ্ঠানের লোগো, সিল ও স্বাক্ষর সহ অফিশিয়াল রেজাল্ট শিট প্রিন্ট।</td>
+                        <td><span class="badge-tag badge-green">অভিভাবক সন্তুষ্টি</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SLIDE 3: The Star Feature - Voice MCQ & Live Timer -->
+        <div class="slide" data-slide="3">
+            <span class="slide-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">
+                <i class="fa-solid fa-star"></i> আকর্ষণীয় ফিচার (WOW Feature)
+            </span>
+            <h2 class="slide-title">ভয়েস টাইপিং <span>অনলাইন এমসিকিউ ও লাইভ টাইমার</span></h2>
+            <p class="slide-subtitle">
+                এমন প্রযুক্তি যা বাংলাদেশে খুব কম প্রতিষ্ঠানেই আছে—আপনার স্কুলের আধুনিক ভাবমূর্তি মুহূর্তে বহুগুণ বাড়িয়ে দেবে!
+            </p>
+
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <div class="card-icon gold pulse-mic">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </div>
+                    <h3 class="card-title">গুগল ভয়েস টাইপিং</h3>
+                    <p class="card-desc">
+                        মাইক্রোফোন আইকনে চাপ দিয়ে মুখে বাংলা অথবা ইংরেজিতে প্রশ্ন ও ৪টি অপশন বলুন—গুগলের কৃত্রিম বুদ্ধিমত্তা নিজে নিজে নির্ভুলভাবে টাইপ করে দেবে।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon cyan">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="card-title">লাইভ কাউন্টডাউন টাইমার</h3>
+                    <p class="card-desc">
+                        পরীক্ষার সময়সীমা (যেমন: ১৫ বা ২০ মিনিট) নির্ধারণ করে দিন। স্টুডেন্টের স্ক্রিনে স্বয়ংক্রিয় ডিজিটাল ঘড়ি চলবে এবং ৩ মিনিট আগে অ্যালার্ট দেবে।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon green">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="card-title">অটো-সাবমিশন প্রোটেকশন</h3>
+                    <p class="card-desc">
+                        সময় শেষ (০০:০০) হলে স্টুডেন্টকে নোটিফিকেশন দিয়ে উত্তরপত্র নিজে থেকেই সাবমিট হবে। কারেন্ট চলে গেলেও বা নেট স্লো হলেও কোনো উত্তর নষ্ট হবে না।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="card-title">টিচার-কন্ট্রোলড পাবলিশিং</h3>
+                    <p class="card-desc">
+                        পরীক্ষা দেওয়ার সাথে সাথে স্টুডেন্ট নম্বর দেখতে পারবে না। শিক্ষক যতক্ষণ না "ফলাফল প্রকাশ" বাটনে চাপবেন, ততক্ষণ ফলাফল সম্পূর্ণ গোপন থাকবে।
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Merit List, Rankings & Printable Marksheet -->
+        <div class="slide" data-slide="4">
+            <span class="slide-badge"><i class="fa-solid fa-award"></i> মূল্যায়ন ও মেধা তালিকা</span>
+            <h2 class="slide-title">স্বয়ংক্রিয় <span>মেধা তালিকা (🥇 ১ম, 🥈 ২য়, 🥉 ৩য়)</span> ও মার্কশীট</h2>
+            <p class="slide-subtitle">
+                পরীক্ষা শেষে শিক্ষকের আর ক্যালকুলেটর নিয়ে হিসাব করার দরকার নেই। সফটওয়্যার স্বয়ংক্রিয়ভাবে শীর্ষ স্থান নির্ধারণ করে দেবে।
+            </p>
+
+            <div class="cards-grid">
+                <div class="feature-card" style="border-left: 4px solid #f59e0b;">
+                    <div class="card-icon gold"><i class="fa-solid fa-trophy"></i></div>
+                    <h3 class="card-title">মেধা তালিকা (Ranking)</h3>
+                    <p class="card-desc">
+                        প্রাপ্ত নম্বরের ভিত্তিতে কে প্রথম (🥇), কে দ্বিতীয় (🥈) আর কে তৃতীয় (🥉) হয়েছে—রঙিন মেডেল ব্যাজ সহ নিমিষেই তালিকা তৈরি।
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-left: 4px solid #10b981;">
+                    <div class="card-icon green"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="card-title">শিক্ষার্থী পারফরম্যান্স অ্যানালিটিক্স</h3>
+                    <p class="card-desc">
+                        কয়টি সঠিক হয়েছে (Correct), কয়টি ভুল (Wrong) এবং কয়টি উত্তর দেয়নি (Unanswered)—রঙিন ভিজ্যুয়াল কার্ডে প্রদর্শন।
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-left: 4px solid #3b82f6;">
+                    <div class="card-icon cyan"><i class="fa-solid fa-print"></i></div>
+                    <h3 class="card-title">অফিসিয়াল প্রিন্ট রেজাল্ট শিট</h3>
+                    <p class="card-desc">
+                        প্রতিষ্ঠানের পূর্ণাঙ্গ নাম, ঠিকানা, শিক্ষার্থীর রোল, বিষয়, প্রশ্নভিত্তিক রিভিউ এবং শিক্ষক ও প্রধান শিক্ষকের স্বাক্ষরের জায়গা সহ প্রিন্ট ফরম্যাট।
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <strong><i class="fa-solid fa-file-pdf text-danger mr-8"></i> মার্কশীট রেজাল্ট সিঙ্ক:</strong> অনলাইন পরীক্ষার নম্বর সরাসরি মূল বাৎসরিক বা সেমিস্টার মার্কশীট ডেটাবেজে যুক্ত হয়ে যায়।
+                </div>
+                <span class="badge-tag badge-green">১০০% নির্ভুল গাণিতিক গণনা</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Financial Management & Fee Collection -->
+        <div class="slide" data-slide="5">
+            <span class="slide-badge"><i class="fa-solid fa-coins"></i> আর্থিক স্বচ্ছতা</span>
+            <h2 class="slide-title">স্বচ্ছ ও নিরাপদ <span>হিসাব ও ফি কালেকশন</span></h2>
+            <p class="slide-subtitle">
+                প্রতিষ্ঠানের আয় ও বকেয়ার প্রতিটি পয়সার নিখুঁত হিসাব রাখুন। ক্যাশিয়ার বা একাউন্ট্যান্টের ভুল হওয়ার কোনো সুযোগ নেই।
+            </p>
+
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <div class="card-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3 class="card-title">মাসিক বেতন (Monthly Tuition Fee)</h3>
+                    <p class="card-desc">
+                        শ্রেণি অনুযায়ী নির্দিষ্ট মাসিক বেতন নির্ধারণ। কে পরিশোধ করল এবং কার বকেয়া রইল—এক নজরে তালিকা।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon cyan"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <h3 class="card-title">পরীক্ষার ফি ও বিবিধ ফি</h3>
+                    <p class="card-desc">
+                        ১ম সাময়িক, ২য় সাময়িক বা ফাইনাল পরীক্ষার ফি, সেশন চার্জ, লাইব্রেরি ও স্পোর্টস ফি আলাদা আলাদা আদায়।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon gold"><i class="fa-solid fa-percent"></i></div>
+                    <h3 class="card-title">শিক্ষার্থী অনুযায়ী ডিসকাউন্ট ছাড়</h3>
+                    <p class="card-desc">
+                        গরীব বা মেধাবী শিক্ষার্থীদের জন্য বিশেষ শতকরা ছাড় (যেমন: ১০% বা ২০%) স্বয়ংক্রিয়ভাবে কেটে নেট বিল তৈরি।
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <h3 class="card-title">মুহূর্তে ডিজিটাল মানি রিসিট</h3>
+                    <p class="card-desc">
+                        ফি নেওয়ার সাথে সাথে শিক্ষার্থীর নাম, আইডি, ফি ক্যাটাগরি ও তারিখ সহ প্রফেশনাল মানি রিসিট প্রিন্ট।
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Total Administration Package -->
+        <div class="slide" data-slide="6">
+            <span class="slide-badge"><i class="fa-solid fa-cubes"></i> অল-ইন-ওয়ান প্যাকেজ</span>
+            <h2 class="slide-title">একটি সফটওয়্যারেই <span>প্রতিষ্ঠানের সবকিছু</span></h2>
+            <p class="slide-subtitle">
+                আলাদা আলাদা সফটওয়্যার বা রেজিস্টার খাতার কোনো প্রয়োজন নেই। সব মডিউল এক সুতোয় গাঁথা:
+            </p>
+
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fa-solid fa-user-plus"></i></div>
+                    <h3 class="card-title">ভর্তি ও শিক্ষার্থী প্রোফাইল</h3>
+                    <p class="card-desc">ছবি, রক্তের গ্রুপ, পিতা-মাতার নাম, মোবাইল ও ঠিকানা সহ স্থায়ী ডিজিটাল আর্কাইভ।</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon cyan"><i class="fa-solid fa-list-ol"></i></div>
+                    <h3 class="card-title">রোল জেনারেটর</h3>
+                    <p class="card-desc">বছর ও ক্লাস অনুযায়ী শিক্ষার্থীদের নতুন ক্লাসে রোল নম্বর বরাদ্দ ও প্রমোশন ব্যবস্থা।</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon green"><i class="fa-solid fa-clipboard-user"></i></div>
+                    <h3 class="card-title">ডিজিটাল হাজিরা ও রিপোর্ট</h3>
+                    <p class="card-desc">প্রতিদিন ক্লাসের উপস্থিতি গ্রহণ এবং মাস শেষে কার শতকরা উপস্থিতি কত তার রিপোর্ট।</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon gold"><i class="fa-solid fa-id-card"></i></div>
+                    <h3 class="card-title">প্রবেশপত্র ও সিট প্ল্যান</h3>
+                    <p class="card-desc">পরীক্ষার জন্য স্বয়ংক্রিয় এডমিট কার্ড এবং পরীক্ষার হলের আসন বিন্যাস (Seat Plan)।</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3 class="card-title">যোগাযোগ পোর্টাল</h3>
+                    <p class="card-desc">শিক্ষক, শিক্ষার্থী ও প্রশাসনের মধ্যে প্রশ্ন ও মেসেজ আদান-প্রদানের অভ্যন্তরীণ পোর্টাল।</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-icon green"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3 class="card-title">শিক্ষক ও স্টাফ বেতন</h3>
+                    <p class="card-desc">শিক্ষকদের মাসিক বেতন, ইনক্রিমেন্ট এবং ছুটির হিসাব ব্যবস্থাপনা।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Live 3-Minute Action Demo Guide -->
+        <div class="slide" data-slide="7">
+            <span class="slide-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">
+                <i class="fa-solid fa-play"></i> লাইভ অ্যাকশন ডেমো
+            </span>
+            <h2 class="slide-title">প্রিন্সিপাল স্যারকে <span>৩ মিনিটে লাইভ যা দেখাবেন</span></h2>
+            <p class="slide-subtitle">
+                কথা কম বলে সরাসরি লাইভ প্রজেক্টরের পর্দায় এই ৪টি ম্যাজিক দেখান:
+            </p>
+
+            <div class="cards-grid">
+                <div class="feature-card" style="border-top: 3px solid #f59e0b;">
+                    <div style="font-size: 24px; font-weight: 800; color: #fbbf24; margin-bottom: 10px;">১ম মিনিট</div>
+                    <h3 class="card-title">মাইক্রোফোনে কথা বলে প্রশ্ন তৈরি</h3>
+                    <p class="card-desc">
+                        টিচার হিসেবে লগইন করুন ➔ 'নতুন পরীক্ষা' পেজে যান ➔ মাইক্রোফোন বাটনে চাপ দিয়ে মুখে বলুন <em>"বাংলাদেশের রাজধানী কোনটি?"</em>। মুহূর্তে টেক্সট বক্সে লেখা উঠবে!
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 3px solid #06b6d4;">
+                    <div style="font-size: 24px; font-weight: 800; color: #22d3ee; margin-bottom: 10px;">২য় মিনিট</div>
+                    <h3 class="card-title">স্টুডেন্টের টাইমার ও পরীক্ষা দেওয়া</h3>
+                    <p class="card-desc">
+                        অন্য ট্যাবে স্টুডেন্ট হিসেবে লগইন করুন ➔ পরীক্ষায় ঢুকুন ➔ স্ক্রিনের উপরে চলা লাইভ কাউন্টডাউন টাইমার দেখান ➔ সঠিক অপশনে ক্লিক করে সাবমিট করুন।
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 3px solid #10b981;">
+                    <div style="font-size: 24px; font-weight: 800; color: #34d399; margin-bottom: 10px;">৩য় মিনিট</div>
+                    <h3 class="card-title">মেধা তালিকা ও অফিশিয়াল প্রিন্ট শিট</h3>
+                    <p class="card-desc">
+                        টিচার ট্যাবে এসে পেজ রিফ্রেশ দিন ➔ মেধা তালিকায় <strong>🥇 ১ম স্থান</strong> ব্যাজ দেখান ➔ "রেজাল্ট শিট প্রিন্ট" এ ক্লিক করে সিল-স্বাক্ষর সহ প্রফেশনাল মার্কশীট দেখান!
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="http://esy-sms.test/login" target="_blank" class="btn-header btn-live-demo" style="padding: 14px 35px; font-size: 18px;">
+                    <i class="fa-solid fa-arrow-up-right-from-square mr-8"></i> এখনই লাইভ ডেমো শুরু করুন
+                </a>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Closing Pitch & Special Pilot Offer -->
+        <div class="slide" data-slide="8">
+            <span class="slide-badge" style="background: var(--gradient-gold); color: #fff; border: none;">
+                <i class="fa-solid fa-handshake"></i> বিশেষ প্রস্তাবনা
+            </span>
+            <h2 class="slide-title">আপনার প্রতিষ্ঠানকে <span>স্মার্ট ও আধুনিক</span> করার এখনই সেরা সময়</h2>
+            <p class="slide-subtitle">
+                আমরা কোনো অগ্রিম চাপ দিতে আসিনি—আমরা চাই আপনার শিক্ষকরা নিজের হাতে এটি ব্যবহার করে স্বস্তি অনুভব করুক।
+            </p>
+
+            <div class="hero-banner" style="margin-top: 20px;">
+                <div class="hero-left">
+                    <div class="feature-card" style="background: rgba(79, 70, 229, 0.15); border: 2px solid var(--primary); padding: 35px;">
+                        <h3 style="font-size: 26px; font-weight: 800; margin-bottom: 15px; color: #fff;">
+                            🎁 সম্পূর্ণ বিনামূল্যে ৭ দিনের পাইলট ট্রায়াল (Free Pilot Trial)
+                        </h3>
+                        <ul style="list-style: none; line-height: 2; font-size: 16px; color: #e2e8f0; margin-bottom: 25px;">
+                            <li><i class="fa-solid fa-circle-check text-success mr-10"></i> আপনার স্কুলের ১টি বা ২টি ক্লাসের ডাটা দিয়ে আমরা সম্পূর্ণ ফ্রি সেটআপ করে দেব।</li>
+                            <li><i class="fa-solid fa-circle-check text-success mr-10"></i> আপনার শিক্ষকদের আমরা সরাসরি আধা ঘণ্টার মধ্যে সহজ ট্রেনিং দেব।</li>
+                            <li><i class="fa-solid fa-circle-check text-success mr-10"></i> ১টি এমসিকিউ পরীক্ষা অনলাইনে নিয়ে শিক্ষকরা যখন চমকে যাবেন—তখনই চূড়ান্ত সিদ্ধান্ত নেবেন।</li>
+                            <li><i class="fa-solid fa-circle-check text-success mr-10"></i> পছন্দ না হলে কোনো বাধ্যবাধকতা বা এক পয়সাও চার্জ নেই!</li>
+                        </ul>
+
+                        <div style="display: flex; gap: 15px;">
+                            <a href="http://esy-sms.test/dashboard" target="_blank" class="btn-header btn-live-demo" style="padding: 14px 28px; font-size: 16px;">
+                                <i class="fa-solid fa-check mr-5"></i> আসুন এখনই শুরু করি
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="feature-card" style="text-align: center; padding: 40px 20px;">
+                        <i class="fa-solid fa-shield-halved text-success" style="font-size: 50px; margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 10px;">১০০% নির্ভরযোগ্য ও নিরাপদ</h3>
+                        <p class="text-muted" style="font-size: 14px; margin-bottom: 20px;">
+                            প্রতিষ্ঠানটির সকল তথ্য ডেটাবেজে সম্পূর্ণ সুরক্ষিত। যে কোনো সময় সম্পূর্ণ ব্যাকআপ নেওয়ার সুবিধা।
+                        </p>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; font-size: 13px; color: #94a3b8;">
+                            প্রয়োজনে যেকোনো কাস্টমাইজেশন ও সার্বক্ষণিক টেকনিক্যাল সাপোর্ট।
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Controls & Key Hints -->
+    <footer>
+        <div class="key-hints">
+            <span>কীবোর্ড ব্যবহার করুন:</span>
+            <span><span class="key-badge">←</span> পূর্ববর্তী</span>
+            <span><span class="key-badge">→</span> বা <span class="key-badge">Space</span> পরবর্তী</span>
+            <span><span class="key-badge">F</span> ফুলস্ক্রিন</span>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-nav" id="btn-prev" onclick="prevSlide()" title="Previous Slide">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="btn-nav" id="btn-next" onclick="nextSlide()" title="Next Slide">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function updateSlide() {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+            if (activeSlide) {
+                activeSlide.classList.add('active');
+            }
+
+            document.getElementById('current-slide-num').innerText = currentSlide;
+            document.getElementById('btn-prev').disabled = (currentSlide === 1);
+            document.getElementById('btn-next').disabled = (currentSlide === totalSlides);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(err);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            } else if (e.key >= '1' && e.key <= '8') {
+                currentSlide = parseInt(e.key);
+                updateSlide();
+            }
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
