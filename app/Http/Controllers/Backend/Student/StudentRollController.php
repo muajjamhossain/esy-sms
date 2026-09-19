@@ -40,7 +40,9 @@ class StudentRollController extends Controller
     	$class_id = $request->class_id;
     	if ($request->student_id !=null) {
     		for ($i=0; $i < count($request->student_id); $i++) { 
-    			AssignStudent::where('year_id',$year_id)->where('class_id',$class_id)->where('student_id',$request->student_id[$i])->update(['roll' => $request->roll[$i]]);
+    			$rawRoll = $request->roll[$i] ?? null;
+    			$roll = (is_numeric($rawRoll) && trim((string)$rawRoll) !== '') ? (int)$rawRoll : null;
+    			AssignStudent::where('year_id',$year_id)->where('class_id',$class_id)->where('student_id',$request->student_id[$i])->update(['roll' => $roll]);
     		} // end for loop
     	}else{
     		$notification = array(

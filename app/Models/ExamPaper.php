@@ -8,11 +8,12 @@ class ExamPaper extends Model
 {
     protected $fillable = [
         'created_by', 'year_id', 'class_id', 'subject_id', 'exam_type_id',
-        'title', 'max_marks', 'question_file', 'answer_key_file',
+        'title', 'max_marks', 'duration_minutes', 'question_file', 'answer_key_file',
         'questions', 'is_published', 'published_at',
     ];
 
     protected $casts = [
+        'duration_minutes' => 'integer',
         'questions' => 'array',
         'is_published' => 'boolean',
         'published_at' => 'datetime',

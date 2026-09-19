@@ -61,6 +61,7 @@ class ExamPaperController extends Controller
             'exam_type_id' => ['required', 'exists:exam_types,id'],
             'title' => ['required', 'string', 'max:180'],
             'max_marks' => ['required', 'numeric', 'min:0.01', 'max:9999.99'],
+            'duration_minutes' => ['nullable', 'integer', 'min:1', 'max:600'],
             'answer_key_file' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:20480'],
         ];
 
@@ -71,6 +72,7 @@ class ExamPaperController extends Controller
         $data = $request->validate($rules);
         abort_unless(AssignStudent::where('year_id', $data['year_id'])->where('class_id', $data['class_id'])->exists(), 422, 'No students are assigned to this year and class.');
         $data['created_by'] = Auth::id();
+        $data['duration_minutes'] = $request->filled('duration_minutes') ? (int) $request->input('duration_minutes') : null;
 
         if (! empty($mcqQuestions)) {
             $questions = $this->parseMcqQuestions($mcqQuestions);
@@ -100,7 +102,56 @@ class ExamPaperController extends Controller
         $submission = $examPaper->submissions->firstWhere('student_id', Auth::id());
         $userSubmissionStats = $submission ? $submission->getMcqStats() : null;
 
-        return view('exam-papers.show', compact('examPaper', 'submission', 'students', 'userSubmissionStats'));
+        // Compute merit rankings for all submissions (ordered by marks descending)
+        $rankedSubmissions = $examPaper->submissions->sortByDesc(function ($sub) {
+            return $sub->final_marks ?? $sub->ai_marks ?? -1;
+        })->values();
+
+        $submissionRanks = [];
+        $currentRank = 1;
+        foreach ($rankedSubmissions as $index => $sub) {
+            $score = $sub->final_marks ?? $sub->ai_marks ?? null;
+            if ($score !== null) {
+                if ($index > 0) {
+                    $prevScore = $rankedSubmissions[$index - 1]->final_marks ?? $rankedSubmissions[$index - 1]->ai_marks ?? null;
+                    if ($score < $prevScore) {
+                        $currentRank = $index + 1;
+                    }
+                }
+                $submissionRanks[$sub->student_id] = $currentRank;
+            }
+        }
+
+        $canManage = ! $this->isStudent(Auth::user());
+
+        return view('exam-papers.show', compact('examPaper', 'submission', 'students', 'userSubmissionStats', 'submissionRanks', 'canManage'));
+    }
+
+    public function destroy(ExamPaper $examPaper)
+    {
+        $user = Auth::user();
+        abort_unless(
+            $examPaper->created_by === $user->id || $this->isAdministrator($user) || $this->isTeacherOrStaff($user),
+            403
+        );
+
+        if ($examPaper->question_file) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($examPaper->question_file);
+        }
+        if ($examPaper->answer_key_file) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($examPaper->answer_key_file);
+        }
+
+        foreach ($examPaper->submissions as $sub) {
+            if ($sub->answer_file) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($sub->answer_file);
+            }
+            $sub->delete();
+        }
+
+        $examPaper->delete();
+
+        return redirect()->route('exam-papers.index')->with('message', __('messages.exam_paper_deleted') ?: 'পরীক্ষা সফলভাবে মুছে ফেলা হয়েছে।');
     }
 
     public function submit(Request $request, ExamPaper $examPaper)

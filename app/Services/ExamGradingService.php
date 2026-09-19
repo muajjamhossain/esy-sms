@@ -38,10 +38,22 @@ class ExamGradingService
                 ->post($endpoint, ['max_marks' => $paper->max_marks]);
 
             return $this->normaliseResult($response->throw()->json(), $paper, $submission);
-        } catch (RequestException | ConnectionException $exception) {
-            Log::warning('Exam grading service was unavailable.', [
+        } catch (RequestException $exception) {
+            Log::warning('Exam grading service returned an error response.', [
                 'submission_id' => $submission->id,
-                'status' => optional($exception->response)->status(),
+                'status' => $exception->response ? $exception->response->status() : null,
+            ]);
+            return null;
+        } catch (ConnectionException $exception) {
+            Log::warning('Exam grading service was unavailable or timed out.', [
+                'submission_id' => $submission->id,
+                'error' => $exception->getMessage(),
+            ]);
+            return null;
+        } catch (\Throwable $exception) {
+            Log::warning('Exam grading unexpected error.', [
+                'submission_id' => $submission->id,
+                'error' => $exception->getMessage(),
             ]);
             return null;
         }
@@ -87,6 +99,12 @@ class ExamGradingService
             Log::warning('Gemini grading request failed; teacher review is required.', [
                 'submission_id' => $submission->id,
                 'status' => optional($exception->response)->status(),
+            ]);
+            return null;
+        } catch (\Throwable $exception) {
+            Log::warning('Gemini grading unexpected error; teacher review is required.', [
+                'submission_id' => $submission->id,
+                'error' => $exception->getMessage(),
             ]);
             return null;
         }

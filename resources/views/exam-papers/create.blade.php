@@ -14,13 +14,17 @@
                     <form method="POST" action="{{ route('exam-papers.store') }}" enctype="multipart/form-data" id="exam-paper-form">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-4 form-group">
                                 <label class="font-weight-bold">{{ __('messages.title') }} <span class="text-danger">*</span></label>
                                 <input name="title" class="form-control" placeholder="যেমন: গণিত ১ম পত্র - এমসিকিউ পরীক্ষা" required value="{{ old('title') }}">
                             </div>
-                            <div class="col-md-3 form-group">
+                            <div class="col-md-2 form-group">
                                 <label class="font-weight-bold">{{ __('messages.max_marks') }} <span class="text-danger">*</span></label>
                                 <input name="max_marks" type="number" min="0.01" step="0.01" class="form-control" placeholder="যেমন: 20" required value="{{ old('max_marks', 20) }}">
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label class="font-weight-bold"><i class="fa fa-clock-o text-primary mr-5"></i>{{ __('messages.exam_duration') }} ({{ __('messages.minutes') }})</label>
+                                <input name="duration_minutes" type="number" min="1" max="600" class="form-control" placeholder="যেমন: 20 (ঐচ্ছিক)" value="{{ old('duration_minutes') }}">
                             </div>
                             <div class="col-md-3 form-group">
                                 <label class="font-weight-bold">{{ __('messages.student_year') }} <span class="text-danger">*</span></label>

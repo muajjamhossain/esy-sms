@@ -154,9 +154,9 @@
 
 @php
   $grade_marks = App\Models\MarksGrade::where([['start_marks','<=', (int)$get_mark],['end_marks', '>=',(int)$get_mark ]])->first();
-  $grade_name = $grade_marks->grade_name;
-  $grade_point = number_format((float)$grade_marks->grade_point,2);
-  $total_point = (float)$total_point+(float)$grade_point;
+  $grade_name = $grade_marks ? $grade_marks->grade_name : 'N/A';
+  $grade_point = $grade_marks ? number_format((float)$grade_marks->grade_point,2) : '0.00';
+  $total_point = (float)$total_point + (float)($grade_marks ? $grade_marks->grade_point : 0);
 @endphp
 <td class="text-center">{{ $grade_name }}</td>
 <td class="text-center">{{ $grade_point }}</td>
@@ -165,7 +165,7 @@
 @endforeach
 
 <tr>
-  <td colspan="3"><strong style="padding-left: 30px;">Total Maks</strong></td>
+  <td colspan="3"><strong style="padding-left: 30px;">Total Marks</strong></td>
   <td colspan="3"><strong style="padding-left: 38px;">{{ $total_marks }}</strong></td>
 </tr>
 
@@ -186,10 +186,10 @@
 <table border="1" style="border-color: #ffffff;" width="100%" cellpadding="1" cellspacing="1">
 @php
 $total_grade = 0;
-$point_for_letter_grade = (float)$total_point/(float)$total_subject;
+$point_for_letter_grade = $total_subject > 0 ? ((float)$total_point / (float)$total_subject) : 0;
 $total_grade = App\Models\MarksGrade::where([['start_point','<=',$point_for_letter_grade],['end_point','>=',$point_for_letter_grade]])->first();
 
-$grade_point_avg = (float)$total_point/(float)$total_subject;
+$grade_point_avg = $total_subject > 0 ? ((float)$total_point / (float)$total_subject) : 0;
 
 @endphp
 <tr>

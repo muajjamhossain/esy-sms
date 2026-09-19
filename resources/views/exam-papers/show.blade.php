@@ -21,13 +21,23 @@
                         <span class="mr-15"><i class="fa fa-book mr-3 text-secondary"></i> {{ $examPaper->subject->name ?? __('messages.general') }}</span>
                         <span class="mr-15"><i class="fa fa-users mr-3 text-secondary"></i> {{ $examPaper->studentClass->name ?? __('messages.all_classes') }}</span>
                         <span class="mr-15"><i class="fa fa-calendar mr-3 text-secondary"></i> {{ $examPaper->year->name ?? '' }}</span>
-                        <span><i class="fa fa-star mr-3 text-warning"></i> {{ __('messages.max_marks') }}: <strong>{{ $examPaper->max_marks }}</strong></span>
+                        <span class="mr-15"><i class="fa fa-star mr-3 text-warning"></i> {{ __('messages.max_marks') }}: <strong>{{ $examPaper->max_marks }}</strong></span>
+                        @if($examPaper->duration_minutes)
+                            <span class="badge badge-info-light font-size-13 px-8 py-4">
+                                <i class="fa fa-clock-o mr-3"></i> {{ $examPaper->duration_minutes }} {{ __('messages.minutes') }}
+                            </span>
+                        @endif
                     </p>
                 </div>
-                <div class="mt-10">
+                <div class="mt-10 d-flex align-items-center">
                     <a href="{{ route('exam-papers.index') }}" class="btn btn-outline btn-secondary btn-sm btn-rounded shadow-sm">
                         <i class="fa fa-arrow-left mr-5"></i> পরীক্ষার তালিকা (All Exams)
                     </a>
+                    @if(! $isStudent)
+                        <a href="{{ route('exam-papers.delete', $examPaper) }}" class="btn btn-outline btn-danger btn-sm btn-rounded shadow-sm ml-8" onclick="return confirm('{{ __('messages.delete_exam_confirm') }}');">
+                            <i class="fa fa-trash mr-5"></i> {{ __('messages.remove') }}
+                        </a>
+                    @endif
                 </div>
             </div>
 
@@ -203,6 +213,26 @@
 
                     <!-- Case 3: Student has NOT submitted yet -> Show Exam Taking Room -->
                     @else
+                        @if($examPaper->duration_minutes)
+                            <!-- Floating Countdown Timer Widget -->
+                            <div id="sticky-timer-bar" class="p-15 mb-20 d-flex align-items-center justify-content-between shadow-sm" style="position: sticky; top: 70px; z-index: 1020; background: #ffffff; border-radius: 10px; border-left: 5px solid #3b82f6;">
+                                <div class="d-flex align-items-center">
+                                    <span class="d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle mr-12 shadow-sm" style="width: 42px; height: 42px;">
+                                        <i class="fa fa-clock-o font-size-20"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-weight-bold font-size-12 text-muted text-uppercase" style="letter-spacing: 0.5px;">{{ __('messages.time_left') }}</div>
+                                        <div class="font-weight-bold text-dark font-size-13">সময় শেষ হলে পরীক্ষা স্বয়ংক্রিয়ভাবে জমা হবে</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div id="countdown-display" class="badge badge-primary px-18 py-10 font-size-22 font-weight-bold shadow-sm" style="font-family: 'Courier New', Courier, monospace; letter-spacing: 2px;">
+                                        --:--
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="box shadow-sm" style="border-radius: 12px;">
                             <div class="box-header with-border bg-light d-flex justify-content-between align-items-center py-15 px-20">
                                 <div>
@@ -288,6 +318,51 @@
                                         document.getElementById('student-exam-form').submit();
                                     }
                                 });
+
+                                @if($examPaper->duration_minutes)
+                                // Live Countdown Timer
+                                const durationMinutes = {{ (int) $examPaper->duration_minutes }};
+                                let remainingSeconds = durationMinutes * 60;
+                                const timerDisplay = document.getElementById('countdown-display');
+                                const timerBar = document.getElementById('sticky-timer-bar');
+
+                                function updateTimerDisplay() {
+                                    const hours = Math.floor(remainingSeconds / 3600);
+                                    const minutes = Math.floor((remainingSeconds % 3600) / 60);
+                                    const seconds = remainingSeconds % 60;
+
+                                    let timeStr = '';
+                                    if (hours > 0) {
+                                        timeStr += (hours < 10 ? '0' : '') + hours + ':';
+                                    }
+                                    timeStr += (minutes < 10 ? '0' : '') + minutes + ':';
+                                    timeStr += (seconds < 10 ? '0' : '') + seconds;
+
+                                    if (timerDisplay) {
+                                        timerDisplay.innerText = timeStr;
+                                    }
+
+                                    if (remainingSeconds <= 180 && remainingSeconds > 60) {
+                                        if (timerDisplay) timerDisplay.className = 'badge badge-warning text-dark px-18 py-10 font-size-22 font-weight-bold shadow-sm';
+                                        if (timerBar) timerBar.style.borderLeftColor = '#f59e0b';
+                                    } else if (remainingSeconds <= 60) {
+                                        if (timerDisplay) timerDisplay.className = 'badge badge-danger px-18 py-10 font-size-22 font-weight-bold shadow-sm';
+                                        if (timerBar) timerBar.style.borderLeftColor = '#ef4444';
+                                    }
+
+                                    if (remainingSeconds <= 0) {
+                                        clearInterval(timerInterval);
+                                        if (timerDisplay) timerDisplay.innerText = '00:00';
+                                        alert('{{ __("messages.time_expired") }}\n\n{{ __("messages.auto_submitting") }}');
+                                        document.getElementById('student-exam-form').submit();
+                                    } else {
+                                        remainingSeconds--;
+                                    }
+                                }
+
+                                updateTimerDisplay();
+                                const timerInterval = setInterval(updateTimerDisplay, 1000);
+                                @endif
                             });
                         </script>
                     @endif
@@ -409,7 +484,8 @@
                             <table class="table table-hover table-striped mb-0">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th style="width: 25%;">{{ __('messages.student') }}</th>
+                                        <th style="width: 22%;">{{ __('messages.student') }}</th>
+                                        <th class="text-center" style="width: 10%;">{{ __('messages.merit_rank') }}</th>
                                         <th>জমার সময় (Submitted At)</th>
                                         <th class="text-center">{{ __('messages.correct') }}</th>
                                         <th class="text-center">{{ __('messages.wrong') }}</th>
@@ -423,11 +499,25 @@
                                     @forelse($examPaper->submissions as $sub)
                                         @php
                                             $subStats = $sub->getMcqStats();
+                                            $rank = $submissionRanks[$sub->student_id] ?? null;
                                         @endphp
                                         <tr>
                                             <td>
                                                 <strong class="text-dark">{{ $sub->student->name ?? 'N/A' }}</strong><br>
                                                 <small class="text-muted">ID / Roll: {{ $sub->student->id_no ?? $sub->student->id }}</small>
+                                            </td>
+                                            <td class="text-center">
+                                                @if($rank === 1)
+                                                    <span class="badge badge-warning text-dark font-weight-bold font-size-12 px-8 py-4 shadow-xs" title="1st Place">🥇 ১ম</span>
+                                                @elseif($rank === 2)
+                                                    <span class="badge badge-secondary text-dark font-weight-bold font-size-12 px-8 py-4 shadow-xs" title="2nd Place">🥈 ২য়</span>
+                                                @elseif($rank === 3)
+                                                    <span class="badge text-white font-weight-bold font-size-12 px-8 py-4 shadow-xs" style="background:#b45309;" title="3rd Place">🥉 ৩য়</span>
+                                                @elseif($rank)
+                                                    <span class="badge badge-light text-dark font-weight-bold font-size-12 px-8 py-4">#{{ $rank }}</span>
+                                                @else
+                                                    <span class="text-muted">—</span>
+                                                @endif
                                             </td>
                                             <td>{{ $sub->created_at ? $sub->created_at->format('d M Y, h:i A') : '—' }}</td>
                                             <td class="text-center">
@@ -457,7 +547,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center py-30 text-muted">
+                                            <td colspan="9" class="text-center py-30 text-muted">
                                                 <i class="fa fa-folder-open-o font-size-30 d-block mb-10"></i>
                                                 {{ __('messages.no_submissions') }}
                                             </td>

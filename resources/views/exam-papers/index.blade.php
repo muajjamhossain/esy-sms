@@ -56,6 +56,11 @@
                                     <strong class="font-size-15 text-dark">{{ $paper->title }}</strong>
                                     <br>
                                     <small class="text-muted">{{ $paper->examType->name ?? 'Exam' }}</small>
+                                    @if($paper->duration_minutes)
+                                        <span class="badge badge-info-light font-size-11 ml-5">
+                                            <i class="fa fa-clock-o mr-2"></i> {{ $paper->duration_minutes }} {{ __('messages.minutes') }}
+                                        </span>
+                                    @endif
                                 </td>
                                 <td>
                                     <span class="badge badge-light text-dark font-size-13">{{ $paper->studentClass->name ?? __('messages.all_classes') }}</span>
@@ -106,8 +111,8 @@
                                         @endif
                                     @endif
                                 </td>
-                                <td class="text-right">
-                                    <a class="btn btn-sm btn-info btn-rounded shadow-sm px-15" href="{{ route('exam-papers.show', $paper) }}">
+                                <td class="text-right text-nowrap">
+                                    <a class="btn btn-sm btn-info btn-rounded shadow-sm px-12" href="{{ route('exam-papers.show', $paper) }}">
                                         @if($isStudent)
                                             @if($studentSubmission && $paper->is_published)
                                                 <i class="fa fa-eye mr-3"></i> রেজাল্ট ও প্রিন্ট
@@ -120,6 +125,11 @@
                                             <i class="fa fa-eye mr-3"></i> পর্যালোচনা ও ফলাফল
                                         @endif
                                     </a>
+                                    @if(! $isStudent)
+                                        <a class="btn btn-sm btn-danger btn-rounded shadow-sm px-10 ml-5" href="{{ route('exam-papers.delete', $paper) }}" onclick="return confirm('{{ __('messages.delete_exam_confirm') }}');" title="{{ __('messages.remove') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

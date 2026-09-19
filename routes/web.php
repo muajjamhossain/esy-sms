@@ -100,6 +100,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/create', [ExamPaperController::class, 'create'])->name('exam-papers.create');
         Route::post('/', [ExamPaperController::class, 'store'])->name('exam-papers.store');
         Route::get('/{examPaper}', [ExamPaperController::class, 'show'])->name('exam-papers.show');
+        Route::delete('/{examPaper}', [ExamPaperController::class, 'destroy'])->name('exam-papers.destroy');
+        Route::get('/{examPaper}/delete', [ExamPaperController::class, 'destroy'])->name('exam-papers.delete');
         Route::post('/{examPaper}/submit', [ExamPaperController::class, 'submit'])->name('exam-papers.submit');
         Route::post('/{examPaper}/upload-for-student', [ExamPaperController::class, 'uploadForStudent'])->name('exam-papers.upload-for-student');
         Route::post('/{examPaper}/publish', [ExamPaperController::class, 'publishResults'])->name('exam-papers.publish');
@@ -210,7 +212,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
             Route::get('/password/view', [ProfileController::class, 'PasswordView'])->name('password.view');
 
-            Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('password.update');
+            Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('user.password.update');
         });
 
 

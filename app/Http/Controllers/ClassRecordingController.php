@@ -55,7 +55,7 @@ class ClassRecordingController extends Controller
             } else {
                 return redirect()->back()->with('info', 'No recordings found. Make sure cloud recording is enabled.');
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Zoom API Error: ' . $e->getMessage());
         }
     }
@@ -89,7 +89,7 @@ class ClassRecordingController extends Controller
                     }
                     $fetchedCount++;
                 }
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 // Log error and continue
                 continue;
             }
