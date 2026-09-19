@@ -1,0 +1,1843 @@
+[
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "pytesseract",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytesseract",
+        "description": "pytesseract",
+        "detail": "pytesseract",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "shapely.geometry",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shapely.geometry",
+        "description": "shapely.geometry",
+        "detail": "shapely.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "shapely.wkb",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shapely.wkb",
+        "description": "shapely.wkb",
+        "detail": "shapely.wkb",
+        "documentation": {}
+    },
+    {
+        "label": "shapely.affinity",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shapely.affinity",
+        "description": "shapely.affinity",
+        "detail": "shapely.affinity",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "ogr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "osr",
+        "importPath": "osgeo",
+        "description": "osgeo",
+        "isExtraImport": true,
+        "detail": "osgeo",
+        "documentation": {}
+    },
+    {
+        "label": "codecs",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "codecs",
+        "description": "codecs",
+        "detail": "codecs",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "shapely.ops",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shapely.ops",
+        "description": "shapely.ops",
+        "detail": "shapely.ops",
+        "documentation": {}
+    },
+    {
+        "label": "inspect",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "inspect",
+        "description": "inspect",
+        "detail": "inspect",
+        "documentation": {}
+    },
+    {
+        "label": "Grammar",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "EvaluableParseManager",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "SymbolTable",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "Bind",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "Grammar",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "EvaluableParseManager",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "SymbolTable",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "Bind",
+        "importPath": "booleano.parser",
+        "description": "booleano.parser",
+        "isExtraImport": true,
+        "detail": "booleano.parser",
+        "documentation": {}
+    },
+    {
+        "label": "Variable",
+        "importPath": "booleano.operations",
+        "description": "booleano.operations",
+        "isExtraImport": true,
+        "detail": "booleano.operations",
+        "documentation": {}
+    },
+    {
+        "label": "Variable",
+        "importPath": "booleano.operations",
+        "description": "booleano.operations",
+        "isExtraImport": true,
+        "detail": "booleano.operations",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "anyjson",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "anyjson",
+        "description": "anyjson",
+        "detail": "anyjson",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "lexers",
+        "importPath": "sphinx.highlighting",
+        "description": "sphinx.highlighting",
+        "isExtraImport": true,
+        "detail": "sphinx.highlighting",
+        "documentation": {}
+    },
+    {
+        "label": "PhpLexer",
+        "importPath": "pygments.lexers.web",
+        "description": "pygments.lexers.web",
+        "isExtraImport": true,
+        "detail": "pygments.lexers.web",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "def index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")\n    return {\n        \"status\": \"ok\",",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "health",
+        "kind": 2,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "def health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")\n    return {\n        \"status\": \"ok\",\n        \"tesseract\": str(version).splitlines()[0],\n        \"ocr_lang\": os.getenv(\"OCR_LANG\", \"ben+eng\"),\n        \"ai_engine\": os.getenv(\"AI_ENGINE\", \"ollama\"),",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "extract_text",
+        "kind": 2,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "def extract_text(filename: str, content: bytes) -> str:\n    suffix = Path(filename).suffix.lower()\n    if suffix == \".pdf\":\n        from pypdf import PdfReader\n        reader = PdfReader(io.BytesIO(content))\n        text = \"\\n\".join(page.extract_text() or \"\" for page in reader.pages)\n        return text[:MAX_EXTRACTED_CHARS]\n    if suffix in {\".jpg\", \".jpeg\", \".png\", \".webp\"}:\n        return pytesseract.image_to_string(\n            Image.open(io.BytesIO(content)),",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "app = FastAPI(title=\"Exam OCR and Grading Service\")\nMAX_EXTRACTED_CHARS = int(os.getenv(\"MAX_EXTRACTED_CHARS\", \"12000\"))\nTESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "MAX_EXTRACTED_CHARS",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "MAX_EXTRACTED_CHARS = int(os.getenv(\"MAX_EXTRACTED_CHARS\", \"12000\"))\nTESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "TESSERACT_CMD",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "TESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "TESSDATA_DIR",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "TESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "pytesseract.pytesseract.tesseract_cmd",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"TESSDATA_PREFIX\"]",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "description": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "peekOfCode": "os.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")",
+        "detail": ".kilo.worktrees.false-barometer.ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "Map",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "class Map:\n  def __init__(self, name, language):\n    self.paths = {}\n    self.name = name\n    self.language = language\n    self.width = 0\n    self.height = 0\n    self.bbox = []\n  def addPath(self, path, code, name):\n    self.paths[code] = {\"path\": path, \"name\": name}",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "Converter",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "class Converter:\n  def __init__(self, config):\n    args = {\n      'buffer_distance': -0.4,\n      'simplify_tolerance': 0.2,\n      'longitude0': 0,\n      'projection': 'mill',\n      'name': 'world',\n      'width': 900,\n      'language': 'en',",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "args = {}\nif len(sys.argv) > 1:\n  paramsJson = open(sys.argv[1], 'r').read()\nelse:\n  paramsJson = sys.stdin.read()\nparamsJson = json.loads(paramsJson)\nconverter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "paramsJson",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "paramsJson = json.loads(paramsJson)\nconverter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "converter",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "converter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "Map",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Map:\n  def __init__(self, name, language):\n    self.paths = {}\n    self.name = name\n    self.language = language\n    self.width = 0\n    self.height = 0\n    self.bbox = []\n  def addPath(self, path, code, name):\n    self.paths[code] = {\"path\": path, \"name\": name}",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Converter",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Converter:\n  def __init__(self, config):\n    args = {\n      'buffer_distance': -0.4,\n      'simplify_tolerance': 0.2,\n      'longitude0': 0,\n      'projection': 'mill',\n      'name': 'world',\n      'width': 900,\n      'left': 0,",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Geometry",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Geometry:\n  def __init__(self, geometry, properties):\n    self.geom = geometry\n    self.properties = properties\nclass GeometryProperty(Variable):\n  operations = set([\"equality\", \"membership\"])\n  def __init__(self, name):\n    self.name = name\n  def equals(self, value, context):\n    return context[self.name] == value",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "GeometryProperty",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class GeometryProperty(Variable):\n  operations = set([\"equality\", \"membership\"])\n  def __init__(self, name):\n    self.name = name\n  def equals(self, value, context):\n    return context[self.name] == value\n  def belongs_to(self, value, context):\n    return value in context[self.name]\n  def is_subset(self, value, context):\n    return set(value).issubset(set(context[self.name]))",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "DataSource",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class DataSource:\n  def __init__(self, config):\n    default_config = {\n      \"projection\": \"merc\",\n      \"longitude0\": 0\n    }\n    default_config.update(config)\n    self.config = default_config\n    self.spatialRef = osr.SpatialReference()\n    projString = '+proj='+str(self.config['projection'])+' +a=6381372 +b=6381372 +lat_0=0'",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "PolygonSimplifier",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class PolygonSimplifier:\n  def __init__(self, geometries):\n    self.format = '%.8f %.8f'\n    self.tolerance = 0.05\n    self.geometries = geometries\n    connections = {}\n    counter = 0\n    for geom in geometries:\n      counter += 1\n      polygons = []",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Processor",
+        "kind": 6,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Processor:\n  def __init__(self, config):\n    self.config = config\n  def process(self):\n    self.data_sources = {}\n    for action in self.config:\n      getattr(self, action['name'])( action, self.data_sources.get(\".\") )\n  def read_data(self, config, data_source):\n    self.data_sources[\".\"] = DataSource( config )\n    self.data_sources[\".\"].load_data()",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "args = {}\nif len(sys.argv) > 1:\n  paramsJson = open(sys.argv[1], 'r').read()\nelse:\n  paramsJson = sys.stdin.read()\nparamsJson = json.loads(paramsJson)\nprocessor = Processor(paramsJson)\nprocessor.process()",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "paramsJson",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "paramsJson = json.loads(paramsJson)\nprocessor = Processor(paramsJson)\nprocessor.process()",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "processor",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "processor = Processor(paramsJson)\nprocessor.process()",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "simplifyRing",
+        "kind": 2,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "def simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1\n    isPivot = ((len(connections[pointStr]) > 2) or (pointStr in pivotPoints))\n  pointIndex = pointIndex - 1",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "simplifyPolygon",
+        "kind": 2,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "def simplifyPolygon(polygon):\n  simpleExtRing = simplifyRing(polygon.exterior)\n  if simpleExtRing is None:\n    return None\n  simpleIntRings = []\n  for ring in polygon.interiors:\n    simpleIntRing = simplifyRing(ring)\n    if simpleIntRing is not None:\n      simpleIntRings.append(simpleIntRing)\n  return shapely.geometry.Polygon(simpleExtRing, simpleIntRings)",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "format",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "format = '%.8f %.8f'\ntolerance = 0.01\ninfile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "tolerance",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "tolerance = 0.01\ninfile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "infile",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "infile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "outfile",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "outfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_ds",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_layer",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_defn",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_driver",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_ds",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_layer",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )\n    shp_layer.CreateField( fd )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_field_count",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )\n    shp_layer.CreateField( fd )\n# Load geometries\ngeometries = []\nfor feature in in_layer:",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "geometries",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "geometries = []\nfor feature in in_layer:\n  geometry = feature.GetGeometryRef()\n  geometryType = geometry.GetGeometryType()\n  if geometryType == ogr.wkbPolygon or geometryType == ogr.wkbMultiPolygon:\n    shapelyGeometry = shapely.wkb.loads( geometry.ExportToWkb() )\n    #if not shapelyGeometry.is_valid:\n      #buffer to fix selfcrosses\n      #shapelyGeometry = shapelyGeometry.buffer(0)\n    if shapelyGeometry:",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "start",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "start = int(round(time.time() * 1000))\n# Simplification\npoints = []\nconnections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "points",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "points = []\nconnections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "connections",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "connections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "counter",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "counter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)\n  for polygon in polygons:",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "simplifiedLines",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "simplifiedLines = {}\npivotPoints = {}\ndef simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "pivotPoints",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "pivotPoints = {}\ndef simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1\n    isPivot = ((len(connections[pointStr]) > 2) or (pointStr in pivotPoints))",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "results = []\nfor geom in geometries:\n  polygons = []\n  simplePolygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)\n  for polygon in polygons:",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_feat",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_feat = in_layer.GetNextFeature()\ncounter = 0\nwhile in_feat is not None:\n  if results[counter] is not None:\n    out_feat = ogr.Feature( feature_def = shp_layer.GetLayerDefn() )\n    out_feat.SetFrom( in_feat )\n    out_feat.SetGeometryDirectly(\n      ogr.CreateGeometryFromWkb(\n        shapely.wkb.dumps(\n          results[counter]",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "counter",
+        "kind": 5,
+        "importPath": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "counter = 0\nwhile in_feat is not None:\n  if results[counter] is not None:\n    out_feat = ogr.Feature( feature_def = shp_layer.GetLayerDefn() )\n    out_feat.SetFrom( in_feat )\n    out_feat.SetGeometryDirectly(\n      ogr.CreateGeometryFromWkb(\n        shapely.wkb.dumps(\n          results[counter]\n        )",
+        "detail": ".kilo.worktrees.false-barometer.public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "def index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")\n    return {\n        \"status\": \"ok\",",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "health",
+        "kind": 2,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "def health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")\n    return {\n        \"status\": \"ok\",\n        \"tesseract\": str(version).splitlines()[0],\n        \"ocr_lang\": os.getenv(\"OCR_LANG\", \"ben+eng\"),\n        \"ai_engine\": os.getenv(\"AI_ENGINE\", \"ollama\"),",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "extract_text",
+        "kind": 2,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "def extract_text(filename: str, content: bytes) -> str:\n    suffix = Path(filename).suffix.lower()\n    if suffix == \".pdf\":\n        from pypdf import PdfReader\n        reader = PdfReader(io.BytesIO(content))\n        text = \"\\n\".join(page.extract_text() or \"\" for page in reader.pages)\n        return text[:MAX_EXTRACTED_CHARS]\n    if suffix in {\".jpg\", \".jpeg\", \".png\", \".webp\"}:\n        return pytesseract.image_to_string(\n            Image.open(io.BytesIO(content)),",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "app = FastAPI(title=\"Exam OCR and Grading Service\")\nMAX_EXTRACTED_CHARS = int(os.getenv(\"MAX_EXTRACTED_CHARS\", \"12000\"))\nTESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "MAX_EXTRACTED_CHARS",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "MAX_EXTRACTED_CHARS = int(os.getenv(\"MAX_EXTRACTED_CHARS\", \"12000\"))\nTESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "TESSERACT_CMD",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "TESSERACT_CMD = os.getenv(\n    \"TESSERACT_CMD\",\n    r\"C:\\Program Files\\Tesseract-OCR\\tesseract.exe\",\n)\nTESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "TESSDATA_DIR",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "TESSDATA_DIR = os.getenv(\n    \"TESSDATA_DIR\",\n    os.path.expandvars(r\"%LOCALAPPDATA%\\Tesseract-OCR\\tessdata\"),\n)\npytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "pytesseract.pytesseract.tesseract_cmd",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD\nos.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"TESSDATA_PREFIX\"]",
+        "kind": 5,
+        "importPath": "ai_grading.app",
+        "description": "ai_grading.app",
+        "peekOfCode": "os.environ[\"TESSDATA_PREFIX\"] = TESSDATA_DIR\n@app.get(\"/\")\ndef index():\n    return {\"service\": \"exam-ocr-grading\", \"status\": \"ok\", \"health\": \"/health\", \"grading\": \"/grade\"}\n@app.get(\"/health\")\ndef health():\n    try:\n        version = pytesseract.get_tesseract_version()\n    except (pytesseract.TesseractNotFoundError, OSError) as error:\n        raise HTTPException(status_code=503, detail=f\"Tesseract is unavailable: {error}\")",
+        "detail": "ai_grading.app",
+        "documentation": {}
+    },
+    {
+        "label": "Map",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.converter",
+        "description": "public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "class Map:\n  def __init__(self, name, language):\n    self.paths = {}\n    self.name = name\n    self.language = language\n    self.width = 0\n    self.height = 0\n    self.bbox = []\n  def addPath(self, path, code, name):\n    self.paths[code] = {\"path\": path, \"name\": name}",
+        "detail": "public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "Converter",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.converter",
+        "description": "public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "class Converter:\n  def __init__(self, config):\n    args = {\n      'buffer_distance': -0.4,\n      'simplify_tolerance': 0.2,\n      'longitude0': 0,\n      'projection': 'mill',\n      'name': 'world',\n      'width': 900,\n      'language': 'en',",
+        "detail": "public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.converter",
+        "description": "public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "args = {}\nif len(sys.argv) > 1:\n  paramsJson = open(sys.argv[1], 'r').read()\nelse:\n  paramsJson = sys.stdin.read()\nparamsJson = json.loads(paramsJson)\nconverter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": "public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "paramsJson",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.converter",
+        "description": "public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "paramsJson = json.loads(paramsJson)\nconverter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": "public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "converter",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.converter",
+        "description": "public.assets.vendor_components.jvectormap.converter.converter",
+        "peekOfCode": "converter = Converter(paramsJson)\nconverter.convert(paramsJson['output_file'])",
+        "detail": "public.assets.vendor_components.jvectormap.converter.converter",
+        "documentation": {}
+    },
+    {
+        "label": "Map",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Map:\n  def __init__(self, name, language):\n    self.paths = {}\n    self.name = name\n    self.language = language\n    self.width = 0\n    self.height = 0\n    self.bbox = []\n  def addPath(self, path, code, name):\n    self.paths[code] = {\"path\": path, \"name\": name}",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Converter",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Converter:\n  def __init__(self, config):\n    args = {\n      'buffer_distance': -0.4,\n      'simplify_tolerance': 0.2,\n      'longitude0': 0,\n      'projection': 'mill',\n      'name': 'world',\n      'width': 900,\n      'left': 0,",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Geometry",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Geometry:\n  def __init__(self, geometry, properties):\n    self.geom = geometry\n    self.properties = properties\nclass GeometryProperty(Variable):\n  operations = set([\"equality\", \"membership\"])\n  def __init__(self, name):\n    self.name = name\n  def equals(self, value, context):\n    return context[self.name] == value",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "GeometryProperty",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class GeometryProperty(Variable):\n  operations = set([\"equality\", \"membership\"])\n  def __init__(self, name):\n    self.name = name\n  def equals(self, value, context):\n    return context[self.name] == value\n  def belongs_to(self, value, context):\n    return value in context[self.name]\n  def is_subset(self, value, context):\n    return set(value).issubset(set(context[self.name]))",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "DataSource",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class DataSource:\n  def __init__(self, config):\n    default_config = {\n      \"projection\": \"merc\",\n      \"longitude0\": 0\n    }\n    default_config.update(config)\n    self.config = default_config\n    self.spatialRef = osr.SpatialReference()\n    projString = '+proj='+str(self.config['projection'])+' +a=6381372 +b=6381372 +lat_0=0'",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "PolygonSimplifier",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class PolygonSimplifier:\n  def __init__(self, geometries):\n    self.format = '%.8f %.8f'\n    self.tolerance = 0.05\n    self.geometries = geometries\n    connections = {}\n    counter = 0\n    for geom in geometries:\n      counter += 1\n      polygons = []",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "Processor",
+        "kind": 6,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "class Processor:\n  def __init__(self, config):\n    self.config = config\n  def process(self):\n    self.data_sources = {}\n    for action in self.config:\n      getattr(self, action['name'])( action, self.data_sources.get(\".\") )\n  def read_data(self, config, data_source):\n    self.data_sources[\".\"] = DataSource( config )\n    self.data_sources[\".\"].load_data()",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "args",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "args = {}\nif len(sys.argv) > 1:\n  paramsJson = open(sys.argv[1], 'r').read()\nelse:\n  paramsJson = sys.stdin.read()\nparamsJson = json.loads(paramsJson)\nprocessor = Processor(paramsJson)\nprocessor.process()",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "paramsJson",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "paramsJson = json.loads(paramsJson)\nprocessor = Processor(paramsJson)\nprocessor.process()",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "processor",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.processor",
+        "description": "public.assets.vendor_components.jvectormap.converter.processor",
+        "peekOfCode": "processor = Processor(paramsJson)\nprocessor.process()",
+        "detail": "public.assets.vendor_components.jvectormap.converter.processor",
+        "documentation": {}
+    },
+    {
+        "label": "simplifyRing",
+        "kind": 2,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "def simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1\n    isPivot = ((len(connections[pointStr]) > 2) or (pointStr in pivotPoints))\n  pointIndex = pointIndex - 1",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "simplifyPolygon",
+        "kind": 2,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "def simplifyPolygon(polygon):\n  simpleExtRing = simplifyRing(polygon.exterior)\n  if simpleExtRing is None:\n    return None\n  simpleIntRings = []\n  for ring in polygon.interiors:\n    simpleIntRing = simplifyRing(ring)\n    if simpleIntRing is not None:\n      simpleIntRings.append(simpleIntRing)\n  return shapely.geometry.Polygon(simpleExtRing, simpleIntRings)",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "format",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "format = '%.8f %.8f'\ntolerance = 0.01\ninfile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "tolerance",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "tolerance = 0.01\ninfile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "infile",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "infile = '/Users/kirilllebedev/Maps/50m-admin-0-countries/ne_50m_admin_0_countries.shp'\noutfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "outfile",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "outfile = 'map.shp'\n# Open the datasource to operate on.\nin_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_ds",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_ds = ogr.Open( infile, update = 0 )\nin_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_layer",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_layer = in_ds.GetLayer( 0 )\nin_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_defn",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_defn = in_layer.GetLayerDefn()\n# Create output file with similar information.\nshp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_driver",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_driver = ogr.GetDriverByName( 'ESRI Shapefile' )\nif os.path.exists('map.shp'):\n  shp_driver.DeleteDataSource( outfile )\nshp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_ds",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_ds = shp_driver.CreateDataSource( outfile )\nshp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "shp_layer",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "shp_layer = shp_ds.CreateLayer( in_defn.GetName(),\n                                geom_type = in_defn.GetGeomType(),\n                                srs = in_layer.GetSpatialRef() )\nin_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )\n    shp_layer.CreateField( fd )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_field_count",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_field_count = in_defn.GetFieldCount()\nfor fld_index in range(in_field_count):\n    src_fd = in_defn.GetFieldDefn( fld_index )\n    fd = ogr.FieldDefn( src_fd.GetName(), src_fd.GetType() )\n    fd.SetWidth( src_fd.GetWidth() )\n    fd.SetPrecision( src_fd.GetPrecision() )\n    shp_layer.CreateField( fd )\n# Load geometries\ngeometries = []\nfor feature in in_layer:",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "geometries",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "geometries = []\nfor feature in in_layer:\n  geometry = feature.GetGeometryRef()\n  geometryType = geometry.GetGeometryType()\n  if geometryType == ogr.wkbPolygon or geometryType == ogr.wkbMultiPolygon:\n    shapelyGeometry = shapely.wkb.loads( geometry.ExportToWkb() )\n    #if not shapelyGeometry.is_valid:\n      #buffer to fix selfcrosses\n      #shapelyGeometry = shapelyGeometry.buffer(0)\n    if shapelyGeometry:",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "start",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "start = int(round(time.time() * 1000))\n# Simplification\npoints = []\nconnections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "points",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "points = []\nconnections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "connections",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "connections = {}\ncounter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "counter",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "counter = 0\nfor geom in geometries:\n  counter += 1\n  polygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)\n  for polygon in polygons:",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "simplifiedLines",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "simplifiedLines = {}\npivotPoints = {}\ndef simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "pivotPoints",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "pivotPoints = {}\ndef simplifyRing(ring):\n  coords = list(ring.coords)[0:-1]\n  simpleCoords = []\n  isPivot = False\n  pointIndex = 0\n  while not isPivot and pointIndex < len(coords):\n    pointStr = format % coords[pointIndex]\n    pointIndex += 1\n    isPivot = ((len(connections[pointStr]) > 2) or (pointStr in pivotPoints))",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "results = []\nfor geom in geometries:\n  polygons = []\n  simplePolygons = []\n  if isinstance(geom, shapely.geometry.Polygon):\n    polygons.append(geom)\n  else:\n    for polygon in geom:\n      polygons.append(polygon)\n  for polygon in polygons:",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "in_feat",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "in_feat = in_layer.GetNextFeature()\ncounter = 0\nwhile in_feat is not None:\n  if results[counter] is not None:\n    out_feat = ogr.Feature( feature_def = shp_layer.GetLayerDefn() )\n    out_feat.SetFrom( in_feat )\n    out_feat.SetGeometryDirectly(\n      ogr.CreateGeometryFromWkb(\n        shapely.wkb.dumps(\n          results[counter]",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "counter",
+        "kind": 5,
+        "importPath": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "description": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "peekOfCode": "counter = 0\nwhile in_feat is not None:\n  if results[counter] is not None:\n    out_feat = ogr.Feature( feature_def = shp_layer.GetLayerDefn() )\n    out_feat.SetFrom( in_feat )\n    out_feat.SetGeometryDirectly(\n      ogr.CreateGeometryFromWkb(\n        shapely.wkb.dumps(\n          results[counter]\n        )",
+        "detail": "public.assets.vendor_components.jvectormap.converter.simplifier",
+        "documentation": {}
+    },
+    {
+        "label": "#needs_sphinx",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#needs_sphinx = '1.0'\n# Add any Sphinx extension module names here, as strings. They can be\n# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom\n# ones.\nextensions = [\n    'sphinx.ext.todo',\n]\n# Add any paths that contain templates here, relative to this directory.\ntemplates_path = ['_templates']\n# The suffix of source filenames.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "extensions",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "extensions = [\n    'sphinx.ext.todo',\n]\n# Add any paths that contain templates here, relative to this directory.\ntemplates_path = ['_templates']\n# The suffix of source filenames.\nsource_suffix = '.rst'\n# The encoding of source files.\n#source_encoding = 'utf-8-sig'\n# The master toctree document.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "templates_path",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "templates_path = ['_templates']\n# The suffix of source filenames.\nsource_suffix = '.rst'\n# The encoding of source files.\n#source_encoding = 'utf-8-sig'\n# The master toctree document.\nmaster_doc = 'index'\n# General information about the project.\nproject = u'Mockery Docs'\ncopyright = u'Pádraic Brady, Dave Marshall and contributors'",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "source_suffix",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "source_suffix = '.rst'\n# The encoding of source files.\n#source_encoding = 'utf-8-sig'\n# The master toctree document.\nmaster_doc = 'index'\n# General information about the project.\nproject = u'Mockery Docs'\ncopyright = u'Pádraic Brady, Dave Marshall and contributors'\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#source_encoding",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#source_encoding = 'utf-8-sig'\n# The master toctree document.\nmaster_doc = 'index'\n# General information about the project.\nproject = u'Mockery Docs'\ncopyright = u'Pádraic Brady, Dave Marshall and contributors'\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the\n# built documents.\n#",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "master_doc",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "master_doc = 'index'\n# General information about the project.\nproject = u'Mockery Docs'\ncopyright = u'Pádraic Brady, Dave Marshall and contributors'\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the\n# built documents.\n#\n# The short X.Y version.\nversion = '1.0'",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "project",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "project = u'Mockery Docs'\ncopyright = u'Pádraic Brady, Dave Marshall and contributors'\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the\n# built documents.\n#\n# The short X.Y version.\nversion = '1.0'\n# The full version, including alpha/beta/rc tags.\nrelease = '1.0-alpha'",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "copyright",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "copyright = u'Pádraic Brady, Dave Marshall and contributors'\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the\n# built documents.\n#\n# The short X.Y version.\nversion = '1.0'\n# The full version, including alpha/beta/rc tags.\nrelease = '1.0-alpha'\n# The language for content autogenerated by Sphinx. Refer to documentation",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "version",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "version = '1.0'\n# The full version, including alpha/beta/rc tags.\nrelease = '1.0-alpha'\n# The language for content autogenerated by Sphinx. Refer to documentation\n# for a list of supported languages.\n#language = None\n# There are two options for replacing |today|: either, you set today to some\n# non-false value, then it is used:\n#today = ''\n# Else, today_fmt is used as the format for a strftime call.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "release",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "release = '1.0-alpha'\n# The language for content autogenerated by Sphinx. Refer to documentation\n# for a list of supported languages.\n#language = None\n# There are two options for replacing |today|: either, you set today to some\n# non-false value, then it is used:\n#today = ''\n# Else, today_fmt is used as the format for a strftime call.\n#today_fmt = '%B %d, %Y'\n# List of patterns, relative to source directory, that match files and",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#language",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#language = None\n# There are two options for replacing |today|: either, you set today to some\n# non-false value, then it is used:\n#today = ''\n# Else, today_fmt is used as the format for a strftime call.\n#today_fmt = '%B %d, %Y'\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\nexclude_patterns = ['_build']\n# The reST default role (used for this markup: `text`) to use for all",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#today",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#today = ''\n# Else, today_fmt is used as the format for a strftime call.\n#today_fmt = '%B %d, %Y'\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\nexclude_patterns = ['_build']\n# The reST default role (used for this markup: `text`) to use for all\n# documents.\n#default_role = None\n# If true, '()' will be appended to :func: etc. cross-reference text.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#today_fmt",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#today_fmt = '%B %d, %Y'\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\nexclude_patterns = ['_build']\n# The reST default role (used for this markup: `text`) to use for all\n# documents.\n#default_role = None\n# If true, '()' will be appended to :func: etc. cross-reference text.\n#add_function_parentheses = True\n# If true, the current module name will be prepended to all description",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "exclude_patterns",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "exclude_patterns = ['_build']\n# The reST default role (used for this markup: `text`) to use for all\n# documents.\n#default_role = None\n# If true, '()' will be appended to :func: etc. cross-reference text.\n#add_function_parentheses = True\n# If true, the current module name will be prepended to all description\n# unit titles (such as .. function::).\n#add_module_names = True\n# If true, sectionauthor and moduleauthor directives will be shown in the",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#default_role",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#default_role = None\n# If true, '()' will be appended to :func: etc. cross-reference text.\n#add_function_parentheses = True\n# If true, the current module name will be prepended to all description\n# unit titles (such as .. function::).\n#add_module_names = True\n# If true, sectionauthor and moduleauthor directives will be shown in the\n# output. They are ignored by default.\n#show_authors = False\n# The name of the Pygments (syntax highlighting) style to use.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#add_function_parentheses",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#add_function_parentheses = True\n# If true, the current module name will be prepended to all description\n# unit titles (such as .. function::).\n#add_module_names = True\n# If true, sectionauthor and moduleauthor directives will be shown in the\n# output. They are ignored by default.\n#show_authors = False\n# The name of the Pygments (syntax highlighting) style to use.\npygments_style = 'sphinx'\n# A list of ignored prefixes for module index sorting.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#add_module_names",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#add_module_names = True\n# If true, sectionauthor and moduleauthor directives will be shown in the\n# output. They are ignored by default.\n#show_authors = False\n# The name of the Pygments (syntax highlighting) style to use.\npygments_style = 'sphinx'\n# A list of ignored prefixes for module index sorting.\n#modindex_common_prefix = []\n# If true, keep warnings as \"system message\" paragraphs in the built documents.\n#keep_warnings = False",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#show_authors",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#show_authors = False\n# The name of the Pygments (syntax highlighting) style to use.\npygments_style = 'sphinx'\n# A list of ignored prefixes for module index sorting.\n#modindex_common_prefix = []\n# If true, keep warnings as \"system message\" paragraphs in the built documents.\n#keep_warnings = False\n# -- Options for HTML output ----------------------------------------------\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "pygments_style",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "pygments_style = 'sphinx'\n# A list of ignored prefixes for module index sorting.\n#modindex_common_prefix = []\n# If true, keep warnings as \"system message\" paragraphs in the built documents.\n#keep_warnings = False\n# -- Options for HTML output ----------------------------------------------\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.\nhtml_theme = 'default'\n# Theme options are theme-specific and customize the look and feel of a theme",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#modindex_common_prefix",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#modindex_common_prefix = []\n# If true, keep warnings as \"system message\" paragraphs in the built documents.\n#keep_warnings = False\n# -- Options for HTML output ----------------------------------------------\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.\nhtml_theme = 'default'\n# Theme options are theme-specific and customize the look and feel of a theme\n# further.  For a list of options available for each theme, see the\n# documentation.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#keep_warnings",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#keep_warnings = False\n# -- Options for HTML output ----------------------------------------------\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.\nhtml_theme = 'default'\n# Theme options are theme-specific and customize the look and feel of a theme\n# further.  For a list of options available for each theme, see the\n# documentation.\n#html_theme_options = {}\n# Add any paths that contain custom themes here, relative to this directory.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "html_theme",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "html_theme = 'default'\n# Theme options are theme-specific and customize the look and feel of a theme\n# further.  For a list of options available for each theme, see the\n# documentation.\n#html_theme_options = {}\n# Add any paths that contain custom themes here, relative to this directory.\n#html_theme_path = []\n# The name of an image file (within the static path) to use as favicon of the\n# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32\n# pixels large.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_theme_options",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_theme_options = {}\n# Add any paths that contain custom themes here, relative to this directory.\n#html_theme_path = []\n# The name of an image file (within the static path) to use as favicon of the\n# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32\n# pixels large.\n#html_favicon = None\n# Add any paths that contain custom static files (such as style sheets) here,\n# relative to this directory. They are copied after the builtin static files,\n# so a file named \"default.css\" will overwrite the builtin \"default.css\".",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_theme_path",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_theme_path = []\n# The name of an image file (within the static path) to use as favicon of the\n# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32\n# pixels large.\n#html_favicon = None\n# Add any paths that contain custom static files (such as style sheets) here,\n# relative to this directory. They are copied after the builtin static files,\n# so a file named \"default.css\" will overwrite the builtin \"default.css\".\nhtml_static_path = ['_static']\n# Add any extra paths that contain custom files (such as robots.txt or",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_favicon",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_favicon = None\n# Add any paths that contain custom static files (such as style sheets) here,\n# relative to this directory. They are copied after the builtin static files,\n# so a file named \"default.css\" will overwrite the builtin \"default.css\".\nhtml_static_path = ['_static']\n# Add any extra paths that contain custom files (such as robots.txt or\n# .htaccess) here, relative to this directory. These files are copied\n# directly to the root of the documentation.\n#html_extra_path = []\n# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "html_static_path",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "html_static_path = ['_static']\n# Add any extra paths that contain custom files (such as robots.txt or\n# .htaccess) here, relative to this directory. These files are copied\n# directly to the root of the documentation.\n#html_extra_path = []\n# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,\n# using the given strftime format.\n#html_last_updated_fmt = '%b %d, %Y'\n# If true, SmartyPants will be used to convert quotes and dashes to\n# typographically correct entities.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_extra_path",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_extra_path = []\n# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,\n# using the given strftime format.\n#html_last_updated_fmt = '%b %d, %Y'\n# If true, SmartyPants will be used to convert quotes and dashes to\n# typographically correct entities.\n#html_use_smartypants = True\n# Custom sidebar templates, maps document names to template names.\n#html_sidebars = {}\n# Additional templates that should be rendered to pages, maps page names to",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_last_updated_fmt",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_last_updated_fmt = '%b %d, %Y'\n# If true, SmartyPants will be used to convert quotes and dashes to\n# typographically correct entities.\n#html_use_smartypants = True\n# Custom sidebar templates, maps document names to template names.\n#html_sidebars = {}\n# Additional templates that should be rendered to pages, maps page names to\n# template names.\n#html_additional_pages = {}\n# If false, no module index is generated.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_use_smartypants",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_use_smartypants = True\n# Custom sidebar templates, maps document names to template names.\n#html_sidebars = {}\n# Additional templates that should be rendered to pages, maps page names to\n# template names.\n#html_additional_pages = {}\n# If false, no module index is generated.\n#html_domain_indices = True\n# If false, no index is generated.\n#html_use_index = True",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_sidebars",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_sidebars = {}\n# Additional templates that should be rendered to pages, maps page names to\n# template names.\n#html_additional_pages = {}\n# If false, no module index is generated.\n#html_domain_indices = True\n# If false, no index is generated.\n#html_use_index = True\n# If true, the index is split into individual pages for each letter.\n#html_split_index = False",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_additional_pages",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_additional_pages = {}\n# If false, no module index is generated.\n#html_domain_indices = True\n# If false, no index is generated.\n#html_use_index = True\n# If true, the index is split into individual pages for each letter.\n#html_split_index = False\n# If true, links to the reST sources are added to the pages.\n#html_show_sourcelink = True\n# If true, \"Created using Sphinx\" is shown in the HTML footer. Default is True.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_domain_indices",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_domain_indices = True\n# If false, no index is generated.\n#html_use_index = True\n# If true, the index is split into individual pages for each letter.\n#html_split_index = False\n# If true, links to the reST sources are added to the pages.\n#html_show_sourcelink = True\n# If true, \"Created using Sphinx\" is shown in the HTML footer. Default is True.\n#html_show_sphinx = True\n# If true, \"(C) Copyright ...\" is shown in the HTML footer. Default is True.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_use_index",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_use_index = True\n# If true, the index is split into individual pages for each letter.\n#html_split_index = False\n# If true, links to the reST sources are added to the pages.\n#html_show_sourcelink = True\n# If true, \"Created using Sphinx\" is shown in the HTML footer. Default is True.\n#html_show_sphinx = True\n# If true, \"(C) Copyright ...\" is shown in the HTML footer. Default is True.\n#html_show_copyright = True\n# If true, an OpenSearch description file will be output, and all pages will",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_split_index",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_split_index = False\n# If true, links to the reST sources are added to the pages.\n#html_show_sourcelink = True\n# If true, \"Created using Sphinx\" is shown in the HTML footer. Default is True.\n#html_show_sphinx = True\n# If true, \"(C) Copyright ...\" is shown in the HTML footer. Default is True.\n#html_show_copyright = True\n# If true, an OpenSearch description file will be output, and all pages will\n# contain a <link> tag referring to it.  The value of this option must be the\n# base URL from which the finished HTML is served.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_show_sourcelink",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_show_sourcelink = True\n# If true, \"Created using Sphinx\" is shown in the HTML footer. Default is True.\n#html_show_sphinx = True\n# If true, \"(C) Copyright ...\" is shown in the HTML footer. Default is True.\n#html_show_copyright = True\n# If true, an OpenSearch description file will be output, and all pages will\n# contain a <link> tag referring to it.  The value of this option must be the\n# base URL from which the finished HTML is served.\n#html_use_opensearch = ''\n# This is the file name suffix for HTML files (e.g. \".xhtml\").",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_show_sphinx",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_show_sphinx = True\n# If true, \"(C) Copyright ...\" is shown in the HTML footer. Default is True.\n#html_show_copyright = True\n# If true, an OpenSearch description file will be output, and all pages will\n# contain a <link> tag referring to it.  The value of this option must be the\n# base URL from which the finished HTML is served.\n#html_use_opensearch = ''\n# This is the file name suffix for HTML files (e.g. \".xhtml\").\n#html_file_suffix = None\n# Output file base name for HTML help builder.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_show_copyright",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_show_copyright = True\n# If true, an OpenSearch description file will be output, and all pages will\n# contain a <link> tag referring to it.  The value of this option must be the\n# base URL from which the finished HTML is served.\n#html_use_opensearch = ''\n# This is the file name suffix for HTML files (e.g. \".xhtml\").\n#html_file_suffix = None\n# Output file base name for HTML help builder.\nhtmlhelp_basename = 'MockeryDocsdoc'\n# -- Options for LaTeX output ---------------------------------------------",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_use_opensearch",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_use_opensearch = ''\n# This is the file name suffix for HTML files (e.g. \".xhtml\").\n#html_file_suffix = None\n# Output file base name for HTML help builder.\nhtmlhelp_basename = 'MockeryDocsdoc'\n# -- Options for LaTeX output ---------------------------------------------\nlatex_elements = {\n# The paper size ('letterpaper' or 'a4paper').\n#'papersize': 'letterpaper',\n# The font size ('10pt', '11pt' or '12pt').",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#html_file_suffix",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#html_file_suffix = None\n# Output file base name for HTML help builder.\nhtmlhelp_basename = 'MockeryDocsdoc'\n# -- Options for LaTeX output ---------------------------------------------\nlatex_elements = {\n# The paper size ('letterpaper' or 'a4paper').\n#'papersize': 'letterpaper',\n# The font size ('10pt', '11pt' or '12pt').\n#'pointsize': '10pt',\n# Additional stuff for the LaTeX preamble.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "htmlhelp_basename",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "htmlhelp_basename = 'MockeryDocsdoc'\n# -- Options for LaTeX output ---------------------------------------------\nlatex_elements = {\n# The paper size ('letterpaper' or 'a4paper').\n#'papersize': 'letterpaper',\n# The font size ('10pt', '11pt' or '12pt').\n#'pointsize': '10pt',\n# Additional stuff for the LaTeX preamble.\n#'preamble': '',\n}",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "latex_elements",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "latex_elements = {\n# The paper size ('letterpaper' or 'a4paper').\n#'papersize': 'letterpaper',\n# The font size ('10pt', '11pt' or '12pt').\n#'pointsize': '10pt',\n# Additional stuff for the LaTeX preamble.\n#'preamble': '',\n}\n# Grouping the document tree into LaTeX files. List of tuples\n# (source start file, target name, title,",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "latex_documents",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "latex_documents = [\n  ('index', 'MockeryDocs.tex', u'Mockery Docs Documentation',\n   u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell', 'manual'),\n]\n# The name of an image file (relative to this directory) to place at the top of\n# the title page.\n#latex_logo = None\n# For \"manual\" documents, if this is true, then toplevel headings are parts,\n# not chapters.\n#latex_use_parts = False",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_logo",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_logo = None\n# For \"manual\" documents, if this is true, then toplevel headings are parts,\n# not chapters.\n#latex_use_parts = False\n# If true, show page references after internal links.\n#latex_show_pagerefs = False\n# If true, show URL addresses after external links.\n#latex_show_urls = False\n# Documents to append as an appendix to all manuals.\n#latex_appendices = []",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_use_parts",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_use_parts = False\n# If true, show page references after internal links.\n#latex_show_pagerefs = False\n# If true, show URL addresses after external links.\n#latex_show_urls = False\n# Documents to append as an appendix to all manuals.\n#latex_appendices = []\n# If false, no module index is generated.\n#latex_domain_indices = True\n# -- Options for manual page output ---------------------------------------",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_show_pagerefs",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_show_pagerefs = False\n# If true, show URL addresses after external links.\n#latex_show_urls = False\n# Documents to append as an appendix to all manuals.\n#latex_appendices = []\n# If false, no module index is generated.\n#latex_domain_indices = True\n# -- Options for manual page output ---------------------------------------\n# One entry per manual page. List of tuples\n# (source start file, name, description, authors, manual section).",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_show_urls",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_show_urls = False\n# Documents to append as an appendix to all manuals.\n#latex_appendices = []\n# If false, no module index is generated.\n#latex_domain_indices = True\n# -- Options for manual page output ---------------------------------------\n# One entry per manual page. List of tuples\n# (source start file, name, description, authors, manual section).\nman_pages = [\n    ('index', 'mockerydocs', u'Mockery Docs Documentation',",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_appendices",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_appendices = []\n# If false, no module index is generated.\n#latex_domain_indices = True\n# -- Options for manual page output ---------------------------------------\n# One entry per manual page. List of tuples\n# (source start file, name, description, authors, manual section).\nman_pages = [\n    ('index', 'mockerydocs', u'Mockery Docs Documentation',\n     [u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell'], 1)\n]",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#latex_domain_indices",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#latex_domain_indices = True\n# -- Options for manual page output ---------------------------------------\n# One entry per manual page. List of tuples\n# (source start file, name, description, authors, manual section).\nman_pages = [\n    ('index', 'mockerydocs', u'Mockery Docs Documentation',\n     [u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell'], 1)\n]\n# If true, show URL addresses after external links.\n#man_show_urls = False",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "man_pages",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "man_pages = [\n    ('index', 'mockerydocs', u'Mockery Docs Documentation',\n     [u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell'], 1)\n]\n# If true, show URL addresses after external links.\n#man_show_urls = False\n# -- Options for Texinfo output -------------------------------------------\n# Grouping the document tree into Texinfo files. List of tuples\n# (source start file, target name, title, author,\n#  dir menu entry, description, category)",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#man_show_urls",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#man_show_urls = False\n# -- Options for Texinfo output -------------------------------------------\n# Grouping the document tree into Texinfo files. List of tuples\n# (source start file, target name, title, author,\n#  dir menu entry, description, category)\ntexinfo_documents = [\n  ('index', 'MockeryDocs', u'Mockery Docs Documentation',\n   u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell', 'MockeryDocs', 'One line description of project.',\n   'Miscellaneous'),\n]",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "texinfo_documents",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "texinfo_documents = [\n  ('index', 'MockeryDocs', u'Mockery Docs Documentation',\n   u'Pádraic Brady, Dave Marshall, Wouter, Graham Campbell', 'MockeryDocs', 'One line description of project.',\n   'Miscellaneous'),\n]\n# Documents to append as an appendix to all manuals.\n#texinfo_appendices = []\n# If false, no module index is generated.\n#texinfo_domain_indices = True\n# How to display URL addresses: 'footnote', 'no', or 'inline'.",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#texinfo_appendices",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#texinfo_appendices = []\n# If false, no module index is generated.\n#texinfo_domain_indices = True\n# How to display URL addresses: 'footnote', 'no', or 'inline'.\n#texinfo_show_urls = 'footnote'\n# If true, do not generate a @detailmenu in the \"Top\" node's menu.\n#texinfo_no_detailmenu = False\n#on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org\non_rtd = os.environ.get('READTHEDOCS', None) == 'True'\nif not on_rtd:  # only import and set the theme if we're building docs locally",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#texinfo_domain_indices",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#texinfo_domain_indices = True\n# How to display URL addresses: 'footnote', 'no', or 'inline'.\n#texinfo_show_urls = 'footnote'\n# If true, do not generate a @detailmenu in the \"Top\" node's menu.\n#texinfo_no_detailmenu = False\n#on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org\non_rtd = os.environ.get('READTHEDOCS', None) == 'True'\nif not on_rtd:  # only import and set the theme if we're building docs locally\n    import sphinx_rtd_theme\n    html_theme = 'sphinx_rtd_theme'",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#texinfo_show_urls",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#texinfo_show_urls = 'footnote'\n# If true, do not generate a @detailmenu in the \"Top\" node's menu.\n#texinfo_no_detailmenu = False\n#on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org\non_rtd = os.environ.get('READTHEDOCS', None) == 'True'\nif not on_rtd:  # only import and set the theme if we're building docs locally\n    import sphinx_rtd_theme\n    html_theme = 'sphinx_rtd_theme'\n    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]\n    print sphinx_rtd_theme.get_html_theme_path()",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "#texinfo_no_detailmenu",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "#texinfo_no_detailmenu = False\n#on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org\non_rtd = os.environ.get('READTHEDOCS', None) == 'True'\nif not on_rtd:  # only import and set the theme if we're building docs locally\n    import sphinx_rtd_theme\n    html_theme = 'sphinx_rtd_theme'\n    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]\n    print sphinx_rtd_theme.get_html_theme_path()\n# load PhpLexer\nfrom sphinx.highlighting import lexers",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "on_rtd",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "on_rtd = os.environ.get('READTHEDOCS', None) == 'True'\nif not on_rtd:  # only import and set the theme if we're building docs locally\n    import sphinx_rtd_theme\n    html_theme = 'sphinx_rtd_theme'\n    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]\n    print sphinx_rtd_theme.get_html_theme_path()\n# load PhpLexer\nfrom sphinx.highlighting import lexers\nfrom pygments.lexers.web import PhpLexer\n# enable highlighting for PHP code not between <?php ... ?> by default",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "lexers['php']",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "lexers['php'] = PhpLexer(startinline=True)\nlexers['php-annotations'] = PhpLexer(startinline=True)",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "lexers['php-annotations']",
+        "kind": 5,
+        "importPath": "vendor.mockery.mockery.docs.conf",
+        "description": "vendor.mockery.mockery.docs.conf",
+        "peekOfCode": "lexers['php-annotations'] = PhpLexer(startinline=True)",
+        "detail": "vendor.mockery.mockery.docs.conf",
+        "documentation": {}
+    }
+]

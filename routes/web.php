@@ -103,6 +103,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::post('/{examPaper}/submit', [ExamPaperController::class, 'submit'])->name('exam-papers.submit');
         Route::post('/{examPaper}/upload-for-student', [ExamPaperController::class, 'uploadForStudent'])->name('exam-papers.upload-for-student');
         Route::post('/{examPaper}/publish', [ExamPaperController::class, 'publishResults'])->name('exam-papers.publish');
+        Route::post('/{examPaper}/unpublish', [ExamPaperController::class, 'unpublishResults'])->name('exam-papers.unpublish');
+        Route::get('/{examPaper}/print/{student_id?}', [ExamPaperController::class, 'printResult'])->name('exam-papers.print');
         Route::post('/{examPaper}/submissions/{submission}/review', [ExamPaperController::class, 'review'])->name('exam-papers.review');
         Route::post('/{examPaper}/submissions/{submission}/regrade', [ExamPaperController::class, 'regrade'])->name('exam-papers.regrade');
     });

@@ -1,6 +1,6 @@
 @php
-$prefix = Request::route()->getPrefix();
-$route = Route::current()->getName();
+$prefix = Request::route() ? Request::route()->getPrefix() : '';
+$route = Route::current() ? Route::current()->getName() : '';
 $currentRole = strtolower((string) (Auth::user()->role ?: Auth::user()->usertype));
 
 @endphp

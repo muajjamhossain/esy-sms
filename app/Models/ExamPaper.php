@@ -52,4 +52,9 @@ class ExamPaper extends Model
     {
         return ! empty($this->questions) && is_array($this->questions);
     }
+
+    public function questionCount(): int
+    {
+        return is_array($this->questions) ? count($this->questions) : 0;
+    }
 }

@@ -30,7 +30,7 @@ class ExamPaperController extends Controller
                     });
                 }
             });
-        } elseif (! $this->isAdministrator($user)) {
+        } elseif (! $this->isTeacherOrStaff($user)) {
             $query->where('created_by', $user->id);
         }
 
@@ -98,8 +98,9 @@ class ExamPaperController extends Controller
             ->where('class_id', $examPaper->class_id)
             ->orderBy('id')->get();
         $submission = $examPaper->submissions->firstWhere('student_id', Auth::id());
+        $userSubmissionStats = $submission ? $submission->getMcqStats() : null;
 
-        return view('exam-papers.show', compact('examPaper', 'submission', 'students'));
+        return view('exam-papers.show', compact('examPaper', 'submission', 'students', 'userSubmissionStats'));
     }
 
     public function submit(Request $request, ExamPaper $examPaper)
@@ -108,18 +109,35 @@ class ExamPaperController extends Controller
         $this->authorizePaper($examPaper);
 
         if ($examPaper->isMcq()) {
-            $answers = $request->validate([
-                'answers' => ['required', 'array'],
-                'answers.*' => ['required', 'integer', 'between:0,3'],
+            // Check if student already submitted this exam
+            $existing = ExamSubmission::where('exam_paper_id', $examPaper->id)
+                ->where('student_id', Auth::id())
+                ->first();
+            if ($existing) {
+                return redirect()->route('exam-papers.show', $examPaper)
+                    ->with('error', __('messages.exam_already_submitted'));
+            }
+
+            $submittedAnswers = $request->input('answers', []);
+            if (! is_array($submittedAnswers)) {
+                $submittedAnswers = [];
+            }
+
+            $stats = $this->calculateMcqDetailedStats($examPaper, $submittedAnswers);
+
+            ExamSubmission::create([
+                'exam_paper_id' => $examPaper->id,
+                'student_id' => Auth::id(),
+                'answers' => $submittedAnswers,
+                'answer_file' => '',
+                'correct_count' => $stats['correct'],
+                'wrong_count' => $stats['wrong'],
+                'unanswered_count' => $stats['unanswered'],
+                'total_questions' => $stats['total'],
+                'final_marks' => $stats['marks'],
+                'reviewed_by' => null,
+                'reviewed_at' => null,
             ]);
-
-            $submission = ExamSubmission::updateOrCreate(
-                ['exam_paper_id' => $examPaper->id, 'student_id' => Auth::id()],
-                ['answers' => $answers['answers'], 'answer_file' => $request->input('answer_file', ''), 'final_marks' => null, 'reviewed_by' => null, 'reviewed_at' => null]
-            );
-
-            $finalMarks = $this->calculateMcqMarks($examPaper, $answers['answers']);
-            $submission->update(['final_marks' => $finalMarks]);
 
             return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_submission_saved'));
         }
@@ -167,7 +185,7 @@ class ExamPaperController extends Controller
                     'year_id' => $examPaper->year_id,
                 ],
                 [
-                    'id_no' => $submission->student->id_no,
+                    'id_no' => $submission->student->id_no ?? (string) $submission->student->id,
                     'marks' => $data['final_marks'],
                 ]
             );
@@ -175,7 +193,6 @@ class ExamPaperController extends Controller
 
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.exam_review_saved'));
     }
-
 
     public function regrade(ExamPaper $examPaper, ExamSubmission $submission)
     {
@@ -217,7 +234,95 @@ class ExamPaperController extends Controller
 
         $examPaper->update(['is_published' => true, 'published_at' => now()]);
 
+        // Sync with student marks table for reports and marksheets
+        $assignedSubject = AssignSubject::where('class_id', $examPaper->class_id)
+            ->where('subject_id', $examPaper->subject_id)->first();
+        if ($assignedSubject) {
+            foreach ($examPaper->submissions()->with('student')->get() as $sub) {
+                if ($sub->final_marks !== null && $sub->student) {
+                    \App\Models\StudentMarks::updateOrCreate(
+                        [
+                            'student_id' => $sub->student_id,
+                            'class_id' => $examPaper->class_id,
+                            'assign_subject_id' => $assignedSubject->id,
+                            'exam_type_id' => $examPaper->exam_type_id,
+                            'year_id' => $examPaper->year_id,
+                        ],
+                        [
+                            'id_no' => $sub->student->id_no ?? (string) $sub->student->id,
+                            'marks' => $sub->final_marks,
+                        ]
+                    );
+                }
+            }
+        }
+
         return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.results_published'));
+    }
+
+    public function unpublishResults(ExamPaper $examPaper)
+    {
+        abort_unless(! $this->isStudent(Auth::user()), 403);
+        $this->authorizePaper($examPaper);
+
+        $examPaper->update(['is_published' => false, 'published_at' => null]);
+
+        return redirect()->route('exam-papers.show', $examPaper)->with('message', __('messages.results_unpublished'));
+    }
+
+    public function printResult(ExamPaper $examPaper, $student_id = null)
+    {
+        $this->authorizePaper($examPaper);
+        $user = Auth::user();
+
+        if ($this->isStudent($user)) {
+            abort_unless($examPaper->is_published, 403, 'Results are not published yet.');
+            $studentId = $user->id;
+        } else {
+            $studentId = $student_id ?: $user->id;
+        }
+
+        $submission = ExamSubmission::with('student')
+            ->where('exam_paper_id', $examPaper->id)
+            ->where('student_id', $studentId)
+            ->firstOrFail();
+
+        $examPaper->load(['studentClass', 'year', 'subject', 'examType']);
+        $stats = $submission->getMcqStats();
+
+        return view('exam-papers.print', compact('examPaper', 'submission', 'stats'));
+    }
+
+    private function calculateMcqDetailedStats(ExamPaper $examPaper, array $answers): array
+    {
+        $questions = is_array($examPaper->questions) ? $examPaper->questions : [];
+        $total = count($questions);
+        $correct = 0;
+        $wrong = 0;
+        $unanswered = 0;
+
+        foreach ($questions as $index => $question) {
+            if (! isset($answers[$index]) || $answers[$index] === '' || $answers[$index] === null) {
+                $unanswered++;
+            } elseif ((int) $answers[$index] === (int) ($question['correct_option'] ?? -1)) {
+                $correct++;
+            } else {
+                $wrong++;
+            }
+        }
+
+        $maxMarks = (float) $examPaper->max_marks;
+        $marks = $total > 0 ? round(($correct / $total) * $maxMarks, 2) : 0.0;
+        $percentage = $maxMarks > 0 ? round(($marks / $maxMarks) * 100, 1) : 0.0;
+
+        return [
+            'total' => $total,
+            'correct' => $correct,
+            'wrong' => $wrong,
+            'unanswered' => $unanswered,
+            'marks' => $marks,
+            'percentage' => $percentage,
+        ];
     }
 
     private function parseMcqQuestions($mcqQuestions)
@@ -285,7 +390,7 @@ class ExamPaperController extends Controller
     private function authorizePaper(ExamPaper $paper)
     {
         $user = Auth::user();
-        if ($paper->created_by === $user->id || $this->isAdministrator($user)) {
+        if ($paper->created_by === $user->id || $this->isAdministrator($user) || $this->isTeacherOrStaff($user)) {
             return;
         }
 
@@ -304,5 +409,11 @@ class ExamPaperController extends Controller
     private function isAdministrator($user)
     {
         return in_array(strtolower((string) ($user->role ?: $user->usertype)), ['admin', 'administrator'], true);
+    }
+
+    private function isTeacherOrStaff($user)
+    {
+        $role = strtolower((string) ($user->role ?: $user->usertype));
+        return in_array($role, ['teacher', 'employee', 'staff', 'admin', 'administrator', 'operator'], true);
     }
 }
